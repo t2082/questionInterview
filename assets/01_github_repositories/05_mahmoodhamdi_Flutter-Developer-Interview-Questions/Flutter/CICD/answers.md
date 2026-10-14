@@ -1012,6 +1012,7 @@ jobs:
 
 **23. How do you configure multiple build flavors (dev, staging, production) in CI/CD?**
 
+{% raw %}
 ```yaml
 name: Build All Flavors
 
@@ -1069,6 +1070,7 @@ jobs:
         run: |
           # Deploy staging to testers
 ```
+{% endraw %}
 
 ---
 

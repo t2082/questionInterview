@@ -1,0 +1,9 @@
+# GitHub Pages configuration
+include:
+  - ".nojekyll"
+
+exclude:
+  - "assets"
+  - "crawl_all.py"
+  - "generate_questions_dataset.py"
+  - "*.py"
