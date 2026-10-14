@@ -1,0 +1,1 @@
+This page has migrated to https://github.com/flutter/flutter/blob/master/docs/contributing/Signing-commits.md

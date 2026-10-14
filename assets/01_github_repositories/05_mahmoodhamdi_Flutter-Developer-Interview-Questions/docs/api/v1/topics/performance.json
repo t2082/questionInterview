@@ -1,0 +1,651 @@
+{
+  "topic": "Flutter Performance",
+  "description": "Interview questions covering performance optimization, profiling, memory management, rendering, and best practices in Flutter",
+  "version": "2.0.0",
+  "last_updated": "2026-05-13",
+  "flutter_version_target": "3.27",
+  "questions": [
+    {
+      "id": "performance_001",
+      "question": "How do you profile a Flutter app to identify performance bottlenecks?",
+      "answer": "Use Flutter DevTools to analyze the performance of your app by checking frame rendering times, CPU usage, and memory allocation. Start a profile session to capture the app's performance data and identify bottlenecks.",
+      "difficulty": "intermediate",
+      "tags": [
+        "performance",
+        "profiling",
+        "devtools"
+      ]
+    },
+    {
+      "id": "performance_002",
+      "question": "What is the FlutterDevTools, and how is it used for performance profiling?",
+      "answer": "Flutter DevTools is a suite of performance and profiling tools that allows developers to analyze Flutter applications. It provides insights into widget rebuilds, memory usage, and rendering performance to help optimize the app.",
+      "difficulty": "beginner",
+      "tags": [
+        "performance",
+        "devtools",
+        "profiling"
+      ]
+    },
+    {
+      "id": "performance_003",
+      "question": "How do you reduce the size of a Flutter app's APK or IPA file?",
+      "answer": "Use the `flutter build apk --release` command for APK files and `flutter build ios --release` for IPA files. Enable tree shaking, remove unused assets, and utilize deferred loading for larger libraries.",
+      "difficulty": "intermediate",
+      "tags": [
+        "performance",
+        "app-size",
+        "optimization"
+      ]
+    },
+    {
+      "id": "performance_004",
+      "question": "What is the build method's role in performance, and how can it be optimized?",
+      "answer": "The build method constructs the widget tree. To optimize, avoid complex calculations in the build method, use the `const` keyword for widgets that don’t change, and minimize the widget tree depth.",
+      "difficulty": "intermediate",
+      "tags": [
+        "performance",
+        "build-method",
+        "optimization"
+      ]
+    },
+    {
+      "id": "performance_005",
+      "question": "How do you use the const keyword to improve performance in Flutter?",
+      "answer": "Using the `const` keyword creates compile-time constants, which helps Flutter skip rebuilding the widget if its parameters remain unchanged, thus improving performance.",
+      "difficulty": "beginner",
+      "tags": [
+        "performance",
+        "const",
+        "optimization"
+      ]
+    },
+    {
+      "id": "performance_006",
+      "question": "What is a RepaintBoundary, and how does it help with performance optimization?",
+      "answer": "A RepaintBoundary isolates parts of the widget tree, allowing Flutter to only repaint those parts when necessary, which reduces the rendering workload and improves performance.",
+      "difficulty": "intermediate",
+      "tags": [
+        "performance",
+        "repaint-boundary",
+        "rendering"
+      ]
+    },
+    {
+      "id": "performance_007",
+      "question": "How do you avoid unnecessary widget rebuilds in Flutter?",
+      "answer": "Use `const` constructors for widgets that do not change, utilize `ValueListenableBuilder` or `ChangeNotifier` for efficient state management, and implement `shouldRebuild` for custom widgets.",
+      "difficulty": "intermediate",
+      "tags": [
+        "performance",
+        "widget-rebuilds",
+        "optimization"
+      ]
+    },
+    {
+      "id": "performance_008",
+      "question": "What is the impact of using too many setState calls on performance?",
+      "answer": "Frequent calls to `setState` can cause multiple rebuilds of the widget tree, leading to performance degradation. Batch updates and limit `setState` calls to necessary changes.",
+      "difficulty": "intermediate",
+      "tags": [
+        "performance",
+        "setState",
+        "state-management"
+      ]
+    },
+    {
+      "id": "performance_009",
+      "question": "How do you optimize the performance of a ListView with many items?",
+      "answer": "Use `ListView.builder` for lazy loading, utilize `const` for item widgets, and consider pagination or lazy loading techniques to reduce the initial data load.",
+      "difficulty": "intermediate",
+      "tags": [
+        "performance",
+        "listview",
+        "lazy-loading"
+      ]
+    },
+    {
+      "id": "performance_010",
+      "question": "What is the SliverList widget, and how does it help with performance?",
+      "answer": "The `SliverList` widget allows for dynamic item rendering and lazy loading, only building items currently visible on the screen, which helps to improve performance for long lists.",
+      "difficulty": "intermediate",
+      "tags": [
+        "performance",
+        "sliver",
+        "lists"
+      ]
+    },
+    {
+      "id": "performance_011",
+      "question": "How do you use the AutomaticKeepAliveClientMixin to optimize scrolling performance?",
+      "answer": "Implement `AutomaticKeepAliveClientMixin` in stateful widgets to retain their state when scrolled off-screen, avoiding unnecessary rebuilds when they come back into view.",
+      "difficulty": "advanced",
+      "tags": [
+        "performance",
+        "keep-alive",
+        "scrolling"
+      ]
+    },
+    {
+      "id": "performance_012",
+      "question": "What are RenderObjects, and how can you optimize their performance?",
+      "answer": "RenderObjects are the low-level components responsible for painting and layout in Flutter. Optimize by minimizing the number of render objects and reducing the complexity of their layouts.",
+      "difficulty": "advanced",
+      "tags": [
+        "performance",
+        "render-objects",
+        "rendering"
+      ]
+    },
+    {
+      "id": "performance_013",
+      "question": "How do you optimize the performance of animations in Flutter?",
+      "answer": "Use the `AnimationController` efficiently, limit the number of animated properties, and consider using lower frame rates for less critical animations.",
+      "difficulty": "intermediate",
+      "tags": [
+        "performance",
+        "animations",
+        "optimization"
+      ]
+    },
+    {
+      "id": "performance_014",
+      "question": "What is DeferredComponent, and how does it optimize Flutter app size?",
+      "answer": "Deferred components allow lazy loading of parts of the application, reducing the initial app size and improving startup performance.",
+      "difficulty": "advanced",
+      "tags": [
+        "performance",
+        "deferred-loading",
+        "app-size"
+      ]
+    },
+    {
+      "id": "performance_015",
+      "question": "How does the flutter_native_splash package help with performance?",
+      "answer": "The `flutter_native_splash` package creates a native splash screen that reduces perceived loading time, making the app feel faster to users.",
+      "difficulty": "beginner",
+      "tags": [
+        "performance",
+        "splash-screen",
+        "packages"
+      ]
+    },
+    {
+      "id": "performance_016",
+      "question": "What are the best practices for optimizing image loading in Flutter?",
+      "answer": "Use the `CachedNetworkImage` package, resize images appropriately, and utilize placeholders while images are loading.",
+      "difficulty": "intermediate",
+      "tags": [
+        "performance",
+        "images",
+        "optimization"
+      ]
+    },
+    {
+      "id": "performance_017",
+      "question": "How do you use the CachedNetworkImage package to improve image loading performance?",
+      "answer": "The `CachedNetworkImage` package stores images in cache, reducing network calls and improving loading times for images that have been previously fetched.",
+      "difficulty": "beginner",
+      "tags": [
+        "performance",
+        "images",
+        "caching"
+      ]
+    },
+    {
+      "id": "performance_018",
+      "question": "How does the ImageCache class help with performance optimization?",
+      "answer": "The `ImageCache` class caches images in memory, allowing for faster retrieval and display of images without needing to re-fetch them from the network.",
+      "difficulty": "intermediate",
+      "tags": [
+        "performance",
+        "image-cache",
+        "memory"
+      ]
+    },
+    {
+      "id": "performance_019",
+      "question": "What is FlutterFragmentActivity, and how does it relate to performance?",
+      "answer": "`FlutterFragmentActivity` allows Flutter to be embedded in Android apps more efficiently, optimizing performance and integration.",
+      "difficulty": "advanced",
+      "tags": [
+        "performance",
+        "android",
+        "integration"
+      ]
+    },
+    {
+      "id": "performance_020",
+      "question": "How do you use the flutter run --release command to optimize performance?",
+      "answer": "The `flutter run --release` command builds the app in release mode, enabling optimizations such as tree shaking and removing debugging information for better performance.",
+      "difficulty": "beginner",
+      "tags": [
+        "performance",
+        "release-mode",
+        "commands"
+      ]
+    },
+    {
+      "id": "performance_021",
+      "question": "What is Skia, and how does it impact Flutter's rendering performance?",
+      "answer": "Skia is the graphics engine used by Flutter for rendering. It optimizes drawing operations and helps achieve high-performance graphics rendering.",
+      "difficulty": "advanced",
+      "tags": [
+        "performance",
+        "skia",
+        "rendering"
+      ]
+    },
+    {
+      "id": "performance_022",
+      "question": "How do you reduce jank in a Flutter app?",
+      "answer": "Minimize the workload in the main thread, avoid excessive layout passes, use `ListView.builder` for long lists, and profile for rendering performance issues.",
+      "difficulty": "intermediate",
+      "tags": [
+        "performance",
+        "jank",
+        "optimization"
+      ]
+    },
+    {
+      "id": "performance_023",
+      "question": "What is ShaderMask, and how does it impact performance?",
+      "answer": "`ShaderMask` applies shaders to widgets, which can be performance-intensive. Use it sparingly to avoid rendering bottlenecks.",
+      "difficulty": "advanced",
+      "tags": [
+        "performance",
+        "shaders",
+        "rendering"
+      ]
+    },
+    {
+      "id": "performance_024",
+      "question": "How do you avoid overdraw in Flutter?",
+      "answer": "Reduce the number of overlapping widgets, use opacity only when necessary, and leverage `Opacity` widgets wisely to minimize overdraw.",
+      "difficulty": "intermediate",
+      "tags": [
+        "performance",
+        "overdraw",
+        "rendering"
+      ]
+    },
+    {
+      "id": "performance_025",
+      "question": "What is the Flutter frame chart, and how is it used to analyze performance?",
+      "answer": "The Flutter frame chart shows the rendering performance of frames in the app, allowing developers to analyze frame timings and identify performance issues.",
+      "difficulty": "intermediate",
+      "tags": [
+        "performance",
+        "frame-chart",
+        "profiling"
+      ]
+    },
+    {
+      "id": "performance_026",
+      "question": "How does using ListView.separated improve performance?",
+      "answer": "`ListView.separated` optimizes the rendering of list items by providing separators efficiently, reducing the number of widget builds required.",
+      "difficulty": "beginner",
+      "tags": [
+        "performance",
+        "listview",
+        "optimization"
+      ]
+    },
+    {
+      "id": "performance_027",
+      "question": "What is the OpMode in Flutter, and how does it relate to performance?",
+      "answer": "OpMode defines the operating mode for animations and performance, affecting how rendering and transitions occur, optimizing for smoother visual experiences.",
+      "difficulty": "advanced",
+      "tags": [
+        "performance",
+        "opmode",
+        "animations"
+      ]
+    },
+    {
+      "id": "performance_028",
+      "question": "How do you optimize the performance of custom painters in Flutter?",
+      "answer": "Limit the number of layers, use `Canvas` methods efficiently, and only repaint when necessary to optimize performance in custom painters.",
+      "difficulty": "advanced",
+      "tags": [
+        "performance",
+        "custom-painter",
+        "canvas"
+      ]
+    },
+    {
+      "id": "performance_029",
+      "question": "How does ViewportOffset relate to performance?",
+      "answer": "`ViewportOffset` helps manage the scrolling offset of widgets, optimizing rendering by loading only the visible portions of scrollable areas.",
+      "difficulty": "advanced",
+      "tags": [
+        "performance",
+        "viewport",
+        "scrolling"
+      ]
+    },
+    {
+      "id": "performance_030",
+      "question": "What are the best practices for optimizing text rendering in Flutter?",
+      "answer": "Use text styles efficiently, minimize the number of text widgets, and consider using `Text.rich` for styled text to reduce the widget tree depth.",
+      "difficulty": "intermediate",
+      "tags": [
+        "performance",
+        "text",
+        "rendering"
+      ]
+    },
+    {
+      "id": "performance_031",
+      "question": "How do you profile the GPU usage in a Flutter app?",
+      "answer": "Use the Performance Overlay in Flutter DevTools to visualize GPU usage and identify potential performance bottlenecks related to rendering.",
+      "difficulty": "intermediate",
+      "tags": [
+        "performance",
+        "gpu",
+        "profiling"
+      ]
+    },
+    {
+      "id": "performance_032",
+      "question": "What is the diagnostics mode in Flutter, and how is it used for performance?",
+      "answer": "Diagnostics mode provides detailed information about widget build times and layout performance, helping identify areas for optimization.",
+      "difficulty": "intermediate",
+      "tags": [
+        "performance",
+        "diagnostics",
+        "debugging"
+      ]
+    },
+    {
+      "id": "performance_033",
+      "question": "How do you use the flame package for performance-intensive games in Flutter?",
+      "answer": "The `flame` package provides game-specific optimizations, including efficient rendering, game loop management, and sprite handling for better performance.",
+      "difficulty": "advanced",
+      "tags": [
+        "performance",
+        "flame",
+        "games"
+      ]
+    },
+    {
+      "id": "performance_034",
+      "question": "What is FastTrack, and how does it optimize Flutter performance?",
+      "answer": "FastTrack optimizes Flutter's build system for faster incremental builds, improving developer productivity and reducing wait times.",
+      "difficulty": "advanced",
+      "tags": [
+        "performance",
+        "fasttrack",
+        "build-system"
+      ]
+    },
+    {
+      "id": "performance_035",
+      "question": "How do you optimize memory usage in Flutter apps?",
+      "answer": "Utilize memory profiling tools in Flutter DevTools, avoid memory leaks, use efficient data structures, and dispose of resources appropriately.",
+      "difficulty": "intermediate",
+      "tags": [
+        "performance",
+        "memory",
+        "optimization"
+      ]
+    },
+    {
+      "id": "performance_036",
+      "question": "How does the ReorderableListView widget affect performance?",
+      "answer": "`ReorderableListView` efficiently handles the reordering of items while maintaining performance, but it may require careful management of state and widgets.",
+      "difficulty": "intermediate",
+      "tags": [
+        "performance",
+        "reorderable-list",
+        "lists"
+      ]
+    },
+    {
+      "id": "performance_037",
+      "question": "What is FrameTiming in Flutter, and how does it help in performance analysis?",
+      "answer": "FrameTiming provides insights into the time taken for different phases of frame rendering, helping developers analyze and optimize performance.",
+      "difficulty": "advanced",
+      "tags": [
+        "performance",
+        "frame-timing",
+        "profiling"
+      ]
+    },
+    {
+      "id": "performance_038",
+      "question": "How do you handle performance issues with large forms in Flutter?",
+      "answer": "Break large forms into smaller components, use `ListView` for scrolling, and employ lazy loading for dynamic content to improve performance.",
+      "difficulty": "intermediate",
+      "tags": [
+        "performance",
+        "forms",
+        "optimization"
+      ]
+    },
+    {
+      "id": "performance_039",
+      "question": "How does AspectRatio impact performance?",
+      "answer": "`AspectRatio` may introduce additional calculations during layout but can help maintain consistent aspect ratios, impacting performance depending on usage.",
+      "difficulty": "beginner",
+      "tags": [
+        "performance",
+        "aspect-ratio",
+        "layout"
+      ]
+    },
+    {
+      "id": "performance_040",
+      "question": "What is the Profiler in FlutterDevTools, and how is it used?",
+      "answer": "The Profiler in FlutterDevTools allows for detailed performance analysis, helping developers visualize rendering times, widget build times, and overall performance metrics.",
+      "difficulty": "intermediate",
+      "tags": [
+        "performance",
+        "profiler",
+        "devtools"
+      ]
+    },
+    {
+      "id": "performance_041",
+      "question": "How do you optimize for 60fps in Flutter?",
+      "answer": "Optimize rendering by reducing complexity, minimizing widget rebuilds, and ensuring animations and transitions run smoothly to achieve a consistent 60fps.",
+      "difficulty": "intermediate",
+      "tags": [
+        "performance",
+        "60fps",
+        "optimization"
+      ]
+    },
+    {
+      "id": "performance_042",
+      "question": "What is the impact of using Opacity on performance, and how can it be mitigated?",
+      "answer": "Using `Opacity` can lead to performance hits due to additional compositing layers. Instead, consider using `ColorFiltered` or `FadeTransition` for smoother results.",
+      "difficulty": "intermediate",
+      "tags": [
+        "performance",
+        "opacity",
+        "rendering"
+      ]
+    },
+    {
+      "id": "performance_043",
+      "question": "How does Offstage contribute to performance optimization?",
+      "answer": "`Offstage` can prevent off-screen widgets from being built and rendered, thus optimizing performance by only rendering visible components.",
+      "difficulty": "intermediate",
+      "tags": [
+        "performance",
+        "offstage",
+        "optimization"
+      ]
+    },
+    {
+      "id": "performance_044",
+      "question": "What is the Microtask queue, and how does it relate to performance?",
+      "answer": "The Microtask queue handles tasks that need to run after the current event loop iteration, allowing Flutter to schedule and manage tasks efficiently to maintain performance.",
+      "difficulty": "advanced",
+      "tags": [
+        "performance",
+        "microtask",
+        "event-loop"
+      ]
+    },
+    {
+      "id": "performance_045",
+      "question": "How do you reduce the impact of ShaderCompiling on performance?",
+      "answer": "Limit the use of complex shaders, use precompiled shaders when possible, and minimize the frequency of shader changes to reduce compilation overhead.",
+      "difficulty": "advanced",
+      "tags": [
+        "performance",
+        "shaders",
+        "compilation"
+      ]
+    },
+    {
+      "id": "performance_046",
+      "question": "What is the role of ClipRect in performance optimization?",
+      "answer": "`ClipRect` can help limit the area of widgets that need to be rendered, reducing overdraw and improving performance by clipping unnecessary portions.",
+      "difficulty": "intermediate",
+      "tags": [
+        "performance",
+        "clipping",
+        "rendering"
+      ]
+    },
+    {
+      "id": "performance_047",
+      "question": "How does flutter_riverpod help with state management performance?",
+      "answer": "`flutter_riverpod` optimizes state management by enabling fine-grained updates, reducing unnecessary rebuilds and improving overall app performance.",
+      "difficulty": "intermediate",
+      "tags": [
+        "performance",
+        "riverpod",
+        "state-management"
+      ]
+    },
+    {
+      "id": "performance_048",
+      "question": "How do you handle performance for apps with heavy I/O operations?",
+      "answer": "Offload heavy I/O operations to isolate them from the main UI thread, utilize asynchronous programming with Futures, and use isolates for parallel processing.",
+      "difficulty": "advanced",
+      "tags": [
+        "performance",
+        "io",
+        "isolates"
+      ]
+    },
+    {
+      "id": "performance_049",
+      "question": "What are the best practices for optimizing scroll performance in Flutter?",
+      "answer": "Use `ListView.builder`, implement pagination, avoid deep widget trees, and leverage Flutter's scrolling performance tools for optimization.",
+      "difficulty": "intermediate",
+      "tags": [
+        "performance",
+        "scrolling",
+        "optimization"
+      ]
+    },
+    {
+      "id": "performance_050",
+      "question": "How does flutter_flipperkit help with performance analysis?",
+      "answer": "`flutter_flipperkit` provides performance monitoring and debugging tools, allowing developers to track network requests, view logs, and analyze performance metrics in real time.\n\n## Impeller-era performance (2026)",
+      "difficulty": "advanced",
+      "tags": [
+        "performance",
+        "flipperkit",
+        "debugging"
+      ]
+    },
+    {
+      "id": "performance_051",
+      "question": "How do `const` constructors actually improve performance, and what is the cost of *missing* `const`?",
+      "answer": "(answer pending — see answers.md)",
+      "difficulty": "intermediate",
+      "tags": [
+        "performance"
+      ]
+    },
+    {
+      "id": "performance_052",
+      "question": "What is `ListView.builder`'s `itemExtent` (and `prototypeItem`), and how do they speed up scrolling?",
+      "answer": "When every list item has the same height, set `itemExtent: <pixels>` — the engine skips per-item layout and jumps straight to painting visible items. If item height is data-dependent but you have a representative example, use `prototypeItem: <widget>` and the engine measures it once at startup. Both eliminate the per-item layout cost that makes long lists feel sluggish.",
+      "difficulty": "intermediate",
+      "tags": [
+        "performance"
+      ]
+    },
+    {
+      "id": "performance_053",
+      "question": "How does `AutomaticKeepAliveClientMixin` interact with offscreen list items, and when is it harmful?",
+      "answer": "Add the mixin to a `State` and return `true` from `wantKeepAlive` to prevent the widget from being disposed when it scrolls out of view. This is useful for items with expensive state (video players, embedded maps). It's **harmful** when applied to long lists of cheap items — you defeat the whole point of `ListView.builder`, which is to recycle off-screen elements, and memory grows linearly with the list size.",
+      "difficulty": "intermediate",
+      "tags": [
+        "performance"
+      ]
+    },
+    {
+      "id": "performance_054",
+      "question": "What is the cost of `Opacity` versus `FadeTransition` versus `AnimatedOpacity`?",
+      "answer": "`Opacity` reads its child to an offscreen layer and blends with the alpha. On Impeller this is cheap; on legacy GPUs it was costly. `FadeTransition` is a `RenderObject`-level optimization — same effect, no rebuild of child on each tick. `AnimatedOpacity` rebuilds the subtree on each tick of the implicit animation; it's the most expensive of the three for changing children. **Rule**: animate opacity with `FadeTransition`, not `Opacity` inside `setState`.",
+      "difficulty": "intermediate",
+      "tags": [
+        "performance"
+      ]
+    },
+    {
+      "id": "performance_055",
+      "question": "How do `BackdropFilter` (blur) and `ImageFiltered` perform under Impeller, and when do they jank?",
+      "answer": "Blur is bandwidth-bound: it must sample the area behind the filter, blur it, and composite. Under Impeller the underlying shader is precompiled (no first-run jank) but the per-frame cost still scales with the filter's pixel area × radius. To prevent jank: keep the blurred area small, animate `BackdropFilter` via a layer that pre-renders to an offscreen texture once, or use `ImageFilter.compose` to combine effects into a single shader pass.",
+      "difficulty": "intermediate",
+      "tags": [
+        "performance"
+      ]
+    },
+    {
+      "id": "performance_056",
+      "question": "What is \"build, layout, paint\" — and which phase is most often the bottleneck?",
+      "answer": "The Flutter pipeline per frame:\n    1. **Build** — `build()` methods produce a new widget tree, reconciled against the Element tree.\n    2. **Layout** — `performLayout` computes constraints/sizes via the render tree.\n    3. **Paint** — render objects emit drawing commands into a layer tree.\n    4. **Compositing** — engine sends layers to the GPU.\n\n    Most performance bugs live in **build** (rebuilding too much) and **paint** (large filters, missing `RepaintBoundary`). Layout is rarely the bottleneck unless you have deeply nested intrinsic-sizing logic.",
+      "difficulty": "intermediate",
+      "tags": [
+        "performance"
+      ]
+    },
+    {
+      "id": "performance_057",
+      "question": "How do `Selector` (provider) and `select` (Riverpod) reduce rebuilds versus `Consumer`/`watch`?",
+      "answer": "`Consumer` / `watch` rebuilds whenever the *whole* value emitted by the provider changes. `Selector` / `select` rebuilds only when a *specific field or computed value* changes. For lists with thousands of items, this is the difference between rebuilding the whole tree and rebuilding one item.\n\n    ```dart\n    // Riverpod 2.x:\n    final myName = ref.watch(profileProvider.select((p) => p.name));\n    ```",
+      "difficulty": "intermediate",
+      "tags": [
+        "performance"
+      ],
+      "code_example": "// Riverpod 2.x:\n    final myName = ref.watch(profileProvider.select((p) => p.name));"
+    },
+    {
+      "id": "performance_058",
+      "question": "How do you profile memory leaks in a Flutter app using DevTools 2.x?",
+      "answer": "1. `flutter run --profile` (release-mode optimizations + profiling hooks).\n    2. DevTools → Memory tab → take a heap snapshot, exercise the suspect flow, take another snapshot, compare.\n    3. Sort by \"Retained Size\" and look for objects whose retained set is unexpectedly large.\n    4. Common culprits: `StreamSubscription` not cancelled in `dispose`, `AnimationController` not disposed, anonymous closures holding `BuildContext`, `Timer.periodic` outliving its widget.",
+      "difficulty": "intermediate",
+      "tags": [
+        "performance"
+      ]
+    },
+    {
+      "id": "performance_059",
+      "question": "What does `--obfuscate --split-debug-info` actually do, and how does it affect crash reporting?",
+      "answer": "`--obfuscate` renames Dart symbols to short opaque strings — makes reverse engineering harder and reduces binary size slightly. `--split-debug-info=<dir>` emits the symbol map to a separate file so the shipped binary doesn't contain it. **Critical**: keep those symbol files. Without them, Crashlytics / Sentry stack traces are unreadable. Upload via the platform's symbol-upload tooling whenever you build a release.",
+      "difficulty": "intermediate",
+      "tags": [
+        "performance"
+      ]
+    },
+    {
+      "id": "performance_060",
+      "question": "How does `compute()` differ from `Isolate.run()` (Dart 2.19+), and when do you use each?",
+      "answer": "`compute<R, T>(callback, message)` is a Flutter helper that spawns a *one-shot* isolate, ships the message, runs the callback, sends the result back, and tears down. It exists for compatibility with Flutter web (where there is no real isolate; it falls back to running on the main thread). `Isolate.run` is the modern Dart 2.19+ equivalent, slightly faster on mobile/desktop, but not web-portable. **Use `compute` if you need portability; use `Isolate.run` if you target mobile/desktop only.**\n\n    ```dart\n    final result = await compute(_parseHeavyJson, jsonString);\n    // or, on mobile/desktop:\n    final result2 = await Isolate.run(() => _parseHeavyJson(jsonString));\n    ```",
+      "difficulty": "intermediate",
+      "tags": [
+        "performance"
+      ],
+      "code_example": "final result = await compute(_parseHeavyJson, jsonString);\n    // or, on mobile/desktop:\n    final result2 = await Isolate.run(() => _parseHeavyJson(jsonString));"
+    }
+  ]
+}

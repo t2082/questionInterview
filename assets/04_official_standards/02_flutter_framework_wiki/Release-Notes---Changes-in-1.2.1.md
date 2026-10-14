@@ -1,0 +1,1 @@
+This page has migrated to https://github.com/flutter/flutter/blob/master/docs/releases/archive/Release-Notes---Changes-in-1.2.1.md

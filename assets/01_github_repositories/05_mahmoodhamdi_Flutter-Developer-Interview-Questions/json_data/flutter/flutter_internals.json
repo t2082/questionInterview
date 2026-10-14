@@ -1,0 +1,646 @@
+{
+  "topic": "Flutter Internals",
+  "description": "Interview questions covering Flutter rendering pipeline, widget lifecycle, RenderObjects, Elements, platform channels, and internal architecture",
+  "version": "2.0.0",
+  "last_updated": "2026-05-13",
+  "flutter_version_target": "3.27",
+  "questions": [
+    {
+      "id": "flutter_internals_001",
+      "question": "Explain the Flutter rendering process.",
+      "answer": "- The rendering process in Flutter involves several stages: the framework constructs a widget tree, which is converted into an element tree. Each element builds a corresponding RenderObject, which handles layout and painting. Finally, the RenderObjects are organized into a layer tree for efficient rendering on the screen.",
+      "difficulty": "advanced",
+      "tags": [
+        "internals",
+        "rendering",
+        "architecture"
+      ]
+    },
+    {
+      "id": "flutter_internals_002",
+      "question": "What is the role of the RenderObject in Flutter?",
+      "answer": "- The RenderObject is responsible for layout and painting in the Flutter rendering pipeline. It defines the size, position, and appearance of the widget on the screen. Each RenderObject has a parent-child relationship with other RenderObjects, enabling a structured rendering process.",
+      "difficulty": "advanced",
+      "tags": [
+        "internals",
+        "render-object",
+        "rendering"
+      ]
+    },
+    {
+      "id": "flutter_internals_003",
+      "question": "How does Flutter handle layouts?",
+      "answer": "- Flutter uses a flexible layout system based on the concept of constraints. Each RenderObject receives constraints from its parent and calculates its size and position. Widgets like Row, Column, and Stack help arrange children based on their constraints.",
+      "difficulty": "intermediate",
+      "tags": [
+        "internals",
+        "layout",
+        "constraints"
+      ]
+    },
+    {
+      "id": "flutter_internals_004",
+      "question": "Explain the concept of \"widgets as first-class citizens\" in Flutter.",
+      "answer": "- In Flutter, widgets are treated as first-class citizens, meaning they can be created, modified, and passed around just like any other object. This allows for flexible UI construction, where widgets can be combined and reused to build complex interfaces.",
+      "difficulty": "intermediate",
+      "tags": [
+        "flutter-internals"
+      ]
+    },
+    {
+      "id": "flutter_internals_005",
+      "question": "What is the Element tree in Flutter?",
+      "answer": "- The Element tree is a runtime representation of the widget tree. Each widget in the widget tree corresponds to an Element, which holds the widget's state and is responsible for building and updating the associated RenderObject.",
+      "difficulty": "advanced",
+      "tags": [
+        "internals",
+        "element-tree",
+        "architecture"
+      ]
+    },
+    {
+      "id": "flutter_internals_006",
+      "question": "How does the BuildContext relate to the widget tree?",
+      "answer": "- BuildContext is a handle to the location of a widget in the widget tree. It provides access to the widget's ancestor widgets and their properties. It's essential for retrieving inherited data and triggering rebuilds.",
+      "difficulty": "intermediate",
+      "tags": [
+        "internals",
+        "build-context",
+        "widgets"
+      ]
+    },
+    {
+      "id": "flutter_internals_007",
+      "question": "What is the purpose of the State object in Flutter?",
+      "answer": "- The State object holds mutable state for StatefulWidget. It allows the widget to update its appearance in response to state changes and manages the widget's lifecycle by providing methods for initialization, updates, and disposal.",
+      "difficulty": "beginner",
+      "tags": [
+        "internals",
+        "state",
+        "lifecycle"
+      ]
+    },
+    {
+      "id": "flutter_internals_008",
+      "question": "How does Flutter manage the widget lifecycle?",
+      "answer": "- Flutter manages the widget lifecycle through methods in the State class: initState, didChangeDependencies, build, and dispose. These methods are called in a specific order during the widget's lifetime, allowing developers to manage initialization and cleanup.",
+      "difficulty": "intermediate",
+      "tags": [
+        "internals",
+        "lifecycle",
+        "state"
+      ]
+    },
+    {
+      "id": "flutter_internals_009",
+      "question": "What is the difference between a StatefulWidget and a StatelessWidget?",
+      "answer": "- A StatelessWidget is immutable and does not maintain any state, while a StatefulWidget can hold mutable state that affects its appearance and behavior. StatefulWidget rebuilds when its state changes, while StatelessWidget rebuilds when its parent widget changes.",
+      "difficulty": "beginner",
+      "tags": [
+        "internals",
+        "stateful",
+        "stateless"
+      ]
+    },
+    {
+      "id": "flutter_internals_010",
+      "question": "How does Flutter perform hot reload?",
+      "answer": "- Hot reload allows developers to quickly see changes in their code without losing the current state of the app. Flutter achieves this by injecting updated source code into the Dart Virtual Machine (VM) and rebuilding the widget tree without restarting the app.",
+      "difficulty": "intermediate",
+      "tags": [
+        "internals",
+        "hot-reload",
+        "development"
+      ]
+    },
+    {
+      "id": "flutter_internals_011",
+      "question": "What is the RenderBox class in Flutter?",
+      "answer": "- RenderBox is a type of RenderObject that provides a box model for layout and painting. It defines the size and position of its child elements, handling both simple and complex layouts using constraints.",
+      "difficulty": "advanced",
+      "tags": [
+        "internals",
+        "render-box",
+        "layout"
+      ]
+    },
+    {
+      "id": "flutter_internals_012",
+      "question": "How does Flutter handle gestures?",
+      "answer": "- Flutter uses a gesture recognition system that detects touch events and maps them to gesture recognizers. Widgets can implement gesture detectors like GestureDetector  or  InkWell  to respond to user interactions.",
+      "difficulty": "intermediate",
+      "tags": [
+        "internals",
+        "gestures",
+        "input"
+      ]
+    },
+    {
+      "id": "flutter_internals_013",
+      "question": "What is the Layer tree in Flutter?",
+      "answer": "- The Layer tree is a structure that organizes visual elements for rendering. Each layer corresponds to a part of the scene and can be manipulated independently, allowing for optimizations like compositing and offscreen rendering.",
+      "difficulty": "advanced",
+      "tags": [
+        "internals",
+        "layer-tree",
+        "rendering"
+      ]
+    },
+    {
+      "id": "flutter_internals_014",
+      "question": "How does Flutter render animations?",
+      "answer": "- Flutter uses a combination of the Animation and AnimationController classes to manage animations. Animations are typically linked to widgets and can be triggered by user interactions or other events, updating the widget tree during the rendering phase.",
+      "difficulty": "intermediate",
+      "tags": [
+        "internals",
+        "animations",
+        "rendering"
+      ]
+    },
+    {
+      "id": "flutter_internals_015",
+      "question": "Explain the concept of \"composition over inheritance\" in Flutter.",
+      "answer": "- Flutter emphasizes composition over inheritance, encouraging developers to create complex widgets by combining simpler widgets rather than relying on a deep inheritance hierarchy. This leads to more maintainable and flexible code.",
+      "difficulty": "intermediate",
+      "tags": [
+        "flutter-internals"
+      ]
+    },
+    {
+      "id": "flutter_internals_016",
+      "question": "How does Flutter achieve high performance on both iOS and Android?",
+      "answer": "- Flutter achieves high performance by using a single codebase that compiles to native code, leveraging the Skia graphics engine for rendering, and optimizing the widget rendering pipeline. This allows for smooth animations and quick frame rates.",
+      "difficulty": "intermediate",
+      "tags": [
+        "internals",
+        "performance",
+        "architecture"
+      ]
+    },
+    {
+      "id": "flutter_internals_017",
+      "question": "What is the WidgetsBinding class in Flutter?",
+      "answer": "- WidgetsBinding is a class that serves as a bridge between the Flutter framework and the underlying platform. It manages the lifecycle of the app, scheduling frame callbacks, and handling input events.",
+      "difficulty": "advanced",
+      "tags": [
+        "internals",
+        "binding",
+        "framework"
+      ]
+    },
+    {
+      "id": "flutter_internals_018",
+      "question": "How does Flutter handle asynchronous events?",
+      "answer": "- Flutter uses Dart's Future and Stream classes to manage asynchronous events. The event loop processes asynchronous operations, allowing the UI to remain responsive while handling tasks like network requests or user input.",
+      "difficulty": "intermediate",
+      "tags": [
+        "internals",
+        "async",
+        "event-loop"
+      ]
+    },
+    {
+      "id": "flutter_internals_019",
+      "question": "Explain the InheritedWidget and how it works.",
+      "answer": "- InheritedWidget is a special type of widget that allows data to be passed down the widget tree efficiently. It provides a way to share data across multiple widgets without requiring manual prop drilling, using the of method to access the inherited data.",
+      "difficulty": "intermediate",
+      "tags": [
+        "internals",
+        "inherited-widget",
+        "state"
+      ]
+    },
+    {
+      "id": "flutter_internals_020",
+      "question": "How does Flutter manage the state of a widget?",
+      "answer": "- Flutter manages widget state using StatefulWidget and its associated State object. The setState method notifies the framework to rebuild the widget when the state changes, ensuring the UI stays in sync with the underlying data.",
+      "difficulty": "beginner",
+      "tags": [
+        "internals",
+        "state",
+        "widgets"
+      ]
+    },
+    {
+      "id": "flutter_internals_021",
+      "question": "What is the Ticker class in Flutter?",
+      "answer": "- The Ticker class is used to create a timing mechanism that ticks at a specified frame rate. It's commonly used in animations to drive the animation's progress and update the UI accordingly.",
+      "difficulty": "advanced",
+      "tags": [
+        "internals",
+        "ticker",
+        "animations"
+      ]
+    },
+    {
+      "id": "flutter_internals_022",
+      "question": "How does Flutter handle image rendering?",
+      "answer": "- Flutter handles image rendering through the Image widget and the ImageProvider class. Images can be loaded from various sources, including assets, files, or the network, and are rendered efficiently using the underlying graphics engine.",
+      "difficulty": "intermediate",
+      "tags": [
+        "internals",
+        "images",
+        "rendering"
+      ]
+    },
+    {
+      "id": "flutter_internals_023",
+      "question": "What is the SchedulerBinding class in Flutter?",
+      "answer": "- SchedulerBinding manages the scheduling of frames and handles the rendering pipeline. It coordinates the rendering and input events, ensuring the app runs smoothly and efficiently.",
+      "difficulty": "advanced",
+      "tags": [
+        "internals",
+        "scheduler",
+        "binding"
+      ]
+    },
+    {
+      "id": "flutter_internals_024",
+      "question": "How does Flutter manage memory?",
+      "answer": "- Flutter uses a garbage collector for memory management. The Dart VM automatically reclaims memory from objects that are no longer referenced, while Flutter provides tools like the Flutter DevTools to monitor and optimize memory usage.",
+      "difficulty": "intermediate",
+      "tags": [
+        "internals",
+        "memory",
+        "performance"
+      ]
+    },
+    {
+      "id": "flutter_internals_025",
+      "question": "What is the FlutterEngine, and how does it work?",
+      "answer": "- The FlutterEngine is a core component that hosts the Flutter runtime. It manages the Dart VM, handles communication between Dart and the native platform, and manages the rendering pipeline for the app.",
+      "difficulty": "advanced",
+      "tags": [
+        "internals",
+        "flutter-engine",
+        "architecture"
+      ]
+    },
+    {
+      "id": "flutter_internals_026",
+      "question": "How does Flutter communicate with platform-specific code?",
+      "answer": "- Flutter communicates with platform-specific code using Platform Channels. These channels enable bidirectional communication between Dart code and native code (Java, Kotlin, Swift, or Objective-C), allowing Flutter apps to access native APIs.",
+      "difficulty": "intermediate",
+      "tags": [
+        "internals",
+        "platform-channels",
+        "native"
+      ]
+    },
+    {
+      "id": "flutter_internals_027",
+      "question": "What is the PlatformChannel, and how is it used?",
+      "answer": "- A MethodChannel is a specific type of Platform Channel used to invoke methods on the platform side. Flutter can send messages and receive responses from native code through this channel, allowing for seamless integration of native functionalities.",
+      "difficulty": "intermediate",
+      "tags": [
+        "internals",
+        "method-channel",
+        "native"
+      ]
+    },
+    {
+      "id": "flutter_internals_028",
+      "question": "How does Flutter handle text rendering?",
+      "answer": "- Flutter uses the Text widget for rendering text, leveraging the TextPainter class for layout and painting. It supports various text styles, fonts, and internationalization features for rendering text accurately.",
+      "difficulty": "intermediate",
+      "tags": [
+        "internals",
+        "text",
+        "rendering"
+      ]
+    },
+    {
+      "id": "flutter_internals_029",
+      "question": "What is the Dart VM, and how does it relate to Flutter?",
+      "answer": "- The Dart VM is the runtime for executing Dart code. It compiles Dart code to native machine code for high performance, enabling Flutter apps to run efficiently on iOS and Android devices.",
+      "difficulty": "intermediate",
+      "tags": [
+        "internals",
+        "dart-vm",
+        "runtime"
+      ]
+    },
+    {
+      "id": "flutter_internals_030",
+      "question": "How does Flutter manage widget keys?",
+      "answer": "- Flutter uses keys to identify widgets uniquely in the widget tree. Keys help preserve the state of StatefulWidgets when the widget tree is modified, ensuring the correct association between the widget and its state.",
+      "difficulty": "intermediate",
+      "tags": [
+        "internals",
+        "keys",
+        "widgets"
+      ]
+    },
+    {
+      "id": "flutter_internals_031",
+      "question": "Explain the PointerEvent system in Flutter.",
+      "answer": "- The PointerEvent system in Flutter handles touch events and mouse interactions. It provides details about the pointer's location, buttons pressed, and other properties, allowing widgets to respond appropriately to user input.",
+      "difficulty": "advanced",
+      "tags": [
+        "internals",
+        "pointer-events",
+        "input"
+      ]
+    },
+    {
+      "id": "flutter_internals_032",
+      "question": "How does Flutter handle accessibility?",
+      "answer": "- Flutter provides accessibility features through the Semantics widget, which describes the role of UI elements for accessibility tools. Developers can customize semantics for widgets to improve accessibility for users with disabilities.",
+      "difficulty": "intermediate",
+      "tags": [
+        "internals",
+        "accessibility",
+        "semantics"
+      ]
+    },
+    {
+      "id": "flutter_internals_033",
+      "question": "What is the MainAxisAlignment and CrossAxisAlignment in Flutter layouts?",
+      "answer": "- MainAxisAlignment and CrossAxisAlignment are properties used in Flex widgets (like Row and Column) to align children along the main axis and cross axis, respectively. They control how child widgets are spaced and positioned within the parent.",
+      "difficulty": "beginner",
+      "tags": [
+        "internals",
+        "layout",
+        "alignment"
+      ]
+    },
+    {
+      "id": "flutter_internals_034",
+      "question": "How does Flutter manage focus and input?",
+      "answer": "- Flutter uses the Focus widget and FocusNode to manage focus for input fields and other interactive elements. Developers can control focus behavior, including keyboard visibility and navigation, using these classes.",
+      "difficulty": "intermediate",
+      "tags": [
+        "internals",
+        "focus",
+        "input"
+      ]
+    },
+    {
+      "id": "flutter_internals_035",
+      "question": "What is the FocusNode, and how is it used?",
+      "answer": "- FocusNode is an object that represents a focusable widget. It can be attached to input fields or other widgets to manage their focus state, allowing for programmatic control over focus behavior in the app.",
+      "difficulty": "intermediate",
+      "tags": [
+        "internals",
+        "focus-node",
+        "input"
+      ]
+    },
+    {
+      "id": "flutter_internals_036",
+      "question": "How does Flutter handle platform-specific styling?",
+      "answer": "- Flutter provides the Theme and Platform classes to apply platform-specific styles. Developers can use ThemeData to customize the look and feel of their app based on the target platform (iOS or Android).",
+      "difficulty": "intermediate",
+      "tags": [
+        "internals",
+        "theming",
+        "platform"
+      ]
+    },
+    {
+      "id": "flutter_internals_037",
+      "question": "What is the TextPainter class in Flutter?",
+      "answer": "- TextPainter is a class used for measuring and rendering text in Flutter. It calculates the layout of text based on style and constraints, enabling efficient text rendering in custom painting.",
+      "difficulty": "advanced",
+      "tags": [
+        "internals",
+        "text-painter",
+        "rendering"
+      ]
+    },
+    {
+      "id": "flutter_internals_038",
+      "question": "How does Flutter manage fonts and typography?",
+      "answer": "- Flutter manages fonts using the pubspec.yaml file to declare custom fonts. Developers can define font families and styles, and use them throughout the app via the Text widget or ThemeData.",
+      "difficulty": "beginner",
+      "tags": [
+        "internals",
+        "fonts",
+        "typography"
+      ]
+    },
+    {
+      "id": "flutter_internals_039",
+      "question": "Explain the RenderPipeline in Flutter.",
+      "answer": "- The RenderPipeline in Flutter describes the sequence of stages involved in rendering a frame. It includes the widget creation, element building, layout, painting, and compositing phases, optimizing rendering performance.",
+      "difficulty": "advanced",
+      "tags": [
+        "internals",
+        "render-pipeline",
+        "architecture"
+      ]
+    },
+    {
+      "id": "flutter_internals_040",
+      "question": "How does Flutter handle internationalization (i18n)?",
+      "answer": "- Flutter supports internationalization through the intl package, which provides localization utilities and message formatting. Developers can define localized strings and switch between languages based on user preferences.",
+      "difficulty": "intermediate",
+      "tags": [
+        "internals",
+        "i18n",
+        "localization"
+      ]
+    },
+    {
+      "id": "flutter_internals_041",
+      "question": "What is the CompositedTransformTarget widget?",
+      "answer": "- CompositedTransformTarget is a widget used to define a transformation target for composited layers. It enables smooth animations and transitions by allowing child widgets to be rendered relative to a specified point in the scene.",
+      "difficulty": "advanced",
+      "tags": [
+        "internals",
+        "compositing",
+        "transforms"
+      ]
+    },
+    {
+      "id": "flutter_internals_042",
+      "question": "How does Flutter manage network requests?",
+      "answer": "- Flutter manages network requests using the http package for making HTTP calls. Developers can use Future and async/await to handle responses and errors asynchronously while keeping the UI responsive.",
+      "difficulty": "beginner",
+      "tags": [
+        "internals",
+        "networking",
+        "http"
+      ]
+    },
+    {
+      "id": "flutter_internals_043",
+      "question": "What is the Semantics tree in Flutter?",
+      "answer": "- The Semantics tree is a structure that describes the accessibility properties of the widgets in the widget tree. It helps accessibility tools, such as screen readers, understand the UI layout and provide meaningful feedback to users.",
+      "difficulty": "advanced",
+      "tags": [
+        "internals",
+        "semantics",
+        "accessibility"
+      ]
+    },
+    {
+      "id": "flutter_internals_044",
+      "question": "How does Flutter handle transitions between screens?",
+      "answer": "- Flutter handles transitions between screens using the Navigator class and route management. Developers can define custom transitions and animations using the PageRouteBuilder or utilize predefined routes for standard navigation.",
+      "difficulty": "intermediate",
+      "tags": [
+        "internals",
+        "navigation",
+        "transitions"
+      ]
+    },
+    {
+      "id": "flutter_internals_045",
+      "question": "Explain the GestureBinding in Flutter.",
+      "answer": "- GestureBinding is a class that handles gesture detection and input events in Flutter. It manages the gesture recognizers, processes pointer events, and dispatches them to the appropriate widgets for handling.",
+      "difficulty": "advanced",
+      "tags": [
+        "internals",
+        "gestures",
+        "binding"
+      ]
+    },
+    {
+      "id": "flutter_internals_046",
+      "question": "How does Flutter handle custom painting?",
+      "answer": "- Flutter supports custom painting through the CustomPainter class. Developers can override the paint method to draw shapes, images, or other graphics on the canvas, providing complete control over the rendering process.",
+      "difficulty": "intermediate",
+      "tags": [
+        "internals",
+        "custom-painter",
+        "canvas"
+      ]
+    },
+    {
+      "id": "flutter_internals_047",
+      "question": "What is the Picture class in Flutter?",
+      "answer": "- The Picture class represents a collection of drawing commands in Flutter. It is used in the rendering process to optimize drawing by caching complex graphics and avoiding redundant drawing operations.",
+      "difficulty": "advanced",
+      "tags": [
+        "internals",
+        "picture",
+        "rendering"
+      ]
+    },
+    {
+      "id": "flutter_internals_048",
+      "question": "How does Flutter handle shader effects?",
+      "answer": "- Flutter supports shader effects through the Shader class, allowing developers to apply gradients, patterns, and other visual effects to shapes and images. Shaders can be used in custom painting and material design.",
+      "difficulty": "advanced",
+      "tags": [
+        "internals",
+        "shaders",
+        "graphics"
+      ]
+    },
+    {
+      "id": "flutter_internals_049",
+      "question": "How does Flutter integrate with other native modules?",
+      "answer": "- Flutter integrates with native modules using Platform Channels to communicate with native code. Developers can call platform-specific APIs from Flutter and pass data back and forth seamlessly.",
+      "difficulty": "intermediate",
+      "tags": [
+        "internals",
+        "native",
+        "integration"
+      ]
+    },
+    {
+      "id": "flutter_internals_050",
+      "question": "What is the ImageStream class in Flutter?",
+      "answer": "- ImageStream is a class that manages the loading and rendering of images in Flutter. It provides a way to asynchronously load images, notify listeners when the image is ready, and handle caching efficiently.\n\n## Impeller rendering & engine internals (2026)",
+      "difficulty": "advanced",
+      "tags": [
+        "internals",
+        "images",
+        "streaming"
+      ]
+    },
+    {
+      "id": "flutter_internals_051",
+      "question": "What is Impeller, and why did Flutter introduce it as a replacement for Skia?",
+      "answer": "Impeller is Flutter's new rendering engine, designed for predictable performance on modern GPUs. Skia (the previous engine) compiled shaders just-in-time on first use, causing the well-known \"first frame jank\" on iOS and Android. Impeller pre-compiles all shaders at build time using ahead-of-time tools, so the very first frame is as smooth as steady-state frames. Impeller is enabled by default on iOS since Flutter 3.10 and on Android since Flutter 3.27 (with an opt-out flag during the rollout). On macOS, an Impeller backend is in preview.",
+      "difficulty": "intermediate",
+      "tags": [
+        "flutter-internals"
+      ]
+    },
+    {
+      "id": "flutter_internals_052",
+      "question": "How does Impeller differ from Skia in terms of shader compilation jank?",
+      "answer": "Skia generates GLSL/Metal shaders lazily based on the operations encountered; the first time a particular paint operation is needed, the GPU driver compiles a new shader — typically 10–100 ms of stutter. Impeller ships a *fixed, finite* set of pre-compiled shaders covering every drawing primitive Flutter emits, so no runtime compilation occurs. Predictability matters: an app can score 60 fps average and still feel janky if some frames take 50 ms; Impeller flattens the tail of the frame-time distribution.",
+      "difficulty": "intermediate",
+      "tags": [
+        "flutter-internals"
+      ]
+    },
+    {
+      "id": "flutter_internals_053",
+      "question": "What is the engine's \"platform thread\" vs \"UI thread\" vs \"raster thread\" — and what runs on each?",
+      "answer": "- **Platform thread** — hosts the embedder (Android Activity, UIKit, Win32 window). Plugin Method Channels enter here, system events are dispatched here.\n    - **UI thread** — runs the Dart isolate that executes your `build`/`State` code, animation tickers, GestureArena, and produces a layer tree.\n    - **Raster thread** — consumes the layer tree from the UI thread and turns it into GPU commands via Impeller (or Skia on older builds).\n    A jank during `build` is a UI-thread problem; a jank during shader compilation or expensive blur ops is a raster-thread problem. DevTools' Performance tab labels them so you can target the right fix.",
+      "difficulty": "intermediate",
+      "tags": [
+        "flutter-internals"
+      ]
+    },
+    {
+      "id": "flutter_internals_054",
+      "question": "How does the `--enable-impeller` flag work on Android, and what is the rollout status?",
+      "answer": "Set `<meta-data android:name=\"io.flutter.embedding.android.EnableImpeller\" android:value=\"true\" />` (or pass `--enable-impeller` to `flutter run`) to opt in. Starting with Flutter 3.27, Impeller is the *default* on Android with Vulkan; the OpenGLES backend remains for older devices. To opt out during migration: set the same meta-data to `false`. Always test on real low-end devices in addition to your dev devices.",
+      "difficulty": "intermediate",
+      "tags": [
+        "flutter-internals"
+      ]
+    },
+    {
+      "id": "flutter_internals_055",
+      "question": "What is \"shader warm-up\", and why is it less critical on Impeller than on Skia?",
+      "answer": "On Skia, you could pre-render a representative set of frames at startup so the GPU driver compiled the shaders before the user saw any animation. This was implemented via `SchedulerBinding.scheduleWarmUpFrame` and tools like `flutter_shader_compiler`. On Impeller, no runtime shader compilation happens, so warm-up is a no-op for that purpose. You may still pre-build expensive resources (e.g. `ImageProvider`s) at startup for cache reasons.",
+      "difficulty": "intermediate",
+      "tags": [
+        "flutter-internals"
+      ]
+    },
+    {
+      "id": "flutter_internals_056",
+      "question": "How does Impeller render text differently, and what is the role of system font fallback?",
+      "answer": "Impeller rasterizes text using a glyph atlas managed by the engine, similar in principle to Skia but with stricter cache-eviction rules to keep memory bounded. System-font fallback for missing glyphs (Arabic, CJK, emoji, …) is resolved via the platform: `CoreText` on iOS/macOS, `FontMatcher` on Android. For multilingual apps you should bundle (or rely on) fonts that cover your target scripts to avoid fallback overhead.",
+      "difficulty": "intermediate",
+      "tags": [
+        "flutter-internals"
+      ]
+    },
+    {
+      "id": "flutter_internals_057",
+      "question": "What is the `TextScaler` API (Flutter 3.16+), and how does it replace `textScaleFactor`?",
+      "answer": "`textScaleFactor` was a single double — but real-world accessibility scaling is non-linear (Apple's Dynamic Type is a curve, not a multiplier). `TextScaler` is an object that maps a base font size to a scaled font size, so platforms can implement non-linear scaling correctly. Read it via `MediaQuery.textScalerOf(context)` and apply via `Text(..., textScaler: scaler)`.\n\n    ```dart\n    final scaler = MediaQuery.textScalerOf(context);\n    Text('Hello', textScaler: scaler);  // honours platform's full scaling curve\n    ```",
+      "difficulty": "intermediate",
+      "tags": [
+        "flutter-internals"
+      ],
+      "code_example": "final scaler = MediaQuery.textScalerOf(context);\n    Text('Hello', textScaler: scaler);  // honours platform's full scaling curve"
+    },
+    {
+      "id": "flutter_internals_058",
+      "question": "How does the new Flutter image-decoder pipeline avoid blocking the UI thread?",
+      "answer": "Image decoding is offloaded to the engine's IO thread / a background isolate using `ui.instantiateImageCodec` (with optional resize hints). The UI thread receives a fully decoded `dart:ui.Image` and never blocks on JPEG/PNG/WebP decompression. For network images, packages like `cached_network_image` plug into this pipeline so large lists scroll smoothly.",
+      "difficulty": "intermediate",
+      "tags": [
+        "flutter-internals"
+      ]
+    },
+    {
+      "id": "flutter_internals_059",
+      "question": "What is `RasterCache`, and how do `RepaintBoundary` widgets interact with it under Impeller?",
+      "answer": "`RasterCache` is the engine's cache for rasterized layers. When a subtree marked by `RepaintBoundary` has not changed, the engine reuses its cached raster instead of re-painting. Under Impeller, the cache works similarly but eviction is more aggressive because Impeller commands are cheaper to re-emit. Profile with DevTools — if you see a widget rebuilding pixels frame after frame, wrap it in `RepaintBoundary` to isolate it.",
+      "difficulty": "intermediate",
+      "tags": [
+        "flutter-internals"
+      ]
+    },
+    {
+      "id": "flutter_internals_060",
+      "question": "How would you diagnose a rendering performance issue using DevTools 2.x and Impeller's tracing output?",
+      "answer": "1. Run in profile mode (`flutter run --profile` — never use debug for performance work).\n    2. Open DevTools → Performance tab → Enable \"Track UI\" and \"Track Raster\".\n    3. Reproduce the jank; the timeline shows frames that exceeded the budget (16.6 ms for 60 Hz, 8.3 ms for 120 Hz).\n    4. Inspect each frame's \"UI thread\" vs \"Raster thread\" split:\n       - Long UI → costly `build` or expensive layout. Solution: cache results, hoist work, use `const` widgets.\n       - Long Raster → costly painting. Solution: `RepaintBoundary` around animating subtrees, simpler shaders, smaller textures.\n    5. Enable \"Highlight repaints\" in the Flutter Inspector to find subtrees that repaint unnecessarily.\n    6. On Impeller iOS, `os_log` traces also show `Impeller.Render` ranges that map to draw calls — useful when shader complexity rather than tree shape is the cost.",
+      "difficulty": "intermediate",
+      "tags": [
+        "flutter-internals"
+      ]
+    }
+  ]
+}

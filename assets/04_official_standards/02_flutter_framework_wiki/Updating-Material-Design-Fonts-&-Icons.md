@@ -1,0 +1,1 @@
+This page has migrated to https://github.com/flutter/flutter/blob/master/docs/libraries/material/Updating-Material-Design-Fonts-%26-Icons.md

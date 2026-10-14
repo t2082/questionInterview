@@ -1,0 +1,1 @@
+This page has migrated to https://github.com/flutter/flutter/blob/master/docs/platforms/android/Testing-Android-Changes-in-the-Devicelab-on-an-Emulator.md

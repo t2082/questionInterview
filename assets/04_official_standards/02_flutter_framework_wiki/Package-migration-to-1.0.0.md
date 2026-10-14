@@ -1,0 +1,1 @@
+This page has migrated to https://github.com/flutter/flutter/blob/master/docs/ecosystem/Package-migration-to-1.0.0.md

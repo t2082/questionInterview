@@ -1,0 +1,1 @@
+This page has migrated to https://github.com/flutter/flutter/blob/master/docs/platforms/android/Upgrading-Flutter-projects-to-Gradle-4.1-and-Android-Studio-Gradle-plugin-3.0.1.md

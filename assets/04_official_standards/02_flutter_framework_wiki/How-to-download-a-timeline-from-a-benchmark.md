@@ -1,0 +1,1 @@
+This page has migrated to https://github.com/flutter/flutter/blob/master/docs/infra/How-to-download-a-timeline-from-a-benchmark.md

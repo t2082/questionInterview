@@ -1,0 +1,1 @@
+This page has migrated to https://github.com/flutter/flutter/blob/master/docs/postmortems/Postmortem-Widespread-Gradle-failures-on-Flutter-v1.12.13-hotfix.5.md

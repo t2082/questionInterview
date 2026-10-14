@@ -1,0 +1,1 @@
+This page has migrated to https://github.com/flutter/engine/blob/main/docs/Supporting-legacy-platforms.md

@@ -1,0 +1,1 @@
+This page has migrated to https://github.com/flutter/flutter/blob/master/docs/postmortems/Postmortem-Beta-1-Release.md

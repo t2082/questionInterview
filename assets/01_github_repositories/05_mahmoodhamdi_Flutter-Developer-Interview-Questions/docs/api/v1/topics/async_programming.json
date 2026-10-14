@@ -1,0 +1,560 @@
+{
+  "topic": "Async Programming",
+  "description": "Asynchronous programming concepts in Dart and Flutter",
+  "version": "2.0.0",
+  "last_updated": "2026-05-13",
+  "flutter_version_target": "3.27",
+  "questions": [
+    {
+      "id": "async_programming_001",
+      "question": "What is the difference between Future and Stream in Dart?",
+      "answer": "Future represents a single async operation, while Stream is a sequence of async events over time.",
+      "difficulty": "beginner",
+      "tags": [
+        "future",
+        "stream",
+        "basics"
+      ]
+    },
+    {
+      "id": "async_programming_002",
+      "question": "How do you create a Future in Dart?",
+      "answer": "```dart\n   Future<String> fetchData() async {\n     return await http.get('https://api.example.com/data');\n   }\n   ```",
+      "difficulty": "beginner",
+      "tags": [
+        "future",
+        "basics"
+      ],
+      "code_example": "Future<String> fetchData() async {\n     return await http.get('https://api.example.com/data');\n   }"
+    },
+    {
+      "id": "async_programming_003",
+      "question": "What is the purpose of async and await keywords?",
+      "answer": "`async` marks a function as asynchronous, `await` waits for a Future to complete.",
+      "difficulty": "beginner",
+      "tags": [
+        "async",
+        "await",
+        "basics"
+      ]
+    },
+    {
+      "id": "async_programming_004",
+      "question": "How do you handle errors in asynchronous code?",
+      "answer": "Use try-catch blocks:\n\n   ```dart\n   try {\n     await fetchData();\n   } catch (e) {\n     print('Error: $e');\n   }\n   ```",
+      "difficulty": "beginner",
+      "tags": [
+        "error-handling",
+        "try-catch"
+      ],
+      "code_example": "try {\n     await fetchData();\n   } catch (e) {\n     print('Error: $e');\n   }"
+    },
+    {
+      "id": "async_programming_005",
+      "question": "What is Completer in Dart, and how is it used?",
+      "answer": "Used to create and complete a Future manually:\n\n   ```dart\n   final completer = Completer<String>();\n   completer.complete('Done');\n   ```",
+      "difficulty": "intermediate",
+      "tags": [
+        "completer",
+        "future"
+      ],
+      "code_example": "final completer = Completer<String>();\n   completer.complete('Done');"
+    },
+    {
+      "id": "async_programming_006",
+      "question": "How do you create a Stream in Dart?",
+      "answer": "```dart\n   Stream<int> countStream(int max) async* {\n     for (int i = 1; i <= max; i++) {\n       yield i;\n     }\n   }\n   ```",
+      "difficulty": "intermediate",
+      "tags": [
+        "stream",
+        "generator"
+      ],
+      "code_example": "Stream<int> countStream(int max) async* {\n     for (int i = 1; i <= max; i++) {\n       yield i;\n     }\n   }"
+    },
+    {
+      "id": "async_programming_007",
+      "question": "What is the difference between single and broadcast streams?",
+      "answer": "Single subscription streams can only be listened to once, broadcast streams allow multiple listeners.",
+      "difficulty": "intermediate",
+      "tags": [
+        "stream",
+        "broadcast",
+        "subscription"
+      ]
+    },
+    {
+      "id": "async_programming_008",
+      "question": "How do you use StreamBuilder in Flutter?",
+      "answer": "```dart\n   StreamBuilder<int>(\n     stream: countStream(10),\n     builder: (context, snapshot) {\n       if (snapshot.hasData) {\n         return Text('${snapshot.data}');\n       }\n       return CircularProgressIndicator();\n     },\n   )\n   ```",
+      "difficulty": "intermediate",
+      "tags": [
+        "streambuilder",
+        "widgets"
+      ],
+      "code_example": "StreamBuilder<int>(\n     stream: countStream(10),\n     builder: (context, snapshot) {\n       if (snapshot.hasData) {\n         return Text('${snapshot.data}');\n       }\n       return CircularProgressIndicator();\n     },\n   )"
+    },
+    {
+      "id": "async_programming_009",
+      "question": "What is FutureBuilder, and how does it work?",
+      "answer": "Builds widgets based on the latest snapshot of interaction with a Future:\n\n   ```dart\n   FutureBuilder<String>(\n     future: fetchData(),\n     builder: (context, snapshot) {\n       if (snapshot.hasData) {\n         return Text(snapshot.data!);\n       }\n       return CircularProgressIndicator();\n     },\n   )\n   ```",
+      "difficulty": "intermediate",
+      "tags": [
+        "futurebuilder",
+        "widgets"
+      ],
+      "code_example": "FutureBuilder<String>(\n     future: fetchData(),\n     builder: (context, snapshot) {\n       if (snapshot.hasData) {\n         return Text(snapshot.data!);\n       }\n       return CircularProgressIndicator();\n     },\n   )"
+    },
+    {
+      "id": "async_programming_010",
+      "question": "How do you cancel a subscription to a stream?",
+      "answer": "```dart\n    final subscription = stream.listen((data) {\n      print(data);\n    });\n    subscription.cancel();\n    ```",
+      "difficulty": "intermediate",
+      "tags": [
+        "stream",
+        "subscription",
+        "cancel"
+      ],
+      "code_example": "final subscription = stream.listen((data) {\n      print(data);\n    });\n    subscription.cancel();"
+    },
+    {
+      "id": "async_programming_011",
+      "question": "What are async*and sync* functions in Dart?",
+      "answer": "(answer pending — see answers.md)",
+      "difficulty": "intermediate",
+      "tags": [
+        "async-programming"
+      ]
+    },
+    {
+      "id": "async_programming_012",
+      "question": "How do you use await with multiple futures?",
+      "answer": "```dart\n    final result1 = await fetchData1();\n    final result2 = await fetchData2();\n    ```",
+      "difficulty": "intermediate",
+      "tags": [
+        "await",
+        "parallel",
+        "future"
+      ],
+      "code_example": "final result1 = await fetchData1();\n    final result2 = await fetchData2();"
+    },
+    {
+      "id": "async_programming_013",
+      "question": "What is StreamTransformer, and how does it modify streams?",
+      "answer": "Modifies or filters stream events:\n\n    ```dart\n    stream.transform(StreamTransformer.fromHandlers(\n      handleData: (data, sink) {\n        sink.add('Number: $data');\n      },\n    )).listen(print);\n    ```",
+      "difficulty": "advanced",
+      "tags": [
+        "stream",
+        "transformer"
+      ],
+      "code_example": "stream.transform(StreamTransformer.fromHandlers(\n      handleData: (data, sink) {\n        sink.add('Number: $data');\n      },\n    )).listen(print);"
+    },
+    {
+      "id": "async_programming_014",
+      "question": "How do you handle timeouts in asynchronous code?",
+      "answer": "```dart\n    try {\n      await fetchData().timeout(Duration(seconds: 5));\n    } on TimeoutException catch (e) {\n      print('Operation timed out');\n    }\n    ```",
+      "difficulty": "intermediate",
+      "tags": [
+        "timeout",
+        "error-handling"
+      ],
+      "code_example": "try {\n      await fetchData().timeout(Duration(seconds: 5));\n    } on TimeoutException catch (e) {\n      print('Operation timed out');\n    }"
+    },
+    {
+      "id": "async_programming_015",
+      "question": "What is then method in Future, and how is it used?",
+      "answer": "Handles successful Future completion:\n\n    ```dart\n    fetchData().then((result) {\n      print('Data: $result');\n    }).catchError((error) {\n      print('Error: $error');\n    });\n    ```",
+      "difficulty": "beginner",
+      "tags": [
+        "future",
+        "then",
+        "chaining"
+      ],
+      "code_example": "fetchData().then((result) {\n      print('Data: $result');\n    }).catchError((error) {\n      print('Error: $error');\n    });"
+    },
+    {
+      "id": "async_programming_016",
+      "question": "How do you chain multiple asynchronous operations together?",
+      "answer": "```dart\n    fetchData1()\n      .then((result1) => fetchData2(result1))\n      .then((result2) => fetchData3(result2));\n    ```",
+      "difficulty": "intermediate",
+      "tags": [
+        "chaining",
+        "async"
+      ],
+      "code_example": "fetchData1()\n      .then((result1) => fetchData2(result1))\n      .then((result2) => fetchData3(result2));"
+    },
+    {
+      "id": "async_programming_017",
+      "question": "What is the async package, and how does it enhance asynchronous programming?",
+      "answer": "Provides additional utilities for Futures and Streams, like AsyncCache and LazyStream.",
+      "difficulty": "advanced",
+      "tags": [
+        "packages",
+        "utilities"
+      ]
+    },
+    {
+      "id": "async_programming_018",
+      "question": "How do you implement Future.delayed in Dart?",
+      "answer": "```dart\n    Future.delayed(Duration(seconds: 2), () {\n      print('Delayed operation');\n    });\n    ```",
+      "difficulty": "beginner",
+      "tags": [
+        "future",
+        "delay"
+      ],
+      "code_example": "Future.delayed(Duration(seconds: 2), () {\n      print('Delayed operation');\n    });"
+    },
+    {
+      "id": "async_programming_019",
+      "question": "What is the rxdart package, and how does it work with streams?",
+      "answer": "Extends Dart's Stream API with ReactiveX-inspired operators:\n\n    ```dart\n    final subject = BehaviorSubject<int>();\n    subject.add(1);\n    subject.stream.listen(print);\n    ```",
+      "difficulty": "advanced",
+      "tags": [
+        "rxdart",
+        "reactive",
+        "stream"
+      ],
+      "code_example": "final subject = BehaviorSubject<int>();\n    subject.add(1);\n    subject.stream.listen(print);"
+    },
+    {
+      "id": "async_programming_020",
+      "question": "How do you handle HTTP requests asynchronously in Dart?",
+      "answer": "```dart\n    Future<String> fetchData() async {\n      final response = await http.get(Uri.parse('https://api.example.com/data'));\n      if (response.statusCode == 200) {\n        return response.body;\n      } else {\n        throw Exception('Failed to load data');\n      }\n    }\n    ```",
+      "difficulty": "intermediate",
+      "tags": [
+        "http",
+        "networking"
+      ],
+      "code_example": "Future<String> fetchData() async {\n      final response = await http.get(Uri.parse('https://api.example.com/data'));\n      if (response.statusCode == 200) {\n        return response.body;\n      } else {\n        throw Exception('Failed to load data');\n      }\n    }"
+    },
+    {
+      "id": "async_programming_021",
+      "question": "What is Future.wait, and how is it used?",
+      "answer": "Waits for multiple Futures to complete:\n\n    ```dart\n    final results = await Future.wait([fetchData1(), fetchData2(), fetchData3()]);\n    ```",
+      "difficulty": "intermediate",
+      "tags": [
+        "future",
+        "parallel"
+      ],
+      "code_example": "final results = await Future.wait([fetchData1(), fetchData2(), fetchData3()]);"
+    },
+    {
+      "id": "async_programming_022",
+      "question": "How do you handle multiple streams with MergeStream?",
+      "answer": "```dart\n    final mergedStream = MergeStream([stream1, stream2, stream3]);\n    mergedStream.listen(print);\n    ```",
+      "difficulty": "advanced",
+      "tags": [
+        "stream",
+        "merge",
+        "rxdart"
+      ],
+      "code_example": "final mergedStream = MergeStream([stream1, stream2, stream3]);\n    mergedStream.listen(print);"
+    },
+    {
+      "id": "async_programming_023",
+      "question": "What is the StreamController, and how does it manage streams?",
+      "answer": "Creates and manages a Stream:\n\n    ```dart\n    final controller = StreamController<int>();\n    controller.add(1);\n    controller.stream.listen(print);\n    controller.close();\n    ```",
+      "difficulty": "intermediate",
+      "tags": [
+        "stream",
+        "controller"
+      ],
+      "code_example": "final controller = StreamController<int>();\n    controller.add(1);\n    controller.stream.listen(print);\n    controller.close();"
+    },
+    {
+      "id": "async_programming_024",
+      "question": "How do you implement lazy loading with Stream?",
+      "answer": "```dart\n    Stream<int> lazyNumbers() async* {\n      for (int i = 1; i <= 5; i++) {\n        await Future.delayed(Duration(seconds: 1));\n        yield i;\n      }\n    }\n    ```",
+      "difficulty": "advanced",
+      "tags": [
+        "stream",
+        "lazy-loading"
+      ],
+      "code_example": "Stream<int> lazyNumbers() async* {\n      for (int i = 1; i <= 5; i++) {\n        await Future.delayed(Duration(seconds: 1));\n        yield i;\n      }\n    }"
+    },
+    {
+      "id": "async_programming_025",
+      "question": "What is StreamSubscription, and how is it used?",
+      "answer": "Represents a subscription to a Stream:\n\n    ```dart\n    final subscription = stream.listen(\n      (data) => print('Data: $data'),\n      onError: (error) => print('Error: $error'),\n      onDone: () => print('Stream is done'),\n    );\n    ```",
+      "difficulty": "intermediate",
+      "tags": [
+        "stream",
+        "subscription"
+      ],
+      "code_example": "final subscription = stream.listen(\n      (data) => print('Data: $data'),\n      onError: (error) => print('Error: $error'),\n      onDone: () => print('Stream is done'),\n    );"
+    },
+    {
+      "id": "async_programming_026",
+      "question": "How do you create a Future that never completes?",
+      "answer": "```dart\n    Future<void> neverComplete() => Completer<void>().future;\n    ```",
+      "difficulty": "advanced",
+      "tags": [
+        "future",
+        "completer"
+      ],
+      "code_example": "Future<void> neverComplete() => Completer<void>().future;"
+    },
+    {
+      "id": "async_programming_027",
+      "question": "What is await for, and how is it used with streams?",
+      "answer": "Iterates over a Stream asynchronously:\n\n    ```dart\n    await for (final value in countStream(5)) {\n      print(value);\n    }\n    ```",
+      "difficulty": "intermediate",
+      "tags": [
+        "await",
+        "stream",
+        "iteration"
+      ],
+      "code_example": "await for (final value in countStream(5)) {\n      print(value);\n    }"
+    },
+    {
+      "id": "async_programming_028",
+      "question": "How do you create a Completer for manual future completion?",
+      "answer": "```dart\n    Completer<String> completer = Completer<String>();\n    Future<String> future = completer.future;\n    completer.complete('Done');\n    ```",
+      "difficulty": "intermediate",
+      "tags": [
+        "completer",
+        "future"
+      ],
+      "code_example": "Completer<String> completer = Completer<String>();\n    Future<String> future = completer.future;\n    completer.complete('Done');"
+    },
+    {
+      "id": "async_programming_029",
+      "question": "What is Future.microtask, and how does it differ from Future?",
+      "answer": "Schedules a task in the microtask queue, higher priority than regular event queue:\n\n    ```dart\n    Future.microtask(() => print('Microtask'));\n    ```",
+      "difficulty": "advanced",
+      "tags": [
+        "future",
+        "microtask",
+        "event-loop"
+      ],
+      "code_example": "Future.microtask(() => print('Microtask'));"
+    },
+    {
+      "id": "async_programming_030",
+      "question": "How do you create a periodic stream with Stream.periodic?",
+      "answer": "Creates a periodic stream:\n\n    ```dart\n    Stream.periodic(Duration(seconds: 1), (i) => i).take(5).listen(print);\n    ```",
+      "difficulty": "intermediate",
+      "tags": [
+        "stream",
+        "periodic"
+      ],
+      "code_example": "Stream.periodic(Duration(seconds: 1), (i) => i).take(5).listen(print);"
+    },
+    {
+      "id": "async_programming_031",
+      "question": "What is the FutureOr type in Dart, and how is it used?",
+      "answer": "Represents a value that can be either a Future<T> or T:\n\n    ```dart\n    FutureOr<int> getValue(bool immediate) {\n      return immediate ? 42 : Future.value(42);\n    }\n    ```",
+      "difficulty": "advanced",
+      "tags": [
+        "future",
+        "types"
+      ],
+      "code_example": "FutureOr<int> getValue(bool immediate) {\n      return immediate ? 42 : Future.value(42);\n    }"
+    },
+    {
+      "id": "async_programming_032",
+      "question": "How do you handle async/await in Flutter with providers?",
+      "answer": "```dart\n    class DataProvider extends ChangeNotifier {\n      Future<void> fetchData() async {\n        // Fetch data\n        notifyListeners();\n      }\n    }\n    ```",
+      "difficulty": "intermediate",
+      "tags": [
+        "provider",
+        "state-management"
+      ],
+      "code_example": "class DataProvider extends ChangeNotifier {\n      Future<void> fetchData() async {\n        // Fetch data\n        notifyListeners();\n      }\n    }"
+    },
+    {
+      "id": "async_programming_033",
+      "question": "What is async programming, and how does it improve app responsiveness?",
+      "answer": "Improves app responsiveness by allowing non-blocking execution of time-consuming operations.",
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "performance"
+      ]
+    },
+    {
+      "id": "async_programming_034",
+      "question": "How do you implement error handling with try-catch in async functions?",
+      "answer": "```dart\n    try {\n      await fetchData();\n    } catch (e) {\n      print('Error: $e');\n    }\n    ```",
+      "difficulty": "beginner",
+      "tags": [
+        "error-handling",
+        "try-catch"
+      ],
+      "code_example": "try {\n      await fetchData();\n    } catch (e) {\n      print('Error: $e');\n    }"
+    },
+    {
+      "id": "async_programming_035",
+      "question": "What is the role of Zone in Dart's asynchronous programming?",
+      "answer": "Provides a way to persist context across async operations and handle uncaught errors.",
+      "difficulty": "advanced",
+      "tags": [
+        "zone",
+        "error-handling"
+      ]
+    },
+    {
+      "id": "async_programming_036",
+      "question": "How do you create a custom stream using StreamTransformer?",
+      "answer": "```dart\n    Stream<String> transformNumbers(Stream<int> stream) {\n      return stream.transform(StreamTransformer<int, String>.fromHandlers(\n        handleData: (int data, EventSink<String> sink) {\n          sink.add('Number: $data');\n        },\n      ));\n    }\n    ```",
+      "difficulty": "advanced",
+      "tags": [
+        "stream",
+        "transformer",
+        "custom"
+      ],
+      "code_example": "Stream<String> transformNumbers(Stream<int> stream) {\n      return stream.transform(StreamTransformer<int, String>.fromHandlers(\n        handleData: (int data, EventSink<String> sink) {\n          sink.add('Number: $data');\n        },\n      ));\n    }"
+    },
+    {
+      "id": "async_programming_037",
+      "question": "What is Stream.listen, and how is it used?",
+      "answer": "Subscribes to a stream and handles its events:\n\n    ```dart\n    stream.listen(\n      (data) => print('Received: $data'),\n      onError: (error) => print('Error: $error'),\n      onDone: () => print('Stream is done'),\n    );\n    ```",
+      "difficulty": "intermediate",
+      "tags": [
+        "stream",
+        "listen",
+        "subscription"
+      ],
+      "code_example": "stream.listen(\n      (data) => print('Received: $data'),\n      onError: (error) => print('Error: $error'),\n      onDone: () => print('Stream is done'),\n    );"
+    },
+    {
+      "id": "async_programming_038",
+      "question": "How do you handle event streams in Flutter?",
+      "answer": "Use StreamBuilder or StreamProvider to rebuild UI based on stream events.",
+      "difficulty": "intermediate",
+      "tags": [
+        "stream",
+        "widgets"
+      ]
+    },
+    {
+      "id": "async_programming_039",
+      "question": "What is StreamBuilder's initialData property, and how is it used?",
+      "answer": "Provides an initial value before the stream emits its first event:\n\n    ```dart\n    StreamBuilder<int>(\n      stream: countStream,\n      initialData: 0,\n      builder: (context, snapshot) => Text('Count: ${snapshot.data}'),\n    )\n    ```",
+      "difficulty": "intermediate",
+      "tags": [
+        "streambuilder",
+        "initial-data"
+      ],
+      "code_example": "StreamBuilder<int>(\n      stream: countStream,\n      initialData: 0,\n      builder: (context, snapshot) => Text('Count: ${snapshot.data}'),\n    )"
+    },
+    {
+      "id": "async_programming_040",
+      "question": "How do you convert a Stream to a Future?",
+      "answer": "```dart\n    Future<List<int>> streamToFuture(Stream<int> stream) => stream.toList();\n    ```",
+      "difficulty": "intermediate",
+      "tags": [
+        "stream",
+        "future",
+        "conversion"
+      ],
+      "code_example": "Future<List<int>> streamToFuture(Stream<int> stream) => stream.toList();"
+    },
+    {
+      "id": "async_programming_041",
+      "question": "What is the async keyword, and when should it be used?",
+      "answer": "Used to define asynchronous functions that contain await expressions or return a Future.",
+      "difficulty": "beginner",
+      "tags": [
+        "async",
+        "basics"
+      ]
+    },
+    {
+      "id": "async_programming_042",
+      "question": "How do you implement a countdown timer with Future?",
+      "answer": "```dart\n    Future<void> countdown(int seconds) async {\n      for (int i = seconds; i > 0; i--) {\n        print(i);\n        await Future.delayed(Duration(seconds: 1));\n      }\n    }\n    ```",
+      "difficulty": "intermediate",
+      "tags": [
+        "timer",
+        "delay"
+      ],
+      "code_example": "Future<void> countdown(int seconds) async {\n      for (int i = seconds; i > 0; i--) {\n        print(i);\n        await Future.delayed(Duration(seconds: 1));\n      }\n    }"
+    },
+    {
+      "id": "async_programming_043",
+      "question": "What is StreamController's add method, and how is it used?",
+      "answer": "Adds events to a stream controlled by a StreamController:\n\n    ```dart\n    final controller = StreamController<int>();\n    controller.add(1);\n    ```",
+      "difficulty": "intermediate",
+      "tags": [
+        "stream",
+        "controller"
+      ],
+      "code_example": "final controller = StreamController<int>();\n    controller.add(1);"
+    },
+    {
+      "id": "async_programming_044",
+      "question": "How do you create a Stream that emits values based on user input?",
+      "answer": "```dart\n    final controller = StreamController<String>();\n    TextField(onChanged: controller.add);\n    controller.stream.listen(print);\n    ```",
+      "difficulty": "intermediate",
+      "tags": [
+        "stream",
+        "input",
+        "controller"
+      ],
+      "code_example": "final controller = StreamController<String>();\n    TextField(onChanged: controller.add);\n    controller.stream.listen(print);"
+    },
+    {
+      "id": "async_programming_045",
+      "question": "What is the role of StreamTransformer in data manipulation?",
+      "answer": "Used to modify, filter, or transform stream events.",
+      "difficulty": "advanced",
+      "tags": [
+        "stream",
+        "transformer"
+      ]
+    },
+    {
+      "id": "async_programming_046",
+      "question": "How do you combine multiple futures with Future.wait?",
+      "answer": "```dart\n    final results = await Future.wait([fetchUser(), fetchPosts(), fetchComments()]);\n    ```",
+      "difficulty": "intermediate",
+      "tags": [
+        "future",
+        "parallel",
+        "wait"
+      ],
+      "code_example": "final results = await Future.wait([fetchUser(), fetchPosts(), fetchComments()]);"
+    },
+    {
+      "id": "async_programming_047",
+      "question": "What is Stream.where, and how does it filter stream events?",
+      "answer": "```dart\n    final evenNumbers = numberStream.where((number) => number % 2 == 0);\n    ```",
+      "difficulty": "intermediate",
+      "tags": [
+        "stream",
+        "filter"
+      ],
+      "code_example": "final evenNumbers = numberStream.where((number) => number % 2 == 0);"
+    },
+    {
+      "id": "async_programming_048",
+      "question": "How do you create a progress indicator for async tasks?",
+      "answer": "Use StreamBuilder with a progress stream to update a LinearProgressIndicator.",
+      "difficulty": "intermediate",
+      "tags": [
+        "progress",
+        "ui"
+      ]
+    },
+    {
+      "id": "async_programming_049",
+      "question": "What is the difference between async and synchronous programming?",
+      "answer": "Async allows concurrent operations without blocking, sync executes sequentially and blocks until each operation completes.",
+      "difficulty": "beginner",
+      "tags": [
+        "basics",
+        "comparison"
+      ]
+    },
+    {
+      "id": "async_programming_050",
+      "question": "How do you handle background tasks in Flutter using async programming?",
+      "answer": "Use packages like workmanager or flutter_background_service to schedule and execute background tasks, even when the app is not in the foreground.",
+      "difficulty": "advanced",
+      "tags": [
+        "background",
+        "packages"
+      ]
+    }
+  ]
+}

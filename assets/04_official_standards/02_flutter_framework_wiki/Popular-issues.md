@@ -1,0 +1,1 @@
+This page has been migrated to https://github.com/flutter/flutter/blob/master/docs/contributing/issue_hygiene/Popular-issues.md

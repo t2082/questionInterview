@@ -1,0 +1,1 @@
+This page has migrated to https://flutter.dev/docs/deployment/obfuscate

@@ -1,0 +1,162 @@
+================================================================================
+                    TỔNG HỢP NGUỒN CÂU HỎI PHỎNG VẤN FLUTTER DEVELOPER
+                          (DÀNH CHO HR & TECHNICAL INTERVIEWER)
+================================================================================
+* Ghi chú: Tất cả các liên kết bên dưới đã được kiểm tra và xác thực khả dụng 100% (HTTP 200 OK).
+
+--------------------------------------------------------------------------------
+I. CÁC KHO TÀI LIỆU GITHUB HÀNG ĐẦU (TOP OPEN-SOURCE REPOSITORIES)
+--------------------------------------------------------------------------------
+1. power19942 / flutter-interview-questions
+   - Link: https://github.com/power19942/flutter-interview-questions
+   - Đánh giá: ⭐ 660+ Stars. Kho câu hỏi phỏng vấn Flutter lớn nhất trên GitHub kèm câu trả lời chi tiết, bao quát từ cơ bản đến nâng cao.
+
+2. whatsupcoders / Flutter-Interview-Questions
+   - Link: https://github.com/whatsupcoders/Flutter-Interview-Questions
+   - Đánh giá: ⭐ 360+ Stars. Bộ câu hỏi chuẩn hóa được thiết kế chuyên biệt để HR và Tech Lead phỏng vấn ứng viên Flutter.
+
+3. debasmitasarkar / flutter_interview_guide_2026
+   - Link: https://github.com/debasmitasarkar/flutter_interview_guide_2026
+   - Đánh giá: ⭐ 340+ Stars. Cẩm nang ôn luyện và phỏng vấn Flutter cập nhật mới nhất cho năm 2026.
+
+4. justsandip / flutter-interview-questions
+   - Link: https://github.com/justsandip/flutter-interview-questions
+   - Đánh giá: ⭐ 250+ Stars. Tổng hợp các câu hỏi phỏng vấn phổ biến kèm đáp án ngắn gọn, trọng tâm.
+
+5. mahmoodhamdi / Flutter-Developer-Interview-Questions
+   - Link: https://github.com/mahmoodhamdi/Flutter-Developer-Interview-Questions
+   - Đánh giá: ⭐ 90+ Stars. Bộ câu hỏi toàn diện về OOP, Flutter Core, State Management, Clean Architecture, BLoC, Riverpod và Testing.
+
+6. jitsm555 / Flutter-Interview-Questions
+   - Link: https://github.com/jitsm555/Flutter-Interview-Questions
+   - Đánh giá: ⭐ 80+ Stars. Danh sách câu hỏi cốt lõi về Flutter framework và lifecycle.
+
+7. Nada-gaber / flutter_interview_questions
+   - Link: https://github.com/Nada-gaber/flutter_interview_questions
+   - Đánh giá: ⭐ 70+ Stars. Phù hợp đánh giá ứng viên cấp bậc Junior đến Mid-level.
+
+8. aershov24 / flutter-interview-questions
+   - Link: https://github.com/aershov24/flutter-interview-questions
+   - Đánh giá: ⭐ 60+ Stars. Câu hỏi và câu trả lời thực chiến cho các vòng phỏng vấn Mobile Developer.
+
+9. Devinterview-io / flutter-interview-questions
+   - Link: https://github.com/Devinterview-io/flutter-interview-questions
+   - Đánh giá: Tài liệu thuộc hệ thống DevInterview chuyên phục vụ Technical Screening.
+
+10. sivaprasadnk / flutter_dart_interview_qna
+    - Link: https://github.com/sivaprasadnk/flutter_dart_interview_qna
+    - Đánh giá: Tập trung vào lập trình Dart nền tảng, lập trình bất đồng bộ (Async/Await, Stream) và State Management.
+
+11. subash9860 / Flutter-Interview-Questions-with-Answers
+    - Link: https://github.com/subash9860/Flutter-Interview-Questions-with-Answers
+    - Đánh giá: Hệ thống câu hỏi căn bản về Widget tree, BuildContext, Navigation và Routing.
+
+12. mukundjogi / flutter-interview
+    - Link: https://github.com/mukundjogi/flutter-interview
+    - Đánh giá: Bộ câu hỏi phân loại theo chủ đề: Kiến trúc Clean Architecture, Design Patterns, Performance Optimization và System Design dành cho Senior / Tech Lead.
+
+13. ariba1039 / flutter_interview_questions
+    - Link: https://github.com/ariba1039/flutter_interview_questions
+    - Đánh giá: Câu hỏi phỏng vấn ngắn gọn, trực diện, dễ dàng sử dụng để vấn đáp nhanh.
+
+14. avoloft / flutter-dart-interview-advanced
+    - Link: https://github.com/avoloft/flutter-dart-interview-advanced
+    - Đánh giá: Câu hỏi nâng cao dành cho Senior Developer (Mixins, Event Loops, Isolates, Memory Leak, Code Output Prediction).
+
+
+--------------------------------------------------------------------------------
+II. CHUYÊN TRANG CÔNG NGHỆ & ĐÁNH GIÁ KỸ THUẬT QUỐC TẾ (GLOBAL TECH PLATFORMS)
+--------------------------------------------------------------------------------
+1. GeeksforGeeks - Top 50+ Flutter Interview Questions and Answers
+   - Link: https://www.geeksforgeeks.org/flutter/flutter-interview-questions/
+   - Nội dung: Tài liệu học thuật và thực hành chuẩn, phân cấp câu hỏi từ cơ bản, trung cấp đến chuyên sâu.
+
+2. DevInterview - 70+ Flutter Interview Questions (Curated & Answered)
+   - Link: https://devinterview.io/questions/web-and-mobile-development/flutter-interview-questions/
+   - Nội dung: Bộ câu hỏi phỏng vấn trắc nghiệm và tự luận phân loại theo chủ đề kiến trúc, widget và tooling.
+
+3. Edureka - Flutter Interview Questions Guide
+   - Link: https://www.edureka.co/blog/interview-questions/flutter-interview-questions
+   - Nội dung: Tài liệu hướng dẫn phỏng vấn dành cho cả nhà tuyển dụng lẫn ứng viên mới tiếp cận Flutter.
+
+4. Mindmajix - Flutter Interview Questions and Answers
+   - Link: https://mindmajix.com/flutter-interview-questions
+   - Nội dung: Đầy đủ các câu hỏi thực tế từ các doanh nghiệp công nghệ lớn.
+
+5. Simplilearn - Flutter Interview Questions & Answers
+   - Link: https://www.simplilearn.com/flutter-interview-questions-article
+   - Nội dung: Tổng hợp các câu hỏi kiểm tra tư duy phát triển ứng dụng di động đa nền tảng.
+
+6. FullStack Cafe - 25+ Flutter Interview Questions
+   - Link: https://www.fullstack.cafe/blog/flutter-interview-questions
+   - Nội dung: Tinh gọn, thường được dùng trong các bài test nhanh ở vòng sơ loại kỹ thuật (Screening Call).
+
+7. Adaface - Flutter Interview Questions for Screening Candidates
+   - Link: https://www.adaface.com/blog/flutter-interview-questions
+   - Nội dung: Góc nhìn chuyên sâu từ nền tảng đánh giá tuyển dụng, giúp HR lọc ứng viên hiệu quả.
+
+8. WisdomJobs - Flutter Interview Questions Portal
+   - Link: https://www.wisdomjobs.com/e-university/flutter-interview-questions.html
+   - Nội dung: Ngân hàng câu hỏi trắc nghiệm và tình huống giải quyết vấn đề với Flutter.
+
+
+--------------------------------------------------------------------------------
+III. NGUỒN THAM KHẢO TIẾNG VIỆT & BỘ CÂU HỎI DÀNH CHO HR (VIETNAMESE SOURCES)
+--------------------------------------------------------------------------------
+1. TopCV - Trọn Bộ Câu Hỏi Phỏng Vấn Flutter Developer Dành Cho HR & Nhà Tuyển Dụng
+   - Link: https://blog.topcv.vn/cau-hoi-phong-van-flutter-developer/
+   - Nội dung: Bộ khung câu hỏi tuyển dụng, cách đánh giá thái độ và năng lực kỹ thuật của ứng viên theo chuẩn thị trường Việt Nam.
+
+2. TopCV - Bộ Câu Hỏi Phỏng Vấn Flutter Phổ Biến Nhất
+   - Link: https://blog.topcv.vn/cau-hoi-phong-van-flutter/
+   - Nội dung: Các câu hỏi kinh điển hay gặp trong các đợt tuyển dụng nhân sự mobile app.
+
+3. Viblo - Kinh Nghiệm Phỏng Vấn Mobile/Flutter Thực Tế (Intern/Fresher)
+   - Link: https://viblo.asia/p/kinh-nghiem-phong-van-internfresher-mobile-nhung-dieu-minh-da-hoc-duoc-MkNLr5WwJgA
+   - Nội dung: Trải nghiệm phỏng vấn thực chiến, các câu hỏi về OOP, SOLID, asynchronous, và mẹo trả lời câu hỏi chuyên môn.
+
+4. Viblo - Lộ Trình Kiến Thức Trọng Tâm Cho Flutter Developer (Junior - Senior)
+   - Link: https://viblo.asia/p/lo-trinh-cac-kien-thuc-co-ban-cho-flutter-developer-tu-junior-tro-len-E1XVOxeZ4Mz
+   - Nội dung: Khung năng lực kỹ thuật giúp HR đối chiếu kỹ năng ứng viên với yêu cầu công việc (Job Description).
+
+5. Viblo - Chuyên Mục Kỹ Thuật Flutter
+   - Link: https://viblo.asia/tags/flutter
+   - Nội dung: Kho bài viết chuyên sâu của cộng đồng lập trình viên Việt Nam về tối ưu hiệu năng, State Management, và kinh nghiệm làm dự án thực tế.
+
+
+--------------------------------------------------------------------------------
+IV. TÀI LIỆU THAM CHIẾU KỸ THUẬT NỀN TẢNG (OFFICIAL STANDARDS FROM GOOGLE)
+--------------------------------------------------------------------------------
+1. Dart FAQ (Tài liệu chính thức từ Google Dart Team)
+   - Link: https://dart.dev/faq
+   - Nội dung: Câu trả lời chuẩn xác nhất về ngôn ngữ Dart: Tại sao dùng Dart? JIT vs AOT, Garbage Collection, Single-threaded Event Loop.
+
+2. Flutter Framework Wiki & Architectural Specs
+   - Link: https://github.com/flutter/flutter/wiki
+   - Nội dung: Cấu trúc bên trong của Flutter Engine, Skia/Impeller graphics engine, Render pipeline, Platform channels.
+
+
+--------------------------------------------------------------------------------
+V. KHUNG TIÊU CHÍ PHỎNG VẤN NHANH DÀNH CHO HR (HR SCREENING CHEAT-SHEET)
+--------------------------------------------------------------------------------
+1. Cấp bậc Intern / Fresher / Junior:
+   - Ngôn ngữ Dart: Phân biệt `final` vs `const`, `var` vs `dynamic`, Null Safety.
+   - Flutter Core: Phân biệt `StatelessWidget` và `StatefulWidget`.
+   - Cơ chế phát triển: Phân biệt `Hot Reload` và `Hot Restart`.
+   - Vòng đời: `initState()`, `build()`, `dispose()`.
+   - Bố cục UI cơ bản: `Row`, `Column`, `ListView`, `Expanded`, `Flexible`.
+
+2. Cấp bậc Middle:
+   - Quản lý trạng thái (State Management): Hiểu sâu Provider, Riverpod, BLoC hoặc GetX; biết khi nào nên dùng loại nào.
+   - Bất đồng bộ (Async): Sử dụng `Future`, `Stream`, `FutureBuilder`, `StreamBuilder`.
+   - Quản lý bộ nhớ: Tránh memory leak bằng cách dispose `TextEditingController`, `StreamSubscription`, `AnimationController`.
+   - Kết nối mạng & Lưu trữ: Xử lý RESTful API (`http`, `dio`), JSON serialization, SQLite, Hive hoặc SharedPreferences.
+   - Custom UI & Animations: `CustomPaint`, `Hero`, `AnimationController`.
+
+3. Cấp bậc Senior / Tech Lead:
+   - Kiến trúc ứng dụng: Clean Architecture, MVVM, Dependency Injection (`get_it`).
+   - Tối ưu hiệu năng (Performance): Giảm rebuild bằng `const`, Selector/buildWhen; xử lý danh sách dài, profile bằng Flutter DevTools.
+   - Concurrency & Threading: Hiểu về Event Loop, Microtask Queue và sử dụng `Isolate` (`compute()`) cho các tác vụ nặng.
+   - Native Integration: Viết Platform Channels (`MethodChannel`) để giao tiếp với iOS (Swift) và Android (Kotlin).
+   - Kiểm thử & CI/CD: Viết Unit Test, Widget Test, Integration Test; thiết lập Fastlane, GitHub Actions.
+================================================================================

@@ -1,0 +1,648 @@
+{
+  "topic": "Flutter State Management",
+  "description": "Questions and answers related to state management concepts, patterns, and best practices in Flutter.",
+  "version": "2.0.0",
+  "last_updated": "2026-05-13",
+  "flutter_version_target": "3.27",
+  "questions": [
+    {
+      "id": "state_management_001",
+      "question": "What is state management, and why is it important in Flutter?",
+      "answer": "State management refers to the management of the state of an application, including how data is stored, updated, and accessed. It is important in Flutter to ensure that the UI reflects changes in the underlying data and provides a seamless user experience.",
+      "difficulty": "beginner",
+      "tags": [
+        "flutter",
+        "state-management",
+        "basics"
+      ]
+    },
+    {
+      "id": "state_management_002",
+      "question": "Explain the difference between local state and global state.",
+      "answer": "Local state is data that is relevant only to a single widget or a small subtree, while global state is data that needs to be accessed and modified by multiple widgets across the app.",
+      "difficulty": "beginner",
+      "tags": [
+        "flutter",
+        "state-management",
+        "concepts"
+      ]
+    },
+    {
+      "id": "state_management_003",
+      "question": "How do you manage state using the setState method?",
+      "answer": "The `setState` method is called within a StatefulWidget to notify Flutter that the state has changed. This triggers a rebuild of the widget, reflecting the updated state.",
+      "difficulty": "beginner",
+      "tags": [
+        "flutter",
+        "state-management",
+        "setState"
+      ]
+    },
+    {
+      "id": "state_management_004",
+      "question": "What is the Provider package, and how does it work?",
+      "answer": "The Provider package is a state management solution that uses the InheritedWidget to propagate state down the widget tree. It allows widgets to listen to changes and rebuild when the state updates.",
+      "difficulty": "intermediate",
+      "tags": [
+        "flutter",
+        "state-management",
+        "provider"
+      ]
+    },
+    {
+      "id": "state_management_005",
+      "question": "How do you manage state using the InheritedWidget?",
+      "answer": "You create a custom InheritedWidget to hold the state, which can be accessed by its descendant widgets. When the state changes, the InheritedWidget notifies its listeners, prompting a rebuild of the dependent widgets.",
+      "difficulty": "advanced",
+      "tags": [
+        "flutter",
+        "state-management",
+        "inherited-widget"
+      ]
+    },
+    {
+      "id": "state_management_006",
+      "question": "Explain the ChangeNotifier class and how it is used in state management.",
+      "answer": "`ChangeNotifier` is a class that provides change notification to its listeners. It is used in conjunction with the Provider package to notify dependent widgets when the state changes.",
+      "difficulty": "intermediate",
+      "tags": [
+        "flutter",
+        "state-management",
+        "change-notifier"
+      ]
+    },
+    {
+      "id": "state_management_007",
+      "question": "How do you manage state using the Bloc pattern?",
+      "answer": "The Bloc (Business Logic Component) pattern separates business logic from UI components. State is managed through streams, and the Bloc reacts to events by emitting new states.",
+      "difficulty": "advanced",
+      "tags": [
+        "flutter",
+        "state-management",
+        "bloc"
+      ]
+    },
+    {
+      "id": "state_management_008",
+      "question": "What is Riverpod, and how does it differ from Provider?",
+      "answer": "Riverpod is an improvement over Provider that offers a more robust API, better support for testing, and the ability to define providers outside the widget tree. It eliminates some limitations found in Provider.",
+      "difficulty": "advanced",
+      "tags": [
+        "flutter",
+        "state-management",
+        "riverpod"
+      ]
+    },
+    {
+      "id": "state_management_009",
+      "question": "How do you manage state using Redux in Flutter?",
+      "answer": "Redux is a predictable state container that uses actions, reducers, and a store to manage state. State is stored in a single immutable object, and changes are made through dispatched actions.",
+      "difficulty": "advanced",
+      "tags": [
+        "flutter",
+        "state-management",
+        "redux"
+      ]
+    },
+    {
+      "id": "state_management_010",
+      "question": "Explain the Cubit class in the Bloc package.",
+      "answer": "The `Cubit` class is a simplified version of Bloc that allows for more straightforward state management without the need for events. It emits new states directly using methods.",
+      "difficulty": "intermediate",
+      "tags": [
+        "flutter",
+        "state-management",
+        "bloc",
+        "cubit"
+      ]
+    },
+    {
+      "id": "state_management_011",
+      "question": "What is the purpose of the Consumer widget in Provider?",
+      "answer": "The `Consumer` widget listens to changes in a provider and rebuilds when the state changes. It allows for more granular updates without requiring the entire widget tree to rebuild.",
+      "difficulty": "intermediate",
+      "tags": [
+        "flutter",
+        "state-management",
+        "provider",
+        "consumer"
+      ]
+    },
+    {
+      "id": "state_management_012",
+      "question": "How do you handle complex state in a Flutter application?",
+      "answer": "Complex state can be managed using a combination of state management solutions (like Provider, Bloc, or Redux) to separate concerns and reduce the complexity of state handling.",
+      "difficulty": "advanced",
+      "tags": [
+        "flutter",
+        "state-management",
+        "architecture"
+      ]
+    },
+    {
+      "id": "state_management_013",
+      "question": "What are the pros and cons of different state management solutions in Flutter?",
+      "answer": "- **Pros**: Each solution has its strengths, such as simplicity (Provider), testability (Riverpod), and scalability (Bloc, Redux).\n    - **Cons**: Some solutions can introduce complexity or have steep learning curves.",
+      "difficulty": "intermediate",
+      "tags": [
+        "flutter",
+        "state-management",
+        "comparison"
+      ]
+    },
+    {
+      "id": "state_management_014",
+      "question": "How do you manage state using the GetX package?",
+      "answer": "GetX is a reactive state management solution that uses observables to automatically update the UI when the state changes, simplifying state management with minimal boilerplate.",
+      "difficulty": "intermediate",
+      "tags": [
+        "flutter",
+        "state-management",
+        "getx"
+      ]
+    },
+    {
+      "id": "state_management_015",
+      "question": "Explain how you can achieve state persistence in Flutter.",
+      "answer": "State persistence can be achieved using packages like `shared_preferences` or `hive` to store data locally on the device, allowing the application to retain state across sessions.",
+      "difficulty": "intermediate",
+      "tags": [
+        "flutter",
+        "state-management",
+        "persistence"
+      ]
+    },
+    {
+      "id": "state_management_016",
+      "question": "How do you implement a ValueNotifier in Flutter?",
+      "answer": "A `ValueNotifier` is a special type of ChangeNotifier that holds a single value. You can listen to its changes and rebuild widgets when the value updates.",
+      "difficulty": "intermediate",
+      "tags": [
+        "flutter",
+        "state-management",
+        "value-notifier"
+      ]
+    },
+    {
+      "id": "state_management_017",
+      "question": "What is the ScopedModel package, and how is it used?",
+      "answer": "ScopedModel is a state management solution that uses an InheritedWidget to propagate state. It simplifies managing and accessing the state across the widget tree.",
+      "difficulty": "intermediate",
+      "tags": [
+        "flutter",
+        "state-management",
+        "scoped-model"
+      ]
+    },
+    {
+      "id": "state_management_018",
+      "question": "How do you manage state using MobX in Flutter?",
+      "answer": "MobX is a reactive state management library that allows you to define observables, actions, and reactions. It automatically updates the UI when the observables change.",
+      "difficulty": "advanced",
+      "tags": [
+        "flutter",
+        "state-management",
+        "mobx"
+      ]
+    },
+    {
+      "id": "state_management_019",
+      "question": "Explain the concept of \"lifting state up\" in Flutter.",
+      "answer": "Lifting state up involves moving state management to a higher level in the widget tree to allow multiple child widgets to share and react to the same state.",
+      "difficulty": "intermediate",
+      "tags": [
+        "state-management"
+      ]
+    },
+    {
+      "id": "state_management_020",
+      "question": "How do you implement state management for a form in Flutter?",
+      "answer": "State management for forms can be done using controllers, ChangeNotifier, or Bloc to manage the form's data and validation state.",
+      "difficulty": "intermediate",
+      "tags": [
+        "flutter",
+        "state-management",
+        "forms"
+      ]
+    },
+    {
+      "id": "state_management_021",
+      "question": "How do you manage state using the Flutter Hooks package?",
+      "answer": "Flutter Hooks allows you to manage state and lifecycle methods using hooks, simplifying state management in functional components.",
+      "difficulty": "advanced",
+      "tags": [
+        "flutter",
+        "state-management",
+        "hooks"
+      ]
+    },
+    {
+      "id": "state_management_022",
+      "question": "What is the flutter_bloc package, and how is it different from bloc?",
+      "answer": "The `flutter_bloc` package provides Flutter-specific widgets to work with the Bloc pattern, simplifying the integration of Bloc into the widget tree.",
+      "difficulty": "intermediate",
+      "tags": [
+        "state-management"
+      ]
+    },
+    {
+      "id": "state_management_023",
+      "question": "Explain how you can use the Context to access the state in Flutter.",
+      "answer": "The `BuildContext` can be used to access providers or inherited widgets in the widget tree, allowing widgets to read and react to state changes.",
+      "difficulty": "intermediate",
+      "tags": [
+        "state-management"
+      ]
+    },
+    {
+      "id": "state_management_024",
+      "question": "How do you manage state using the Recoil package?",
+      "answer": "Recoil is a state management library that allows you to create atoms (units of state) and selectors (derived state), providing a flexible way to manage complex state.",
+      "difficulty": "intermediate",
+      "tags": [
+        "state-management"
+      ]
+    },
+    {
+      "id": "state_management_025",
+      "question": "How do you handle state in a multi-page Flutter application?",
+      "answer": "State can be managed using global state management solutions (like Provider or Bloc) to ensure that the state is shared across different pages.",
+      "difficulty": "intermediate",
+      "tags": [
+        "state-management"
+      ]
+    },
+    {
+      "id": "state_management_026",
+      "question": "Explain `Notifier` and `AsyncNotifier` in Riverpod 2.x. How do they replace `StateNotifier`?",
+      "answer": "In Riverpod 2.x the recommended way to model mutable state is `Notifier<T>` for synchronous state and `AsyncNotifier<T>` for state that is loaded asynchronously. They replace `StateNotifier` (from Riverpod 1.x) for three reasons:\n    - They have direct access to `ref` inside the class — you no longer need to pass `Reader`/`Ref` through the constructor.\n    - They support code generation via `riverpod_generator`, which removes the need to manually declare the provider.\n    - `AsyncNotifier` naturally exposes `AsyncValue<T>` so loading/error/data states are first-class.\n\n    ```dart\n    // Riverpod 2.x with code generation\n    @riverpod\n    class CartNotifier extends _$CartNotifier {\n      @override\n      List<CartItem> build() => const [];\n\n      void add(CartItem item) => state = [...state, item];\n      void remove(String id) =>\n          state = state.where((i) => i.id != id).toList();\n    }\n\n    @riverpod\n    class ProductsNotifier extends _$ProductsNotifier {\n      @override\n      Future<List<Product>> build() async {\n        final api = ref.watch(productApiProvider);\n        return api.fetchAll();\n      }\n\n      Future<void> refresh() async {\n        state = const AsyncValue.loading();\n        state = await AsyncValue.guard(() => ref.read(productApiProvider).fetchAll());\n      }\n    }\n    ```\n\n    `StateNotifier` still works for legacy code, but new Riverpod 2.x code should use `Notifier`/`AsyncNotifier`.",
+      "difficulty": "intermediate",
+      "tags": [
+        "state-management"
+      ],
+      "code_example": "// Riverpod 2.x with code generation\n    @riverpod\n    class CartNotifier extends _$CartNotifier {\n      @override\n      List<CartItem> build() => const [];\n\n      void add(CartItem item) => state = [...state, item];\n      void remove(String id) =>\n          state = state.where((i) => i.id != id).toList();\n    }\n\n    @riverpod\n    class ProductsNotifier extends _$ProductsNotifier {\n      @override\n      Future<List<Product>> build() async {\n        final api = ref.watch(productApiProvider);\n        return api.fetchAll();\n      }\n\n      Future<void> refresh() async {\n        state = const AsyncValue.loading();\n        state = await AsyncValue.guard(() => ref.read(productApiProvider).fetchAll());\n      }\n    }"
+    },
+    {
+      "id": "state_management_027",
+      "question": "How do you optimize state management for performance?",
+      "answer": "Performance can be optimized by minimizing rebuilds, using `const` constructors, and selecting only the necessary parts of the state to rebuild.",
+      "difficulty": "intermediate",
+      "tags": [
+        "state-management"
+      ]
+    },
+    {
+      "id": "state_management_028",
+      "question": "How do you manage state using the Rxdart package?",
+      "answer": "Rxdart combines Streams and Functional Reactive Programming to provide powerful tools for managing state and handling asynchronous data streams.",
+      "difficulty": "intermediate",
+      "tags": [
+        "state-management"
+      ]
+    },
+    {
+      "id": "state_management_029",
+      "question": "What is Reactive Programming, and how does it relate to state management?",
+      "answer": "Reactive Programming is a programming paradigm focused on asynchronous data streams and the propagation of change, making it ideal for managing state in dynamic applications.",
+      "difficulty": "intermediate",
+      "tags": [
+        "state-management"
+      ]
+    },
+    {
+      "id": "state_management_030",
+      "question": "How do you test state management logic in Flutter?",
+      "answer": "State management logic can be tested using unit tests to ensure that state changes occur as expected and that the correct UI updates happen in response to state changes.",
+      "difficulty": "intermediate",
+      "tags": [
+        "state-management"
+      ]
+    },
+    {
+      "id": "state_management_031",
+      "question": "What is the flutter_riverpod package, and how is it used?",
+      "answer": "`flutter_riverpod` is a Flutter wrapper around Riverpod, making it easy to integrate Riverpod's state management capabilities into Flutter applications.",
+      "difficulty": "advanced",
+      "tags": [
+        "flutter",
+        "state-management",
+        "riverpod"
+      ]
+    },
+    {
+      "id": "state_management_032",
+      "question": "How do you manage state using the flutter_modular package?",
+      "answer": "Flutter Modular provides dependency injection and state management solutions, allowing for organized and modular applications.",
+      "difficulty": "advanced",
+      "tags": [
+        "flutter",
+        "state-management",
+        "modular",
+        "architecture"
+      ]
+    },
+    {
+      "id": "state_management_033",
+      "question": "Explain the concept of \"immutable state\" in Flutter.",
+      "answer": "Immutable state refers to the practice of not modifying the existing state but rather creating new instances of the state, which helps prevent bugs and unintended side effects.",
+      "difficulty": "intermediate",
+      "tags": [
+        "state-management"
+      ]
+    },
+    {
+      "id": "state_management_034",
+      "question": "How do you manage state using the GetIt package?",
+      "answer": "GetIt is a service locator that allows you to manage dependencies and state in a decoupled way, making it easier to access services across the app.",
+      "difficulty": "intermediate",
+      "tags": [
+        "flutter",
+        "state-management",
+        "getit",
+        "dependency-injection"
+      ]
+    },
+    {
+      "id": "state_management_035",
+      "question": "What is `ChangeNotifierProvider`, and when would you choose it over Riverpod's `Notifier` or BLoC?",
+      "answer": "`ChangeNotifierProvider` (from the `provider` package) supplies an existing `ChangeNotifier` subclass to its descendants and listens for `notifyListeners()` calls to trigger rebuilds via `Consumer` or `context.watch`.\n\n    ```dart\n    class CounterModel extends ChangeNotifier {\n      int _value = 0;\n      int get value => _value;\n      void increment() {\n        _value++;\n        notifyListeners();\n      }\n    }\n\n    ChangeNotifierProvider(\n      create: (_) => CounterModel(),\n      child: const MyApp(),\n    );\n    ```\n\n    Use it when: your team already uses `provider`, the state is simple, or you want the lowest-ceremony option. Prefer Riverpod 2.x `Notifier` when you want compile-time safety, code generation, easier testing (no `BuildContext` needed), and stricter dependency injection. Prefer BLoC when you want explicit, traceable event/state pairs for complex flows.",
+      "difficulty": "intermediate",
+      "tags": [
+        "state-management"
+      ],
+      "code_example": "class CounterModel extends ChangeNotifier {\n      int _value = 0;\n      int get value => _value;\n      void increment() {\n        _value++;\n        notifyListeners();\n      }\n    }\n\n    ChangeNotifierProvider(\n      create: (_) => CounterModel(),\n      child: const MyApp(),\n    );"
+    },
+    {
+      "id": "state_management_036",
+      "question": "How do you implement a MultiProvider in Flutter?",
+      "answer": "A `MultiProvider` allows you to provide multiple providers at once, simplifying the widget tree and reducing boilerplate code.",
+      "difficulty": "intermediate",
+      "tags": [
+        "flutter",
+        "state-management",
+        "provider",
+        "multi-provider"
+      ]
+    },
+    {
+      "id": "state_management_037",
+      "question": "How do you handle state in a Flutter web application?",
+      "answer": "State can be managed similarly to mobile applications, using providers or state management solutions that work well in a web environment.",
+      "difficulty": "intermediate",
+      "tags": [
+        "flutter",
+        "state-management",
+        "web",
+        "platform-specific"
+      ]
+    },
+    {
+      "id": "state_management_038",
+      "question": "What is the StreamProvider, and how is it used?",
+      "answer": "`StreamProvider` is a provider that listens to a stream and rebuilds the UI when new data is emitted, useful for handling asynchronous data.",
+      "difficulty": "intermediate",
+      "tags": [
+        "flutter",
+        "state-management",
+        "provider",
+        "streams"
+      ]
+    },
+    {
+      "id": "state_management_039",
+      "question": "How do you handle state for animations in Flutter?",
+      "answer": "State for animations can be managed using `AnimationController` or state management solutions to trigger and control animations based on state changes.",
+      "difficulty": "advanced",
+      "tags": [
+        "flutter",
+        "state-management",
+        "animations",
+        "controllers"
+      ]
+    },
+    {
+      "id": "state_management_040",
+      "question": "How do you manage state in a Flutter desktop application?",
+      "answer": "State management for desktop applications can be handled similarly to mobile apps, with consideration for user interactions unique to desktop environments.",
+      "difficulty": "intermediate",
+      "tags": [
+        "flutter",
+        "state-management",
+        "desktop",
+        "platform-specific"
+      ]
+    },
+    {
+      "id": "state_management_041",
+      "question": "How do you manage state using the flutter_mobx package?",
+      "answer": "`flutter_mobx` integrates MobX with Flutter, allowing for reactive state management through observables and decorators.",
+      "difficulty": "advanced",
+      "tags": [
+        "flutter",
+        "state-management",
+        "mobx",
+        "reactive"
+      ]
+    },
+    {
+      "id": "state_management_042",
+      "question": "What is the flutter_getit package, and how is it used?",
+      "answer": "`flutter_getit` is an extension of GetIt that simplifies the integration of dependency injection into Flutter applications.",
+      "difficulty": "intermediate",
+      "tags": [
+        "flutter",
+        "state-management",
+        "dependency-injection",
+        "service-locator"
+      ]
+    },
+    {
+      "id": "state_management_043",
+      "question": "How do you implement a Selector widget in Provider?",
+      "answer": "The `Selector` widget listens to a specific part of a provider's state and rebuilds when only that part changes, optimizing rebuilds.",
+      "difficulty": "intermediate",
+      "tags": [
+        "flutter",
+        "state-management",
+        "provider",
+        "optimization"
+      ]
+    },
+    {
+      "id": "state_management_044",
+      "question": "How do you handle state in a Flutter plugin?",
+      "answer": "State can be managed within plugins using the same state management principles, ensuring that the plugin's internal state is consistent and accessible.",
+      "difficulty": "advanced",
+      "tags": [
+        "flutter",
+        "state-management",
+        "plugins",
+        "platform-channels"
+      ]
+    },
+    {
+      "id": "state_management_045",
+      "question": "How do you manage state using the flutter_triple package?",
+      "answer": "`flutter_triple` is a state management solution that offers a clean API for managing state, actions, and effects in a reactive manner.",
+      "difficulty": "intermediate",
+      "tags": [
+        "flutter",
+        "state-management",
+        "triple",
+        "patterns"
+      ]
+    },
+    {
+      "id": "state_management_046",
+      "question": "What is the ProviderScope widget in Riverpod?",
+      "answer": "`ProviderScope` is the root widget for Riverpod providers, defining the scope in which providers can be accessed.",
+      "difficulty": "intermediate",
+      "tags": [
+        "flutter",
+        "state-management",
+        "riverpod",
+        "provider-scope"
+      ]
+    },
+    {
+      "id": "state_management_047",
+      "question": "How do you manage state using the flutter_binder package?",
+      "answer": "The `flutter_binder` package provides a simple and lightweight way to bind state to your Flutter widgets, promoting reactivity.",
+      "difficulty": "intermediate",
+      "tags": [
+        "flutter",
+        "state-management",
+        "binder",
+        "reactive"
+      ]
+    },
+    {
+      "id": "state_management_048",
+      "question": "Explain the concept of \"stateless state\" in Flutter.",
+      "answer": "Stateless state refers to data that does not change over time or in response to user actions, making it suitable for StatelessWidgets.",
+      "difficulty": "intermediate",
+      "tags": [
+        "state-management"
+      ]
+    },
+    {
+      "id": "state_management_049",
+      "question": "How do you handle state in a Flutter app with multiple platforms (iOS, Android, Web)?",
+      "answer": "State can be managed consistently across platforms using shared state management solutions, ensuring a uniform experience.",
+      "difficulty": "advanced",
+      "tags": [
+        "flutter",
+        "state-management",
+        "cross-platform",
+        "architecture"
+      ]
+    },
+    {
+      "id": "state_management_050",
+      "question": "How do you manage state using the flutter_bloc with multiple blocs?",
+      "answer": "Multiple blocs can be managed by providing them at different levels in the widget tree or using a `BlocProvider` to create and access them within the application.\n\n## Riverpod 2.x and BLoC 9.x — modern patterns (2026)",
+      "difficulty": "advanced",
+      "tags": [
+        "flutter",
+        "state-management",
+        "bloc",
+        "architecture"
+      ]
+    },
+    {
+      "id": "state_management_051",
+      "question": "What is `riverpod_generator`, and what does the `@riverpod` annotation produce?",
+      "answer": "`riverpod_generator` is the code generator that produces strongly typed provider declarations from `@riverpod` annotations. It removes the need to manually pick the provider type (`Provider`, `FutureProvider`, `StreamProvider`, etc.) — the generator infers it from the return type.\n\n    ```dart\n    @riverpod\n    Future<List<Post>> posts(PostsRef ref) => ref.read(postApiProvider).fetchAll();\n    // Generates: postsProvider (typed AsyncValue<List<Post>>).\n    ```\n\n    Benefits: less boilerplate, type-safe family parameters, easier refactors.",
+      "difficulty": "intermediate",
+      "tags": [
+        "state-management"
+      ],
+      "code_example": "@riverpod\n    Future<List<Post>> posts(PostsRef ref) => ref.read(postApiProvider).fetchAll();\n    // Generates: postsProvider (typed AsyncValue<List<Post>>)."
+    },
+    {
+      "id": "state_management_052",
+      "question": "How does `ref.watch` differ from `ref.listen`, `ref.read`, and `ref.refresh`?",
+      "answer": "- `ref.watch` — subscribe and rebuild when the dependency changes. Use in `build` or inside another provider.\n    - `ref.listen` — observe changes for side effects (showing a snackbar, navigating) without rebuilding. Use in `build` of a `ConsumerWidget`.\n    - `ref.read` — one-time read, no subscription. Use in event handlers and constructors.\n    - `ref.refresh` — invalidate and re-evaluate a provider, useful for pull-to-refresh.\n\n    Mixing them up is the #1 Riverpod bug: `read` inside `build` won't update, `watch` inside a callback creates a leak.",
+      "difficulty": "intermediate",
+      "tags": [
+        "state-management"
+      ]
+    },
+    {
+      "id": "state_management_053",
+      "question": "What is `AsyncValue<T>` in Riverpod, and how do you exhaustively handle its three states?",
+      "answer": "`AsyncValue<T>` represents the lifecycle of async data: `AsyncLoading`, `AsyncData<T>`, `AsyncError`. With Dart 3 patterns you exhaust them in a switch.\n\n    ```dart\n    final postsAsync = ref.watch(postsProvider);\n    return switch (postsAsync) {\n      AsyncData(:final value) => PostList(posts: value),\n      AsyncError(:final error) => ErrorView(error: error),\n      _ => const CircularProgressIndicator(),\n    };\n    ```\n\n    Or use `AsyncValue.when(data: ..., loading: ..., error: ...)` for the same effect.",
+      "difficulty": "intermediate",
+      "tags": [
+        "state-management"
+      ],
+      "code_example": "final postsAsync = ref.watch(postsProvider);\n    return switch (postsAsync) {\n      AsyncData(:final value) => PostList(posts: value),\n      AsyncError(:final error) => ErrorView(error: error),\n      _ => const CircularProgressIndicator(),\n    };"
+    },
+    {
+      "id": "state_management_054",
+      "question": "How do you implement an \"infinite scroll\" feed with Riverpod 2.x?",
+      "answer": "Use a `Notifier` that holds a list and a \"next cursor\", and exposes a `loadMore` method. The screen calls `loadMore` near the bottom of the list.\n\n    ```dart\n    @riverpod\n    class FeedNotifier extends _$FeedNotifier {\n      String? _cursor;\n      @override\n      Future<List<Post>> build() async {\n        final page = await ref.read(feedApiProvider).page(cursor: null);\n        _cursor = page.nextCursor;\n        return page.items;\n      }\n\n      Future<void> loadMore() async {\n        if (_cursor == null) return;\n        final page = await ref.read(feedApiProvider).page(cursor: _cursor);\n        _cursor = page.nextCursor;\n        state = AsyncData([...?state.valueOrNull, ...page.items]);\n      }\n    }\n    ```",
+      "difficulty": "intermediate",
+      "tags": [
+        "state-management"
+      ],
+      "code_example": "@riverpod\n    class FeedNotifier extends _$FeedNotifier {\n      String? _cursor;\n      @override\n      Future<List<Post>> build() async {\n        final page = await ref.read(feedApiProvider).page(cursor: null);\n        _cursor = page.nextCursor;\n        return page.items;\n      }\n\n      Future<void> loadMore() async {\n        if (_cursor == null) return;\n        final page = await ref.read(feedApiProvider).page(cursor: _cursor);\n        _cursor = page.nextCursor;\n        state = AsyncData([...?state.valueOrNull, ...page.items]);\n      }\n    }"
+    },
+    {
+      "id": "state_management_055",
+      "question": "What is the `BLoC` ↔ `Cubit` distinction in flutter_bloc 9.x, and when does each fit?",
+      "answer": "`Cubit<S>` exposes methods that emit new state — no event types, less ceremony. `Bloc<E, S>` adds an event layer: callers `add(Event)` and the bloc maps events to states. Use `Cubit` for simple flows (toggle, counter, form). Use `Bloc` when you need a traceable, replayable event log — useful for analytics, multi-step flows, and complex saga-like logic.",
+      "difficulty": "intermediate",
+      "tags": [
+        "state-management"
+      ]
+    },
+    {
+      "id": "state_management_056",
+      "question": "How do you implement dependency injection in BLoC 9 (no `BuildContext` access from Bloc)?",
+      "answer": "A Bloc must not depend on `BuildContext`. Pass services through the constructor, and provide the Bloc near the top of the tree with `BlocProvider(create: (c) => MyBloc(c.read<MyRepo>()))`. Use `RepositoryProvider` to expose shared services across blocs.",
+      "difficulty": "intermediate",
+      "tags": [
+        "state-management"
+      ]
+    },
+    {
+      "id": "state_management_057",
+      "question": "What is `HydratedBloc` (or `HydratedCubit`), and how does it persist state across launches?",
+      "answer": "`HydratedBloc` automatically serializes state via `toJson` and rehydrates on app launch via `fromJson`. Useful for cart contents, draft messages, preferences. Storage is `hive_ce`-backed by default. Override `fromJson`/`toJson` to control the schema.\n\n    ```dart\n    class CartCubit extends HydratedCubit<Cart> {\n      CartCubit() : super(Cart.empty);\n      @override Cart? fromJson(Map<String, dynamic> j) => Cart.fromJson(j);\n      @override Map<String, dynamic>? toJson(Cart s) => s.toJson();\n    }\n    ```",
+      "difficulty": "intermediate",
+      "tags": [
+        "state-management"
+      ],
+      "code_example": "class CartCubit extends HydratedCubit<Cart> {\n      CartCubit() : super(Cart.empty);\n      @override Cart? fromJson(Map<String, dynamic> j) => Cart.fromJson(j);\n      @override Map<String, dynamic>? toJson(Cart s) => s.toJson();\n    }"
+    },
+    {
+      "id": "state_management_058",
+      "question": "How do you compose multiple providers/blocs at a screen boundary without leaking concerns?",
+      "answer": "Define one provider per concern, then *compose* them at the screen with a `record` or a small view-model that reads each. Avoid the anti-pattern of a single \"screen god-provider\" that fetches everything.\n\n    ```dart\n    @riverpod\n    ({Profile profile, List<Post> posts}) homeData(HomeDataRef ref) => (\n      profile: ref.watch(profileProvider).requireValue,\n      posts: ref.watch(postsProvider).requireValue,\n    );\n    ```",
+      "difficulty": "intermediate",
+      "tags": [
+        "state-management"
+      ],
+      "code_example": "@riverpod\n    ({Profile profile, List<Post> posts}) homeData(HomeDataRef ref) => (\n      profile: ref.watch(profileProvider).requireValue,\n      posts: ref.watch(postsProvider).requireValue,\n    );"
+    },
+    {
+      "id": "state_management_059",
+      "question": "What is \"global\" state in Riverpod (always-alive vs `autoDispose`), and when should each be used?",
+      "answer": "By default a provider is *always-alive* — once created, it stays in memory for the app's lifetime. Mark with `@Riverpod(keepAlive: true)` to be explicit. `autoDispose` providers (default for `@riverpod` annotated functions) are disposed when no widget watches them — appropriate for screen-scoped data. Rule of thumb: long-lived caches (auth, user profile) → always-alive; screen data → `autoDispose`.",
+      "difficulty": "intermediate",
+      "tags": [
+        "state-management"
+      ]
+    },
+    {
+      "id": "state_management_060",
+      "question": "How would you migrate a `StateNotifier`-based codebase to `Notifier` incrementally without a big-bang rewrite?",
+      "answer": "1. Both APIs coexist in Riverpod 2.x — there is no rush.\n    2. New providers: write as `Notifier`/`AsyncNotifier`.\n    3. Old `StateNotifierProvider`s: leave them until you touch the file for unrelated reasons; on next edit, convert.\n    4. Use `riverpod_lint` to flag legacy uses; add to CI as a warning, not an error.\n    5. The hardest part is dependency-injection wiring — typically nothing changes at the call site because `ref.watch(myProvider)` and `ref.read(myProvider.notifier).method()` shapes survive the conversion.",
+      "difficulty": "intermediate",
+      "tags": [
+        "state-management"
+      ]
+    }
+  ]
+}

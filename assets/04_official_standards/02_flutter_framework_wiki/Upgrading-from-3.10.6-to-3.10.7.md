@@ -1,0 +1,1 @@
+This page has migrated to https://github.com/flutter/flutter/blob/master/docs/releases/archive/Upgrading-from-3.10.6-to-3.10.7.md

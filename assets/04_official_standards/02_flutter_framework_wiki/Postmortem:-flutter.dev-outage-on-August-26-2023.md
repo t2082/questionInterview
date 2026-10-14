@@ -1,0 +1,1 @@
+This page has migrated to https://github.com/flutter/flutter/blob/master/docs/postmortems/Postmortem-flutter.dev-outage-on-August-26-2023.md

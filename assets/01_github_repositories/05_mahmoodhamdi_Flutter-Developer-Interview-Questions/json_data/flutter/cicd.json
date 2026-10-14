@@ -1,0 +1,547 @@
+{
+  "topic": "Flutter CI/CD",
+  "description": "Interview questions covering continuous integration, continuous deployment, GitHub Actions, Codemagic, Fastlane, and automated testing pipelines",
+  "version": "2.0.0",
+  "last_updated": "2026-05-13",
+  "flutter_version_target": "3.27",
+  "questions": [
+    {
+      "id": "cicd_001",
+      "question": "What is CI/CD and why is it important in Flutter development?",
+      "answer": "**CI (Continuous Integration)**: Automatically building and testing code when changes are pushed.\n**CD (Continuous Deployment/Delivery)**: Automatically deploying tested code to production or app stores.\n\n**Why it's important for Flutter:**\n1. **Automated testing**: Run unit, widget, integration tests on every push\n2. **Build verification**: Ensure code compiles for all platforms\n3. **Quality assurance**: Catch bugs before they reach production\n4. **Faster releases**: Reduce manual deployment steps\n5. **Consistency**: Same build process every time\n6. **Platform coverage**: Test iOS, Android, Web simultaneously\n\n```yaml\n# Simple CI example\nname: Flutter CI\non: push\njobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n      - run: flutter pub get\n      - run: flutter test\n      - run: flutter build apk\n```\n\n---",
+      "difficulty": "beginner",
+      "tags": [
+        "cicd",
+        "basics",
+        "automation"
+      ],
+      "code_example": "# Simple CI example\nname: Flutter CI\non: push\njobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n      - run: flutter pub get\n      - run: flutter test\n      - run: flutter build apk"
+    },
+    {
+      "id": "cicd_002",
+      "question": "What are the key differences between Continuous Integration (CI) and Continuous Deployment (CD)?",
+      "answer": "| Aspect | Continuous Integration | Continuous Deployment |\n|--------|----------------------|----------------------|\n| Focus | Building & Testing | Releasing & Deploying |\n| Trigger | Every commit/PR | After CI passes |\n| Output | Build artifacts, test results | App in store/production |\n| Frequency | Multiple times daily | Per release/feature |\n| Automation | Tests, linting, builds | Store uploads, releases |\n\n**CI Pipeline:**\n```\nCode Push → Build → Test → Report\n```\n\n**CD Pipeline:**\n```\nCI Pass → Sign → Upload to Store → Release\n```\n\n---",
+      "difficulty": "beginner",
+      "tags": [
+        "cicd",
+        "ci",
+        "cd"
+      ],
+      "code_example": "Code Push → Build → Test → Report"
+    },
+    {
+      "id": "cicd_003",
+      "question": "What are the main benefits of implementing CI/CD in Flutter projects?",
+      "answer": "1. **Early Bug Detection**: Tests run automatically on every change\n2. **Faster Development**: No manual build/test cycles\n3. **Consistent Builds**: Same environment every time\n4. **Team Collaboration**: Everyone sees build status\n5. **Reduced Risk**: Small, frequent releases\n6. **Documentation**: Build history shows what changed\n7. **Time Savings**: Automate repetitive tasks\n8. **Quality Gates**: Enforce code standards\n\n**Real-world impact:**\n```\nBefore CI/CD:\n- 2 hours to test manually\n- 1 hour to build all platforms\n- Frequent \"works on my machine\" issues\n\nAfter CI/CD:\n- Tests run in 10 minutes\n- All platforms build in parallel\n- Consistent reproducible builds\n```\n\n---",
+      "difficulty": "beginner",
+      "tags": [
+        "cicd",
+        "benefits",
+        "automation"
+      ],
+      "code_example": "Before CI/CD:\n- 2 hours to test manually\n- 1 hour to build all platforms\n- Frequent \"works on my machine\" issues\n\nAfter CI/CD:\n- Tests run in 10 minutes\n- All platforms build in parallel\n- Consistent reproducible builds"
+    },
+    {
+      "id": "cicd_004",
+      "question": "Name five popular CI/CD platforms that support Flutter development.",
+      "answer": "1. **GitHub Actions**\n   - Free for public repos\n   - Native GitHub integration\n   - Extensive marketplace\n\n2. **Codemagic**\n   - Flutter-specific\n   - macOS machines included\n   - Built-in code signing\n\n3. **Bitrise**\n   - Mobile-focused\n   - Pre-built Flutter steps\n   - Good for teams\n\n4. **CircleCI**\n   - Flexible configuration\n   - Docker support\n   - Good performance\n\n5. **GitLab CI/CD**\n   - Built into GitLab\n   - Self-hosted option\n   - Full DevOps platform\n\n**Others:** Azure DevOps, Travis CI, Jenkins, Fastlane (automation tool)\n\n---",
+      "difficulty": "beginner",
+      "tags": [
+        "cicd",
+        "platforms",
+        "tools"
+      ]
+    },
+    {
+      "id": "cicd_005",
+      "question": "What is a CI/CD pipeline and what are its main components?",
+      "answer": "- Built into GitLab\n   - Self-hosted option\n   - Full DevOps platform\n\n**Others:** Azure DevOps, Travis CI, Jenkins, Fastlane (automation tool)\n\n---\n\n**5. What is a CI/CD pipeline and what are its main components?**\n\nA **pipeline** is a series of automated steps that code goes through from commit to deployment.\n\n**Main Components:**\n\n```yaml\n# 1. Trigger - What starts the pipeline\non:\n  push:\n    branches: [main]\n  pull_request:\n\n# 2. Jobs - Groups of steps\njobs:\n  test:\n    runs-on: ubuntu-latest\n    steps: [...]\n\n  build-android:\n    runs-on: ubuntu-latest\n    needs: test  # Dependency\n    steps: [...]\n\n  build-ios:\n    runs-on: macos-latest\n    needs: test\n    steps: [...]\n\n  deploy:\n    needs: [build-android, build-ios]\n    steps: [...]\n```\n\n**Stages:**",
+      "difficulty": "beginner",
+      "tags": [
+        "cicd",
+        "pipeline",
+        "components"
+      ],
+      "code_example": "# 1. Trigger - What starts the pipeline\non:\n  push:\n    branches: [main]\n  pull_request:\n\n# 2. Jobs - Groups of steps\njobs:\n  test:\n    runs-on: ubuntu-latest\n    steps: [...]\n\n  build-android:\n    runs-on: ubuntu-latest\n    needs: test  # Dependency\n    steps: [...]\n\n  build-ios:\n    runs-on: macos-latest\n    needs: test\n    steps: [...]\n\n  deploy:\n    needs: [build-android, build-ios]\n    steps: [...]"
+    },
+    {
+      "id": "cicd_006",
+      "question": "How does automated testing fit into a CI/CD pipeline?",
+      "answer": "Testing is the **quality gate** that determines if code can proceed.\n\n```yaml\njobs:\n  test:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n\n      # Unit tests\n      - name: Run unit tests\n        run: flutter test --coverage\n\n      # Widget tests\n      - name: Run widget tests\n        run: flutter test test/widgets/\n\n      # Integration tests\n      - name: Run integration tests\n        run: flutter test integration_test/\n\n      # Upload coverage\n      - name: Upload coverage\n        uses: codecov/codecov-action@v3\n        with:\n          files: coverage/lcov.info\n\n  build:\n    needs: test  # Only runs if tests pass\n    runs-on: ubuntu-latest\n    steps: [...]\n```\n\n**Test Types in Pipeline:**\n- **Unit tests**: Fast, run on every commit\n- **Widget tests**: Test UI components\n- **Integration tests**: Full app flows\n- **Golden tests**: Screenshot comparisons\n\n---",
+      "difficulty": "beginner",
+      "tags": [
+        "cicd",
+        "testing",
+        "pipeline"
+      ],
+      "code_example": "jobs:\n  test:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n\n      # Unit tests\n      - name: Run unit tests\n        run: flutter test --coverage\n\n      # Widget tests\n      - name: Run widget tests\n        run: flutter test test/widgets/\n\n      # Integration tests\n      - name: Run integration tests\n        run: flutter test integration_test/\n\n      # Upload coverage\n      - name: Upload coverage\n        uses: codecov/codecov-action@v3\n        with:\n          files: coverage/lcov.info\n\n  build:\n    needs: test  # Only runs if tests pass\n    runs-on: ubuntu-latest\n    steps: [...]"
+    },
+    {
+      "id": "cicd_007",
+      "question": "What is GitHub Actions and how does it work with Flutter projects?",
+      "answer": "**GitHub Actions** is GitHub's built-in CI/CD platform using YAML workflow files.\n\n**How it works:**\n1. Create `.github/workflows/` directory\n2. Add YAML workflow files\n3. Define triggers, jobs, and steps\n4. GitHub runs workflows automatically\n\n**Basic Flutter workflow:**\n```yaml\nname: Flutter CI\n\non:\n  push:\n    branches: [main, develop]\n  pull_request:\n    branches: [main]\n\njobs:\n  build:\n    runs-on: ubuntu-latest\n\n    steps:\n      - name: Checkout code\n        uses: actions/checkout@v4\n\n      - name: Setup Flutter\n        uses: subosito/flutter-action@v2\n        with:\n          flutter-version: '3.16.0'\n          channel: 'stable'\n\n      - name: Get dependencies\n        run: flutter pub get\n\n      - name: Analyze code\n        run: flutter analyze\n\n      - name: Run tests\n        run: flutter test\n\n      - name: Build APK\n        run: flutter build apk --release\n```\n\n---",
+      "difficulty": "beginner",
+      "tags": [
+        "cicd",
+        "github-actions",
+        "setup"
+      ],
+      "code_example": "name: Flutter CI\n\non:\n  push:\n    branches: [main, develop]\n  pull_request:\n    branches: [main]\n\njobs:\n  build:\n    runs-on: ubuntu-latest\n\n    steps:\n      - name: Checkout code\n        uses: actions/checkout@v4\n\n      - name: Setup Flutter\n        uses: subosito/flutter-action@v2\n        with:\n          flutter-version: '3.16.0'\n          channel: 'stable'\n\n      - name: Get dependencies\n        run: flutter pub get\n\n      - name: Analyze code\n        run: flutter analyze\n\n      - name: Run tests\n        run: flutter test\n\n      - name: Build APK\n        run: flutter build apk --release"
+    },
+    {
+      "id": "cicd_008",
+      "question": "What is the purpose of a workflow file in GitHub Actions?",
+      "answer": "A **workflow file** defines the automation process:\n- When to run (triggers)\n- Where to run (runners)\n- What to do (jobs and steps)\n\n**File location:** `.github/workflows/name.yml`\n\n```yaml\n# Workflow file structure\nname: Workflow Name           # Display name\n\non:                           # Triggers\n  push:\n    branches: [main]\n  schedule:\n    - cron: '0 0 * * *'       # Daily at midnight\n\nenv:                          # Global environment variables\n  FLUTTER_VERSION: '3.16.0'\n\njobs:                         # Work to perform\n  job-name:\n    runs-on: ubuntu-latest    # Runner\n    env:                      # Job-level variables\n      API_KEY: ${{ secrets.API_KEY }}\n\n    steps:                    # Individual tasks\n      - name: Step Name\n        uses: action/name@v1  # Pre-built action\n        with:                 # Action inputs\n          param: value\n\n      - name: Run Command\n        run: |                # Shell commands\n          echo \"Hello\"\n          flutter build\n```\n\n---",
+      "difficulty": "beginner",
+      "tags": [
+        "cicd",
+        "github-actions",
+        "workflow"
+      ],
+      "code_example": "# Workflow file structure\nname: Workflow Name           # Display name\n\non:                           # Triggers\n  push:\n    branches: [main]\n  schedule:\n    - cron: '0 0 * * *'       # Daily at midnight\n\nenv:                          # Global environment variables\n  FLUTTER_VERSION: '3.16.0'\n\njobs:                         # Work to perform\n  job-name:\n    runs-on: ubuntu-latest    # Runner\n    env:                      # Job-level variables\n      API_KEY: ${{ secrets.API_KEY }}\n\n    steps:                    # Individual tasks\n      - name: Step Name\n        uses: action/name@v1  # Pre-built action\n        with:                 # Action inputs\n          param: value\n\n      - name: Run Command\n        run: |                # Shell commands\n          echo \"Hello\"\n          flutter build"
+    },
+    {
+      "id": "cicd_009",
+      "question": "What are artifacts in CI/CD and why are they important?",
+      "answer": "**Artifacts** are files produced by a build (APKs, IPAs, test results, logs).\n\n**Why important:**\n1. Download and test builds without local compilation\n2. Store build history\n3. Share between jobs\n4. Deploy to stores\n\n```yaml\njobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n\n      - name: Build APK\n        run: flutter build apk --release\n\n      # Upload artifact\n      - name: Upload APK\n        uses: actions/upload-artifact@v4\n        with:\n          name: release-apk\n          path: build/app/outputs/flutter-apk/app-release.apk\n          retention-days: 30\n\n  deploy:\n    needs: build\n    runs-on: ubuntu-latest\n    steps:\n      # Download artifact from build job\n      - name: Download APK\n        uses: actions/download-artifact@v4\n        with:\n          name: release-apk\n\n      - name: Deploy to store\n        run: fastlane deploy\n```\n\n---",
+      "difficulty": "beginner",
+      "tags": [
+        "cicd",
+        "artifacts",
+        "builds"
+      ],
+      "code_example": "jobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n\n      - name: Build APK\n        run: flutter build apk --release\n\n      # Upload artifact\n      - name: Upload APK\n        uses: actions/upload-artifact@v4\n        with:\n          name: release-apk\n          path: build/app/outputs/flutter-apk/app-release.apk\n          retention-days: 30\n\n  deploy:\n    needs: build\n    runs-on: ubuntu-latest\n    steps:\n      # Download artifact from build job\n      - name: Download APK\n        uses: actions/download-artifact@v4\n        with:\n          name: release-apk\n\n      - name: Deploy to store\n        run: fastlane deploy"
+    },
+    {
+      "id": "cicd_010",
+      "question": "What is the difference between hosted runners and self-hosted runners?",
+      "answer": "| Aspect | Hosted Runners | Self-Hosted Runners |\n|--------|---------------|-------------------|\n| Management | GitHub manages | You manage |\n| Cost | Free tier + paid | Your infrastructure |\n| Hardware | Standard specs | Custom hardware |\n| Software | Pre-installed | Full control |\n| Security | Shared | Your network |\n| iOS builds | macOS available | Need Mac hardware |\n\n**Hosted runner:**\n```yaml\njobs:\n  build:\n    runs-on: ubuntu-latest  # GitHub-hosted\n```\n\n**Self-hosted runner:**\n```yaml\njobs:\n  build:\n    runs-on: self-hosted  # Your machine\n    # or with labels\n    runs-on: [self-hosted, macOS, ARM64]\n```\n\n**When to use self-hosted:**\n- Need specific hardware\n- Want faster builds (more powerful machines)\n- Security requirements\n- Cost optimization at scale\n\n---",
+      "difficulty": "beginner",
+      "tags": [
+        "cicd",
+        "runners",
+        "infrastructure"
+      ],
+      "code_example": "jobs:\n  build:\n    runs-on: ubuntu-latest  # GitHub-hosted"
+    },
+    {
+      "id": "cicd_011",
+      "question": "What is Codemagic and what makes it suitable for Flutter projects?",
+      "answer": "**Codemagic** is a CI/CD platform specifically designed for Flutter/mobile development.\n\n**Why it's suitable:**\n1. **Flutter-native**: Pre-configured for Flutter\n2. **macOS included**: Build iOS without extra setup\n3. **Code signing**: Built-in certificate management\n4. **App store deployment**: Direct publishing\n5. **YAML or UI**: Configure via file or web interface\n\n**codemagic.yaml example:**\n```yaml\nworkflows:\n  flutter-workflow:\n    name: Flutter Build\n    max_build_duration: 60\n    environment:\n      flutter: stable\n      xcode: latest\n      cocoapods: default\n\n    scripts:\n      - name: Get dependencies\n        script: flutter pub get\n\n      - name: Run tests\n        script: flutter test\n\n      - name: Build Android\n        script: flutter build apk --release\n\n      - name: Build iOS\n        script: |\n          flutter build ipa --release \\\n            --export-options-plist=/path/to/options.plist\n\n    artifacts:\n      - build/**/outputs/**/*.apk\n      - build/ios/ipa/*.ipa\n\n    publishing:\n      google_play:\n        credentials: $GCLOUD_SERVICE_ACCOUNT\n        track: internal\n      app_store_connect:\n        api_key: $APP_STORE_CONNECT_API_KEY\n```\n\n---",
+      "difficulty": "beginner",
+      "tags": [
+        "cicd",
+        "codemagic",
+        "platforms"
+      ],
+      "code_example": "workflows:\n  flutter-workflow:\n    name: Flutter Build\n    max_build_duration: 60\n    environment:\n      flutter: stable\n      xcode: latest\n      cocoapods: default\n\n    scripts:\n      - name: Get dependencies\n        script: flutter pub get\n\n      - name: Run tests\n        script: flutter test\n\n      - name: Build Android\n        script: flutter build apk --release\n\n      - name: Build iOS\n        script: |\n          flutter build ipa --release \\\n            --export-options-plist=/path/to/options.plist\n\n    artifacts:\n      - build/**/outputs/**/*.apk\n      - build/ios/ipa/*.ipa\n\n    publishing:\n      google_play:\n        credentials: $GCLOUD_SERVICE_ACCOUNT\n        track: internal\n      app_store_connect:\n        api_key: $APP_STORE_CONNECT_API_KEY"
+    },
+    {
+      "id": "cicd_012",
+      "question": "What are environment variables and why are they important in CI/CD?",
+      "answer": "**Environment variables** store configuration values separate from code.\n\n**Why important:**\n1. **Security**: Keep secrets out of code\n2. **Flexibility**: Different values per environment\n3. **Configuration**: Easy to change without code changes\n\n```yaml\n# GitHub Actions\nenv:\n  FLUTTER_VERSION: '3.16.0'  # Plain value\n\njobs:\n  build:\n    runs-on: ubuntu-latest\n    env:\n      API_KEY: ${{ secrets.API_KEY }}  # Secret\n\n    steps:\n      - name: Use variables\n        run: |\n          echo \"Flutter version: $FLUTTER_VERSION\"\n          # API_KEY available but not printed\n        env:\n          BUILD_NUMBER: ${{ github.run_number }}\n```\n\n**Setting secrets in GitHub:**\n1. Repository → Settings → Secrets and variables → Actions\n2. New repository secret\n3. Add name and value\n\n**Common secrets:**\n- `FIREBASE_TOKEN`\n- `GOOGLE_PLAY_KEY`\n- `APP_STORE_CONNECT_API_KEY`\n- `KEYSTORE_PASSWORD`\n- `SIGNING_KEY`\n\n---",
+      "difficulty": "beginner",
+      "tags": [
+        "cicd",
+        "environment-variables",
+        "secrets"
+      ],
+      "code_example": "# GitHub Actions\nenv:\n  FLUTTER_VERSION: '3.16.0'  # Plain value\n\njobs:\n  build:\n    runs-on: ubuntu-latest\n    env:\n      API_KEY: ${{ secrets.API_KEY }}  # Secret\n\n    steps:\n      - name: Use variables\n        run: |\n          echo \"Flutter version: $FLUTTER_VERSION\"\n          # API_KEY available but not printed\n        env:\n          BUILD_NUMBER: ${{ github.run_number }}"
+    },
+    {
+      "id": "cicd_013",
+      "question": "What is code signing and why is it necessary for mobile app deployment?",
+      "answer": "**Code signing** cryptographically signs your app to verify:\n1. The app comes from you (identity)\n2. The app hasn't been modified (integrity)\n\n**Android signing:**\n```bash\n# Create keystore\nkeytool -genkey -v -keystore my-key.keystore \\\n  -alias my-alias -keyalg RSA -keysize 2048 -validity 10000\n\n# In build.gradle\nandroid {\n    signingConfigs {\n        release {\n            keyAlias 'my-alias'\n            keyPassword System.getenv(\"KEY_PASSWORD\")\n            storeFile file('../my-key.keystore')\n            storePassword System.getenv(\"KEYSTORE_PASSWORD\")\n        }\n    }\n    buildTypes {\n        release {\n            signingConfig signingConfigs.release\n        }\n    }\n}\n```\n\n**iOS signing:**\n- **Certificates**: Identity (who you are)\n- **Provisioning Profiles**: What you can do\n- Required for: TestFlight, App Store\n\n**CI/CD signing approaches:**\n1. Store keystore/certificates as secrets\n2. Use Codemagic/Fastlane match\n3. Environment-specific signing configs\n\n---",
+      "difficulty": "intermediate",
+      "tags": [
+        "cicd",
+        "code-signing",
+        "security"
+      ],
+      "code_example": "# Create keystore\nkeytool -genkey -v -keystore my-key.keystore \\\n  -alias my-alias -keyalg RSA -keysize 2048 -validity 10000\n\n# In build.gradle\nandroid {\n    signingConfigs {\n        release {\n            keyAlias 'my-alias'\n            keyPassword System.getenv(\"KEY_PASSWORD\")\n            storeFile file('../my-key.keystore')\n            storePassword System.getenv(\"KEYSTORE_PASSWORD\")\n        }\n    }\n    buildTypes {\n        release {\n            signingConfig signingConfigs.release\n        }\n    }\n}"
+    },
+    {
+      "id": "cicd_014",
+      "question": "What is the purpose of build flavors in Flutter?",
+      "answer": "**Build flavors** create different versions of your app (dev, staging, prod) with different configurations.\n\n**Use cases:**\n- Different API endpoints\n- Different app names/icons\n- Feature flags\n- Analytics configuration\n\n**Android (android/app/build.gradle):**\n```groovy\nflavorDimensions \"environment\"\nproductFlavors {\n    dev {\n        dimension \"environment\"\n        applicationIdSuffix \".dev\"\n        versionNameSuffix \"-dev\"\n    }\n    staging {\n        dimension \"environment\"\n        applicationIdSuffix \".staging\"\n        versionNameSuffix \"-staging\"\n    }\n    prod {\n        dimension \"environment\"\n    }\n}\n```\n\n**Flutter commands:**\n```bash\n# Build specific flavor\nflutter build apk --flavor dev\nflutter build apk --flavor prod\n\n# Run with flavor\nflutter run --flavor dev\n```\n\n**In code:**\n```dart\n// Using --dart-define\n// flutter run --dart-define=ENV=dev\nconst String env = String.fromEnvironment('ENV', defaultValue: 'prod');\n```\n\n---",
+      "difficulty": "intermediate",
+      "tags": [
+        "cicd",
+        "build-flavors",
+        "configuration"
+      ],
+      "code_example": "**Flutter commands:**"
+    },
+    {
+      "id": "cicd_015",
+      "question": "What is Firebase App Distribution and how is it used in CI/CD?",
+      "answer": "**Firebase App Distribution** distributes pre-release builds to testers.\n\n**Benefits:**\n- Easy tester management\n- No TestFlight/Play Console needed for testing\n- Works for both iOS and Android\n- In-app update prompts\n\n**CI/CD integration:**\n```yaml\n- name: Build APK\n  run: flutter build apk --release\n\n- name: Upload to Firebase App Distribution\n  uses: wzieba/Firebase-Distribution-Github-Action@v1\n  with:\n    appId: ${{ secrets.FIREBASE_APP_ID }}\n    serviceCredentialsFileContent: ${{ secrets.FIREBASE_CREDENTIALS }}\n    groups: testers\n    file: build/app/outputs/flutter-apk/app-release.apk\n    releaseNotes: \"Build ${{ github.run_number }}\"\n```\n\n**Using Firebase CLI:**\n```bash\nfirebase appdistribution:distribute \\\n  build/app/outputs/flutter-apk/app-release.apk \\\n  --app YOUR_APP_ID \\\n  --groups \"testers\" \\\n  --release-notes \"New build\"\n```\n\n---",
+      "difficulty": "beginner",
+      "tags": [
+        "cicd",
+        "firebase",
+        "distribution"
+      ],
+      "code_example": "- name: Build APK\n  run: flutter build apk --release\n\n- name: Upload to Firebase App Distribution\n  uses: wzieba/Firebase-Distribution-Github-Action@v1\n  with:\n    appId: ${{ secrets.FIREBASE_APP_ID }}\n    serviceCredentialsFileContent: ${{ secrets.FIREBASE_CREDENTIALS }}\n    groups: testers\n    file: build/app/outputs/flutter-apk/app-release.apk\n    releaseNotes: \"Build ${{ github.run_number }}\""
+    },
+    {
+      "id": "cicd_016",
+      "question": "How do you set up a basic GitHub Actions workflow for Flutter testing?",
+      "answer": "```yaml\n# .github/workflows/test.yml\nname: Flutter Test\n\non:\n  push:\n    branches: [main, develop]\n  pull_request:\n    branches: [main]\n\njobs:\n  test:\n    runs-on: ubuntu-latest\n\n    steps:\n      - name: Checkout\n        uses: actions/checkout@v4\n\n      - name: Setup Flutter\n        uses: subosito/flutter-action@v2\n        with:\n          flutter-version: '3.16.0'\n          channel: stable\n          cache: true  # Cache Flutter SDK\n\n      - name: Install dependencies\n        run: flutter pub get\n\n      - name: Verify formatting\n        run: dart format --set-exit-if-changed .\n\n      - name: Analyze code\n        run: flutter analyze --fatal-infos\n\n      - name: Run tests\n        run: flutter test --coverage\n\n      - name: Check coverage\n        uses: VeryGoodOpenSource/very_good_coverage@v2\n        with:\n          min_coverage: 80\n\n      - name: Upload coverage to Codecov\n        uses: codecov/codecov-action@v3\n        with:\n          files: coverage/lcov.info\n```\n\n---",
+      "difficulty": "intermediate",
+      "tags": [
+        "cicd",
+        "github-actions",
+        "testing"
+      ],
+      "code_example": "# .github/workflows/test.yml\nname: Flutter Test\n\non:\n  push:\n    branches: [main, develop]\n  pull_request:\n    branches: [main]\n\njobs:\n  test:\n    runs-on: ubuntu-latest\n\n    steps:\n      - name: Checkout\n        uses: actions/checkout@v4\n\n      - name: Setup Flutter\n        uses: subosito/flutter-action@v2\n        with:\n          flutter-version: '3.16.0'\n          channel: stable\n          cache: true  # Cache Flutter SDK\n\n      - name: Install dependencies\n        run: flutter pub get\n\n      - name: Verify formatting\n        run: dart format --set-exit-if-changed .\n\n      - name: Analyze code\n        run: flutter analyze --fatal-infos\n\n      - name: Run tests\n        run: flutter test --coverage\n\n      - name: Check coverage\n        uses: VeryGoodOpenSource/very_good_coverage@v2\n        with:\n          min_coverage: 80\n\n      - name: Upload coverage to Codecov\n        uses: codecov/codecov-action@v3\n        with:\n          files: coverage/lcov.info"
+    },
+    {
+      "id": "cicd_017",
+      "question": "What is Fastlane and how is it used in Flutter CI/CD pipelines?",
+      "answer": "**Fastlane** is an automation tool for mobile app deployment.\n\n**Features:**\n- Automated screenshots\n- Code signing management\n- Store uploads\n- Beta distribution\n\n**Setup for Flutter:**\n```bash\n# Install\ngem install fastlane\n\n# Initialize (in ios/ or android/ folder)\ncd ios\nfastlane init\n\ncd android\nfastlane init\n```\n\n**ios/fastlane/Fastfile:**\n```ruby\ndefault_platform(:ios)\n\nplatform :ios do\n  desc \"Build and upload to TestFlight\"\n  lane :beta do\n    # Build Flutter app\n    sh \"cd .. && flutter build ipa --release\"\n\n    # Upload to TestFlight\n    upload_to_testflight(\n      ipa: \"../build/ios/ipa/MyApp.ipa\",\n      skip_waiting_for_build_processing: true\n    )\n  end\nend\n```\n\n**android/fastlane/Fastfile:**\n```ruby\ndefault_platform(:android)\n\nplatform :android do\n  desc \"Deploy to Play Store internal track\"\n  lane :internal do\n    upload_to_play_store(\n      track: 'internal',\n      aab: '../build/app/outputs/bundle/release/app-release.aab',\n      json_key: 'play-store-key.json'\n    )\n  end\nend\n```\n\n**In CI/CD:**\n```yaml\n- name: Deploy Android\n  run: |\n    cd android\n    bundle exec fastlane internal\n```\n\n---",
+      "difficulty": "intermediate",
+      "tags": [
+        "cicd",
+        "fastlane",
+        "automation"
+      ],
+      "code_example": "# Install\ngem install fastlane\n\n# Initialize (in ios/ or android/ folder)\ncd ios\nfastlane init\n\ncd android\nfastlane init"
+    },
+    {
+      "id": "cicd_018",
+      "question": "How do you configure automated testing in a CI/CD pipeline for Flutter?",
+      "answer": "```yaml\nname: Full Test Suite\n\non: [push, pull_request]\n\njobs:\n  unit-tests:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n\n      - run: flutter pub get\n      - run: flutter test test/unit/ --coverage\n\n  widget-tests:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n\n      - run: flutter pub get\n      - run: flutter test test/widget/\n\n  integration-tests:\n    runs-on: macos-latest  # For iOS simulator\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n\n      # Start iOS simulator\n      - name: Start Simulator\n        run: |\n          xcrun simctl boot \"iPhone 15\"\n          xcrun simctl bootstatus \"iPhone 15\" -b\n\n      - run: flutter pub get\n      - run: flutter test integration_test/\n\n  golden-tests:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n\n      - run: flutter pub get\n      - run: flutter test --update-goldens  # Update if needed\n      - run: flutter test test/golden/\n\n      # Upload golden diffs on failure\n      - uses: actions/upload-artifact@v4\n        if: failure()\n        with:\n          name: golden-failures\n          path: test/**/failures/\n```\n\n---",
+      "difficulty": "intermediate",
+      "tags": [
+        "cicd",
+        "testing",
+        "automation"
+      ],
+      "code_example": "name: Full Test Suite\n\non: [push, pull_request]\n\njobs:\n  unit-tests:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n\n      - run: flutter pub get\n      - run: flutter test test/unit/ --coverage\n\n  widget-tests:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n\n      - run: flutter pub get\n      - run: flutter test test/widget/\n\n  integration-tests:\n    runs-on: macos-latest  # For iOS simulator\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n\n      # Start iOS simulator\n      - name: Start Simulator\n        run: |\n          xcrun simctl boot \"iPhone 15\"\n          xcrun simctl bootstatus \"iPhone 15\" -b\n\n      - run: flutter pub get\n      - run: flutter test integration_test/\n\n  golden-tests:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n\n      - run: flutter pub get\n      - run: flutter test --update-goldens  # Update if needed\n      - run: flutter test test/golden/\n\n      # Upload golden diffs on failure\n      - uses: actions/upload-artifact@v4\n        if: failure()\n        with:\n          name: golden-failures\n          path: test/**/failures/"
+    },
+    {
+      "id": "cicd_019",
+      "question": "What are GitHub Secrets and how do you use them securely in workflows?",
+      "answer": "**GitHub Secrets** store sensitive data encrypted at rest.\n\n**Creating secrets:**\n1. Repository → Settings → Secrets → Actions\n2. New repository secret\n3. Enter name (e.g., `KEYSTORE_BASE64`) and value\n\n**Using in workflow:**\n```yaml\njobs:\n  build:\n    runs-on: ubuntu-latest\n    env:\n      KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}\n      KEY_ALIAS: ${{ secrets.KEY_ALIAS }}\n      KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}\n\n    steps:\n      - uses: actions/checkout@v4\n\n      # Decode base64 encoded keystore\n      - name: Decode Keystore\n        run: |\n          echo \"${{ secrets.KEYSTORE_BASE64 }}\" | base64 --decode > android/app/keystore.jks\n\n      - name: Build APK\n        run: flutter build apk --release\n```\n\n**Best practices:**\n1. Never print secrets in logs\n2. Use minimal permissions\n3. Rotate secrets regularly\n4. Use repository secrets for repo-specific\n5. Use organization secrets for shared values\n\n**Encoding files as secrets:**\n```bash\n# Encode file to base64\nbase64 -i keystore.jks | pbcopy  # Copy to clipboard\n\n# In workflow, decode\necho \"${{ secrets.KEYSTORE_BASE64 }}\" | base64 --decode > keystore.jks\n```\n\n---",
+      "difficulty": "intermediate",
+      "tags": [
+        "cicd",
+        "secrets",
+        "security"
+      ],
+      "code_example": "jobs:\n  build:\n    runs-on: ubuntu-latest\n    env:\n      KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}\n      KEY_ALIAS: ${{ secrets.KEY_ALIAS }}\n      KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}\n\n    steps:\n      - uses: actions/checkout@v4\n\n      # Decode base64 encoded keystore\n      - name: Decode Keystore\n        run: |\n          echo \"${{ secrets.KEYSTORE_BASE64 }}\" | base64 --decode > android/app/keystore.jks\n\n      - name: Build APK\n        run: flutter build apk --release"
+    },
+    {
+      "id": "cicd_020",
+      "question": "How do you implement code signing for iOS apps in a CI/CD pipeline?",
+      "answer": "**Method 1: Manual certificate management**\n```yaml\njobs:\n  build-ios:\n    runs-on: macos-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n\n      # Install Apple certificate\n      - name: Install Certificate\n        env:\n          CERTIFICATE_BASE64: ${{ secrets.IOS_CERTIFICATE_BASE64 }}\n          CERTIFICATE_PASSWORD: ${{ secrets.IOS_CERTIFICATE_PASSWORD }}\n          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}\n        run: |\n          # Create keychain\n          security create-keychain -p \"$KEYCHAIN_PASSWORD\" build.keychain\n          security default-keychain -s build.keychain\n          security unlock-keychain -p \"$KEYCHAIN_PASSWORD\" build.keychain\n\n          # Import certificate\n          echo \"$CERTIFICATE_BASE64\" | base64 --decode > certificate.p12\n          security import certificate.p12 -k build.keychain \\\n            -P \"$CERTIFICATE_PASSWORD\" -T /usr/bin/codesign\n          security set-key-partition-list -S apple-tool:,apple: \\\n            -s -k \"$KEYCHAIN_PASSWORD\" build.keychain\n\n      # Install provisioning profile\n      - name: Install Profile\n        env:\n          PROFILE_BASE64: ${{ secrets.IOS_PROFILE_BASE64 }}\n        run: |\n          mkdir -p ~/Library/MobileDevice/Provisioning\\ Profiles\n          echo \"$PROFILE_BASE64\" | base64 --decode > profile.mobileprovision\n          cp profile.mobileprovision ~/Library/MobileDevice/Provisioning\\ Profiles/\n\n      - run: flutter build ipa --release\n\n      # Cleanup\n      - name: Cleanup\n        if: always()\n        run: security delete-keychain build.keychain\n```\n\n**Method 2: Fastlane Match (recommended)**\n```yaml\n- name: Setup Match\n  run: |\n    cd ios\n    bundle exec fastlane match appstore --readonly\n  env:\n    MATCH_PASSWORD: ${{ secrets.MATCH_PASSWORD }}\n    MATCH_GIT_PRIVATE_KEY: ${{ secrets.MATCH_GIT_PRIVATE_KEY }}\n```\n\n---",
+      "difficulty": "intermediate",
+      "tags": [
+        "cicd",
+        "ios",
+        "code-signing"
+      ],
+      "code_example": "jobs:\n  build-ios:\n    runs-on: macos-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n\n      # Install Apple certificate\n      - name: Install Certificate\n        env:\n          CERTIFICATE_BASE64: ${{ secrets.IOS_CERTIFICATE_BASE64 }}\n          CERTIFICATE_PASSWORD: ${{ secrets.IOS_CERTIFICATE_PASSWORD }}\n          KEYCHAIN_PASSWORD: ${{ secrets.KEYCHAIN_PASSWORD }}\n        run: |\n          # Create keychain\n          security create-keychain -p \"$KEYCHAIN_PASSWORD\" build.keychain\n          security default-keychain -s build.keychain\n          security unlock-keychain -p \"$KEYCHAIN_PASSWORD\" build.keychain\n\n          # Import certificate\n          echo \"$CERTIFICATE_BASE64\" | base64 --decode > certificate.p12\n          security import certificate.p12 -k build.keychain \\\n            -P \"$CERTIFICATE_PASSWORD\" -T /usr/bin/codesign\n          security set-key-partition-list -S apple-tool:,apple: \\\n            -s -k \"$KEYCHAIN_PASSWORD\" build.keychain\n\n      # Install provisioning profile\n      - name: Install Profile\n        env:\n          PROFILE_BASE64: ${{ secrets.IOS_PROFILE_BASE64 }}\n        run: |\n          mkdir -p ~/Library/MobileDevice/Provisioning\\ Profiles\n          echo \"$PROFILE_BASE64\" | base64 --decode > profile.mobileprovision\n          cp profile.mobileprovision ~/Library/MobileDevice/Provisioning\\ Profiles/\n\n      - run: flutter build ipa --release\n\n      # Cleanup\n      - name: Cleanup\n        if: always()\n        run: security delete-keychain build.keychain"
+    },
+    {
+      "id": "cicd_021",
+      "question": "How do you implement code signing for Android apps in a CI/CD pipeline?",
+      "answer": "```yaml\njobs:\n  build-android:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n\n      # Decode and setup keystore\n      - name: Setup Keystore\n        run: |\n          echo \"${{ secrets.KEYSTORE_BASE64 }}\" | base64 --decode > android/app/upload-keystore.jks\n\n      # Create key.properties\n      - name: Create key.properties\n        run: |\n          cat > android/key.properties <<EOF\n          storePassword=${{ secrets.KEYSTORE_PASSWORD }}\n          keyPassword=${{ secrets.KEY_PASSWORD }}\n          keyAlias=${{ secrets.KEY_ALIAS }}\n          storeFile=upload-keystore.jks\n          EOF\n\n      - name: Build AAB\n        run: flutter build appbundle --release\n\n      # Cleanup sensitive files\n      - name: Cleanup\n        if: always()\n        run: |\n          rm -f android/app/upload-keystore.jks\n          rm -f android/key.properties\n```\n\n**android/app/build.gradle:**\n```groovy\ndef keystoreProperties = new Properties()\ndef keystorePropertiesFile = rootProject.file('key.properties')\nif (keystorePropertiesFile.exists()) {\n    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))\n}\n\nandroid {\n    signingConfigs {\n        release {\n            keyAlias keystoreProperties['keyAlias']\n            keyPassword keystoreProperties['keyPassword']\n            storeFile keystoreProperties['storeFile'] ?\n                file(keystoreProperties['storeFile']) : null\n            storePassword keystoreProperties['storePassword']\n        }\n    }\n    buildTypes {\n        release {\n            signingConfig signingConfigs.release\n        }\n    }\n}\n```\n\n---",
+      "difficulty": "intermediate",
+      "tags": [
+        "cicd",
+        "android",
+        "code-signing"
+      ],
+      "code_example": "jobs:\n  build-android:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n\n      # Decode and setup keystore\n      - name: Setup Keystore\n        run: |\n          echo \"${{ secrets.KEYSTORE_BASE64 }}\" | base64 --decode > android/app/upload-keystore.jks\n\n      # Create key.properties\n      - name: Create key.properties\n        run: |\n          cat > android/key.properties <<EOF\n          storePassword=${{ secrets.KEYSTORE_PASSWORD }}\n          keyPassword=${{ secrets.KEY_PASSWORD }}\n          keyAlias=${{ secrets.KEY_ALIAS }}\n          storeFile=upload-keystore.jks\n          EOF\n\n      - name: Build AAB\n        run: flutter build appbundle --release\n\n      # Cleanup sensitive files\n      - name: Cleanup\n        if: always()\n        run: |\n          rm -f android/app/upload-keystore.jks\n          rm -f android/key.properties"
+    },
+    {
+      "id": "cicd_022",
+      "question": "What is a build matrix in GitHub Actions and when would you use it?",
+      "answer": "A **build matrix** runs jobs with multiple configurations in parallel.\n\n**Use cases:**\n- Test on multiple Flutter versions\n- Build for multiple platforms\n- Test on different OS versions\n\n```yaml\njobs:\n  test:\n    runs-on: ${{ matrix.os }}\n    strategy:\n      matrix:\n        os: [ubuntu-latest, macos-latest, windows-latest]\n        flutter-version: ['3.16.0', '3.19.0']\n        channel: [stable, beta]\n        exclude:\n          - os: windows-latest\n            channel: beta  # Skip beta on Windows\n\n    steps:\n      - uses: actions/checkout@v4\n\n      - uses: subosito/flutter-action@v2\n        with:\n          flutter-version: ${{ matrix.flutter-version }}\n          channel: ${{ matrix.channel }}\n\n      - run: flutter pub get\n      - run: flutter test\n\n  build:\n    needs: test\n    runs-on: ${{ matrix.os }}\n    strategy:\n      fail-fast: false  # Continue other builds if one fails\n      matrix:\n        include:\n          - os: ubuntu-latest\n            build-cmd: flutter build apk\n            artifact: build/app/outputs/flutter-apk/app-release.apk\n          - os: macos-latest\n            build-cmd: flutter build ipa --no-codesign\n            artifact: build/ios/archive/\n          - os: ubuntu-latest\n            build-cmd: flutter build web\n            artifact: build/web/\n\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n      - run: flutter pub get\n      - run: ${{ matrix.build-cmd }}\n\n      - uses: actions/upload-artifact@v4\n        with:\n          name: build-${{ matrix.os }}\n          path: ${{ matrix.artifact }}\n```\n\n---",
+      "difficulty": "intermediate",
+      "tags": [
+        "cicd",
+        "github-actions",
+        "matrix"
+      ],
+      "code_example": "jobs:\n  test:\n    runs-on: ${{ matrix.os }}\n    strategy:\n      matrix:\n        os: [ubuntu-latest, macos-latest, windows-latest]\n        flutter-version: ['3.16.0', '3.19.0']\n        channel: [stable, beta]\n        exclude:\n          - os: windows-latest\n            channel: beta  # Skip beta on Windows\n\n    steps:\n      - uses: actions/checkout@v4\n\n      - uses: subosito/flutter-action@v2\n        with:\n          flutter-version: ${{ matrix.flutter-version }}\n          channel: ${{ matrix.channel }}\n\n      - run: flutter pub get\n      - run: flutter test\n\n  build:\n    needs: test\n    runs-on: ${{ matrix.os }}\n    strategy:\n      fail-fast: false  # Continue other builds if one fails\n      matrix:\n        include:\n          - os: ubuntu-latest\n            build-cmd: flutter build apk\n            artifact: build/app/outputs/flutter-apk/app-release.apk\n          - os: macos-latest\n            build-cmd: flutter build ipa --no-codesign\n            artifact: build/ios/archive/\n          - os: ubuntu-latest\n            build-cmd: flutter build web\n            artifact: build/web/\n\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n      - run: flutter pub get\n      - run: ${{ matrix.build-cmd }}\n\n      - uses: actions/upload-artifact@v4\n        with:\n          name: build-${{ matrix.os }}\n          path: ${{ matrix.artifact }}"
+    },
+    {
+      "id": "cicd_023",
+      "question": "How do you configure multiple build flavors (dev, staging, production) in CI/CD?",
+      "answer": "```yaml\nname: Build All Flavors\n\non:\n  push:\n    branches: [main]\n\njobs:\n  build-flavors:\n    runs-on: ubuntu-latest\n    strategy:\n      matrix:\n        flavor: [dev, staging, prod]\n        include:\n          - flavor: dev\n            build-type: apk\n          - flavor: staging\n            build-type: apk\n          - flavor: prod\n            build-type: appbundle\n\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n\n      - run: flutter pub get\n\n      - name: Build ${{ matrix.flavor }}\n        run: |\n          flutter build ${{ matrix.build-type }} \\\n            --flavor ${{ matrix.flavor }} \\\n            --dart-define=ENV=${{ matrix.flavor }}\n        env:\n          # Flavor-specific secrets\n          API_KEY: ${{ secrets[format('{0}_API_KEY', matrix.flavor)] }}\n\n      - name: Upload ${{ matrix.flavor }} artifact\n        uses: actions/upload-artifact@v4\n        with:\n          name: app-${{ matrix.flavor }}\n          path: |\n            build/app/outputs/**/*.apk\n            build/app/outputs/**/*.aab\n\n  deploy-staging:\n    needs: build-flavors\n    if: github.ref == 'refs/heads/main'\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/download-artifact@v4\n        with:\n          name: app-staging\n\n      - name: Deploy to Firebase App Distribution\n        run: |\n          # Deploy staging to testers\n```\n\n---",
+      "difficulty": "intermediate",
+      "tags": [
+        "cicd",
+        "build-flavors",
+        "configuration"
+      ],
+      "code_example": "name: Build All Flavors\n\non:\n  push:\n    branches: [main]\n\njobs:\n  build-flavors:\n    runs-on: ubuntu-latest\n    strategy:\n      matrix:\n        flavor: [dev, staging, prod]\n        include:\n          - flavor: dev\n            build-type: apk\n          - flavor: staging\n            build-type: apk\n          - flavor: prod\n            build-type: appbundle\n\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n\n      - run: flutter pub get\n\n      - name: Build ${{ matrix.flavor }}\n        run: |\n          flutter build ${{ matrix.build-type }} \\\n            --flavor ${{ matrix.flavor }} \\\n            --dart-define=ENV=${{ matrix.flavor }}\n        env:\n          # Flavor-specific secrets\n          API_KEY: ${{ secrets[format('{0}_API_KEY', matrix.flavor)] }}\n\n      - name: Upload ${{ matrix.flavor }} artifact\n        uses: actions/upload-artifact@v4\n        with:\n          name: app-${{ matrix.flavor }}\n          path: |\n            build/app/outputs/**/*.apk\n            build/app/outputs/**/*.aab\n\n  deploy-staging:\n    needs: build-flavors\n    if: github.ref == 'refs/heads/main'\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/download-artifact@v4\n        with:\n          name: app-staging\n\n      - name: Deploy to Firebase App Distribution\n        run: |\n          # Deploy staging to testers"
+    },
+    {
+      "id": "cicd_024",
+      "question": "What is TestFlight and how do you automate deployment to it?",
+      "answer": "**TestFlight** is Apple's beta testing platform for iOS apps.\n\n**Automated deployment:**\n```yaml\njobs:\n  deploy-testflight:\n    runs-on: macos-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n\n      # Setup signing (see question 20)\n      - name: Setup Signing\n        run: # ... certificate and profile setup\n\n      - name: Build IPA\n        run: flutter build ipa --release\n\n      - name: Upload to TestFlight\n        uses: apple-actions/upload-testflight-build@v1\n        with:\n          app-path: build/ios/ipa/MyApp.ipa\n          issuer-id: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}\n          api-key-id: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}\n          api-private-key: ${{ secrets.APP_STORE_CONNECT_PRIVATE_KEY }}\n```\n\n**Using Fastlane:**\n```ruby\n# ios/fastlane/Fastfile\nlane :beta do\n  # Build with Flutter\n  sh \"cd .. && flutter build ipa --release\"\n\n  # Upload to TestFlight\n  upload_to_testflight(\n    ipa: \"../build/ios/ipa/MyApp.ipa\",\n    changelog: \"New build from CI\",\n    distribute_external: true,\n    groups: [\"External Testers\"]\n  )\nend\n```\n\n---",
+      "difficulty": "intermediate",
+      "tags": [
+        "cicd",
+        "testflight",
+        "ios"
+      ],
+      "code_example": "jobs:\n  deploy-testflight:\n    runs-on: macos-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n\n      # Setup signing (see question 20)\n      - name: Setup Signing\n        run: # ... certificate and profile setup\n\n      - name: Build IPA\n        run: flutter build ipa --release\n\n      - name: Upload to TestFlight\n        uses: apple-actions/upload-testflight-build@v1\n        with:\n          app-path: build/ios/ipa/MyApp.ipa\n          issuer-id: ${{ secrets.APP_STORE_CONNECT_ISSUER_ID }}\n          api-key-id: ${{ secrets.APP_STORE_CONNECT_KEY_ID }}\n          api-private-key: ${{ secrets.APP_STORE_CONNECT_PRIVATE_KEY }}"
+    },
+    {
+      "id": "cicd_025",
+      "question": "How do you automate deployment to Google Play internal testing?",
+      "answer": "```yaml\njobs:\n  deploy-play-store:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n\n      # Setup signing\n      - name: Setup Keystore\n        run: |\n          echo \"${{ secrets.KEYSTORE_BASE64 }}\" | base64 --decode > android/app/keystore.jks\n          echo \"${{ secrets.PLAY_STORE_KEY }}\" > android/play-store-key.json\n\n      - name: Build AAB\n        run: flutter build appbundle --release\n\n      # Upload to Play Store\n      - name: Upload to Play Store\n        uses: r0adkll/upload-google-play@v1\n        with:\n          serviceAccountJson: android/play-store-key.json\n          packageName: com.example.myapp\n          releaseFiles: build/app/outputs/bundle/release/app-release.aab\n          track: internal\n          status: completed\n          changesNotSentForReview: true\n```\n\n**Using Fastlane:**\n```ruby\n# android/fastlane/Fastfile\nlane :internal do\n  upload_to_play_store(\n    track: 'internal',\n    aab: '../build/app/outputs/bundle/release/app-release.aab',\n    json_key: 'play-store-key.json',\n    skip_upload_changelogs: true\n  )\nend\n```\n\n---",
+      "difficulty": "intermediate",
+      "tags": [
+        "cicd",
+        "play-store",
+        "android"
+      ],
+      "code_example": "jobs:\n  deploy-play-store:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n\n      # Setup signing\n      - name: Setup Keystore\n        run: |\n          echo \"${{ secrets.KEYSTORE_BASE64 }}\" | base64 --decode > android/app/keystore.jks\n          echo \"${{ secrets.PLAY_STORE_KEY }}\" > android/play-store-key.json\n\n      - name: Build AAB\n        run: flutter build appbundle --release\n\n      # Upload to Play Store\n      - name: Upload to Play Store\n        uses: r0adkll/upload-google-play@v1\n        with:\n          serviceAccountJson: android/play-store-key.json\n          packageName: com.example.myapp\n          releaseFiles: build/app/outputs/bundle/release/app-release.aab\n          track: internal\n          status: completed\n          changesNotSentForReview: true"
+    },
+    {
+      "id": "cicd_026",
+      "question": "What caching strategies can be used to speed up Flutter builds in CI/CD?",
+      "answer": "```yaml\njobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n\n      # Cache Flutter SDK\n      - uses: subosito/flutter-action@v2\n        with:\n          flutter-version: '3.16.0'\n          cache: true  # Built-in caching\n\n      # Cache pub packages\n      - name: Cache pub packages\n        uses: actions/cache@v4\n        with:\n          path: |\n            ~/.pub-cache\n            .dart_tool\n          key: ${{ runner.os }}-pub-${{ hashFiles('**/pubspec.lock') }}\n          restore-keys: |\n            ${{ runner.os }}-pub-\n\n      # Cache Gradle (Android)\n      - name: Cache Gradle\n        uses: actions/cache@v4\n        with:\n          path: |\n            ~/.gradle/caches\n            ~/.gradle/wrapper\n          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}\n          restore-keys: |\n            ${{ runner.os }}-gradle-\n\n      # Cache CocoaPods (iOS)\n      - name: Cache CocoaPods\n        uses: actions/cache@v4\n        with:\n          path: ios/Pods\n          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}\n          restore-keys: |\n            ${{ runner.os }}-pods-\n\n      - run: flutter pub get\n      - run: flutter build apk\n```\n\n**Additional tips:**\n- Use `--no-pub` if already cached\n- Split into multiple jobs (parallel)\n- Use self-hosted runners with persistent cache\n\n---",
+      "difficulty": "intermediate",
+      "tags": [
+        "cicd",
+        "caching",
+        "performance"
+      ],
+      "code_example": "jobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n\n      # Cache Flutter SDK\n      - uses: subosito/flutter-action@v2\n        with:\n          flutter-version: '3.16.0'\n          cache: true  # Built-in caching\n\n      # Cache pub packages\n      - name: Cache pub packages\n        uses: actions/cache@v4\n        with:\n          path: |\n            ~/.pub-cache\n            .dart_tool\n          key: ${{ runner.os }}-pub-${{ hashFiles('**/pubspec.lock') }}\n          restore-keys: |\n            ${{ runner.os }}-pub-\n\n      # Cache Gradle (Android)\n      - name: Cache Gradle\n        uses: actions/cache@v4\n        with:\n          path: |\n            ~/.gradle/caches\n            ~/.gradle/wrapper\n          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}\n          restore-keys: |\n            ${{ runner.os }}-gradle-\n\n      # Cache CocoaPods (iOS)\n      - name: Cache CocoaPods\n        uses: actions/cache@v4\n        with:\n          path: ios/Pods\n          key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}\n          restore-keys: |\n            ${{ runner.os }}-pods-\n\n      - run: flutter pub get\n      - run: flutter build apk"
+    },
+    {
+      "id": "cicd_027",
+      "question": "How do you handle different environment variables for different build flavors?",
+      "answer": "```yaml\njobs:\n  build:\n    runs-on: ubuntu-latest\n    strategy:\n      matrix:\n        flavor: [dev, staging, prod]\n\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n\n      - name: Set environment variables\n        run: |\n          case ${{ matrix.flavor }} in\n            dev)\n              echo \"API_URL=https://dev-api.example.com\" >> $GITHUB_ENV\n              echo \"API_KEY=${{ secrets.DEV_API_KEY }}\" >> $GITHUB_ENV\n              ;;\n            staging)\n              echo \"API_URL=https://staging-api.example.com\" >> $GITHUB_ENV\n              echo \"API_KEY=${{ secrets.STAGING_API_KEY }}\" >> $GITHUB_ENV\n              ;;\n            prod)\n              echo \"API_URL=https://api.example.com\" >> $GITHUB_ENV\n              echo \"API_KEY=${{ secrets.PROD_API_KEY }}\" >> $GITHUB_ENV\n              ;;\n          esac\n\n      - name: Build\n        run: |\n          flutter build apk \\\n            --flavor ${{ matrix.flavor }} \\\n            --dart-define=API_URL=$API_URL \\\n            --dart-define=API_KEY=$API_KEY\n```\n\n**Using .env files:**\n```yaml\n- name: Create .env file\n  run: |\n    cat > .env.${{ matrix.flavor }} <<EOF\n    API_URL=${{ secrets[format('{0}_API_URL', matrix.flavor)] }}\n    API_KEY=${{ secrets[format('{0}_API_KEY', matrix.flavor)] }}\n    EOF\n\n- name: Build\n  run: flutter build apk --flavor ${{ matrix.flavor }}\n```\n\n---",
+      "difficulty": "intermediate",
+      "tags": [
+        "cicd",
+        "environment-variables",
+        "flavors"
+      ],
+      "code_example": "jobs:\n  build:\n    runs-on: ubuntu-latest\n    strategy:\n      matrix:\n        flavor: [dev, staging, prod]\n\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n\n      - name: Set environment variables\n        run: |\n          case ${{ matrix.flavor }} in\n            dev)\n              echo \"API_URL=https://dev-api.example.com\" >> $GITHUB_ENV\n              echo \"API_KEY=${{ secrets.DEV_API_KEY }}\" >> $GITHUB_ENV\n              ;;\n            staging)\n              echo \"API_URL=https://staging-api.example.com\" >> $GITHUB_ENV\n              echo \"API_KEY=${{ secrets.STAGING_API_KEY }}\" >> $GITHUB_ENV\n              ;;\n            prod)\n              echo \"API_URL=https://api.example.com\" >> $GITHUB_ENV\n              echo \"API_KEY=${{ secrets.PROD_API_KEY }}\" >> $GITHUB_ENV\n              ;;\n          esac\n\n      - name: Build\n        run: |\n          flutter build apk \\\n            --flavor ${{ matrix.flavor }} \\\n            --dart-define=API_URL=$API_URL \\\n            --dart-define=API_KEY=$API_KEY"
+    },
+    {
+      "id": "cicd_028",
+      "question": "What is Bitrise and how does it compare to other CI/CD platforms for Flutter?",
+      "answer": "**Bitrise** is a mobile-focused CI/CD platform.\n\n**Comparison:**\n\n| Feature | Bitrise | GitHub Actions | Codemagic |\n|---------|---------|----------------|-----------|\n| Flutter focus | Good | Generic | Excellent |\n| macOS runners | Yes | Yes | Yes |\n| Visual workflow editor | Yes | No | Yes |\n| Pre-built steps | Many mobile | General | Flutter-specific |\n| Pricing | Per build min | Per min | Per build min |\n| Self-hosted | No | Yes | No |\n\n**Bitrise workflow (bitrise.yml):**\n```yaml\nformat_version: \"11\"\ndefault_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git\n\nworkflows:\n  primary:\n    steps:\n      - git-clone@6: {}\n\n      - flutter-installer@0:\n          inputs:\n            - version: stable\n\n      - flutter-analyze@0:\n          inputs:\n            - project_location: $BITRISE_SOURCE_DIR\n\n      - flutter-test@1:\n          inputs:\n            - project_location: $BITRISE_SOURCE_DIR\n\n      - flutter-build@0:\n          inputs:\n            - project_location: $BITRISE_SOURCE_DIR\n            - platform: android\n            - android_output_type: apk\n\n      - deploy-to-bitrise-io@2: {}\n```\n\n---",
+      "difficulty": "intermediate",
+      "tags": [
+        "cicd",
+        "bitrise",
+        "platforms"
+      ],
+      "code_example": "format_version: \"11\"\ndefault_step_lib_source: https://github.com/bitrise-io/bitrise-steplib.git\n\nworkflows:\n  primary:\n    steps:\n      - git-clone@6: {}\n\n      - flutter-installer@0:\n          inputs:\n            - version: stable\n\n      - flutter-analyze@0:\n          inputs:\n            - project_location: $BITRISE_SOURCE_DIR\n\n      - flutter-test@1:\n          inputs:\n            - project_location: $BITRISE_SOURCE_DIR\n\n      - flutter-build@0:\n          inputs:\n            - project_location: $BITRISE_SOURCE_DIR\n            - platform: android\n            - android_output_type: apk\n\n      - deploy-to-bitrise-io@2: {}"
+    },
+    {
+      "id": "cicd_029",
+      "question": "How do you integrate code quality checks (linting, formatting) into CI/CD?",
+      "answer": "```yaml\nname: Code Quality\n\non: [push, pull_request]\n\njobs:\n  quality:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n\n      - name: Install dependencies\n        run: flutter pub get\n\n      # Check formatting\n      - name: Check formatting\n        run: dart format --set-exit-if-changed .\n\n      # Analyze code\n      - name: Analyze code\n        run: flutter analyze --fatal-infos\n\n      # Custom lint rules (if using custom_lint)\n      - name: Run custom lints\n        run: dart run custom_lint\n\n      # Check for outdated packages\n      - name: Check outdated packages\n        run: flutter pub outdated --no-dev-dependencies\n\n      # Check for security vulnerabilities\n      - name: Security scan\n        run: |\n          dart pub global activate dependency_validator\n          dart pub global run dependency_validator\n\n  # Separate job for Dart metrics\n  metrics:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n\n      - name: Install DCM\n        run: |\n          dart pub global activate dart_code_metrics\n          dart pub global run dart_code_metrics:metrics \\\n            analyze lib \\\n            --reporter=github\n\n      - name: Check cyclomatic complexity\n        run: |\n          dart pub global run dart_code_metrics:metrics \\\n            check-unnecessary-nullable lib \\\n            --fatal-found\n```\n\n**analysis_options.yaml:**\n```yaml\ninclude: package:flutter_lints/flutter.yaml\n\nanalyzer:\n  errors:\n    missing_return: error\n    missing_required_param: error\n  exclude:\n    - \"**/*.g.dart\"\n    - \"**/*.freezed.dart\"\n\nlinter:\n  rules:\n    - prefer_const_constructors\n    - prefer_final_locals\n    - avoid_print\n```\n\n---",
+      "difficulty": "intermediate",
+      "tags": [
+        "cicd",
+        "code-quality",
+        "linting"
+      ],
+      "code_example": "name: Code Quality\n\non: [push, pull_request]\n\njobs:\n  quality:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n\n      - name: Install dependencies\n        run: flutter pub get\n\n      # Check formatting\n      - name: Check formatting\n        run: dart format --set-exit-if-changed .\n\n      # Analyze code\n      - name: Analyze code\n        run: flutter analyze --fatal-infos\n\n      # Custom lint rules (if using custom_lint)\n      - name: Run custom lints\n        run: dart run custom_lint\n\n      # Check for outdated packages\n      - name: Check outdated packages\n        run: flutter pub outdated --no-dev-dependencies\n\n      # Check for security vulnerabilities\n      - name: Security scan\n        run: |\n          dart pub global activate dependency_validator\n          dart pub global run dependency_validator\n\n  # Separate job for Dart metrics\n  metrics:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n\n      - name: Install DCM\n        run: |\n          dart pub global activate dart_code_metrics\n          dart pub global run dart_code_metrics:metrics \\\n            analyze lib \\\n            --reporter=github\n\n      - name: Check cyclomatic complexity\n        run: |\n          dart pub global run dart_code_metrics:metrics \\\n            check-unnecessary-nullable lib \\\n            --fatal-found"
+    },
+    {
+      "id": "cicd_030",
+      "question": "What is the purpose of the pubspec.lock file in CI/CD pipelines?",
+      "answer": "**pubspec.lock** locks exact package versions for reproducible builds.\n\n**Why important in CI/CD:**\n1. **Reproducibility**: Same versions every build\n2. **Consistency**: Team uses identical dependencies\n3. **Security**: Known working versions\n4. **Debugging**: Can reproduce any build\n\n```yaml\n# Should commit pubspec.lock for apps\n# Should NOT commit for packages\n\njobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n\n      # This uses exact versions from pubspec.lock\n      - run: flutter pub get\n\n      # To update dependencies (in separate workflow)\n      - run: flutter pub upgrade\n```\n\n**Best practices:**\n- **Apps**: Commit `pubspec.lock` ✅\n- **Packages**: Don't commit, use ranges\n- **CI**: Never use `--upgrade` in build pipeline\n- **Updates**: Separate PR for dependency updates\n\n---",
+      "difficulty": "intermediate",
+      "tags": [
+        "cicd",
+        "pubspec",
+        "dependencies"
+      ],
+      "code_example": "# Should commit pubspec.lock for apps\n# Should NOT commit for packages\n\njobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n\n      # This uses exact versions from pubspec.lock\n      - run: flutter pub get\n\n      # To update dependencies (in separate workflow)\n      - run: flutter pub upgrade"
+    },
+    {
+      "id": "cicd_031",
+      "question": "How do you implement automated versioning and build number incrementation in CI/CD?",
+      "answer": "```yaml\njobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n        with:\n          fetch-depth: 0  # Full history for versioning\n\n      - uses: subosito/flutter-action@v2\n\n      # Method 1: Use GitHub run number\n      - name: Set version\n        run: |\n          VERSION=\"1.0.${{ github.run_number }}\"\n          BUILD_NUMBER=\"${{ github.run_number }}\"\n          flutter build apk \\\n            --build-name=$VERSION \\\n            --build-number=$BUILD_NUMBER\n\n      # Method 2: Git-based versioning\n      - name: Auto version from git\n        run: |\n          # Count commits\n          BUILD_NUMBER=$(git rev-list --count HEAD)\n          # Get latest tag or default\n          VERSION=$(git describe --tags --abbrev=0 2>/dev/null || echo \"1.0.0\")\n          flutter build apk \\\n            --build-name=$VERSION \\\n            --build-number=$BUILD_NUMBER\n\n      # Method 3: Using cider package\n      - name: Version with cider\n        run: |\n          dart pub global activate cider\n          cider bump build\n          cider version\n          flutter build apk\n```\n\n**Semantic versioning with tags:**\n```yaml\n- name: Calculate version\n  id: version\n  run: |\n    if [[ $GITHUB_REF == refs/tags/v* ]]; then\n      VERSION=${GITHUB_REF#refs/tags/v}\n    else\n      VERSION=\"1.0.0-dev.${{ github.run_number }}\"\n    fi\n    echo \"version=$VERSION\" >> $GITHUB_OUTPUT\n\n- name: Build with version\n  run: |\n    flutter build apk --build-name=${{ steps.version.outputs.version }}\n```\n\n---",
+      "difficulty": "advanced",
+      "tags": [
+        "cicd",
+        "versioning",
+        "automation"
+      ],
+      "code_example": "jobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n        with:\n          fetch-depth: 0  # Full history for versioning\n\n      - uses: subosito/flutter-action@v2\n\n      # Method 1: Use GitHub run number\n      - name: Set version\n        run: |\n          VERSION=\"1.0.${{ github.run_number }}\"\n          BUILD_NUMBER=\"${{ github.run_number }}\"\n          flutter build apk \\\n            --build-name=$VERSION \\\n            --build-number=$BUILD_NUMBER\n\n      # Method 2: Git-based versioning\n      - name: Auto version from git\n        run: |\n          # Count commits\n          BUILD_NUMBER=$(git rev-list --count HEAD)\n          # Get latest tag or default\n          VERSION=$(git describe --tags --abbrev=0 2>/dev/null || echo \"1.0.0\")\n          flutter build apk \\\n            --build-name=$VERSION \\\n            --build-number=$BUILD_NUMBER\n\n      # Method 3: Using cider package\n      - name: Version with cider\n        run: |\n          dart pub global activate cider\n          cider bump build\n          cider version\n          flutter build apk"
+    },
+    {
+      "id": "cicd_032",
+      "question": "What are the best practices for managing secrets and sensitive data in CI/CD pipelines?",
+      "answer": "**1. Use platform secret management:**\n```yaml\n# GitHub Secrets - encrypted at rest\nenv:\n  API_KEY: ${{ secrets.API_KEY }}\n```",
+      "difficulty": "advanced",
+      "tags": [
+        "cicd",
+        "secrets",
+        "security"
+      ],
+      "code_example": "# GitHub Secrets - encrypted at rest\nenv:\n  API_KEY: ${{ secrets.API_KEY }}"
+    },
+    {
+      "id": "cicd_033",
+      "question": "How do you set up a multi-stage deployment pipeline (dev → staging → production)?",
+      "answer": "```yaml\nname: Multi-Stage Deployment\n\non:\n  push:\n    branches: [main]\n  workflow_dispatch:\n    inputs:\n      environment:\n        description: 'Deploy to'\n        required: true\n        default: 'staging'\n        type: choice\n        options: [staging, production]\n\njobs:\n  build:\n    runs-on: ubuntu-latest\n    outputs:\n      version: ${{ steps.version.outputs.version }}\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n      - run: flutter build apk --release\n      - uses: actions/upload-artifact@v4\n        with:\n          name: app\n          path: build/app/outputs/flutter-apk/app-release.apk\n\n  deploy-dev:\n    needs: build\n    runs-on: ubuntu-latest\n    environment: dev\n    steps:\n      - uses: actions/download-artifact@v4\n      - name: Deploy to Dev\n        run: |\n          # Deploy to Firebase App Distribution\n          echo \"Deploying to dev...\"\n\n  deploy-staging:\n    needs: deploy-dev\n    runs-on: ubuntu-latest\n    environment:\n      name: staging\n      url: https://staging.example.com\n    steps:\n      - uses: actions/download-artifact@v4\n      - name: Deploy to Staging\n        run: |\n          # Deploy to internal track\n          echo \"Deploying to staging...\"\n\n  deploy-production:\n    needs: deploy-staging\n    runs-on: ubuntu-latest\n    environment:\n      name: production\n      url: https://example.com\n    # Require manual approval\n    steps:\n      - uses: actions/download-artifact@v4\n      - name: Deploy to Production\n        run: |\n          # Deploy to production track\n          echo \"Deploying to production...\"\n```\n\n---",
+      "difficulty": "advanced",
+      "tags": [
+        "cicd",
+        "deployment",
+        "stages"
+      ],
+      "code_example": "name: Multi-Stage Deployment\n\non:\n  push:\n    branches: [main]\n  workflow_dispatch:\n    inputs:\n      environment:\n        description: 'Deploy to'\n        required: true\n        default: 'staging'\n        type: choice\n        options: [staging, production]\n\njobs:\n  build:\n    runs-on: ubuntu-latest\n    outputs:\n      version: ${{ steps.version.outputs.version }}\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n      - run: flutter build apk --release\n      - uses: actions/upload-artifact@v4\n        with:\n          name: app\n          path: build/app/outputs/flutter-apk/app-release.apk\n\n  deploy-dev:\n    needs: build\n    runs-on: ubuntu-latest\n    environment: dev\n    steps:\n      - uses: actions/download-artifact@v4\n      - name: Deploy to Dev\n        run: |\n          # Deploy to Firebase App Distribution\n          echo \"Deploying to dev...\"\n\n  deploy-staging:\n    needs: deploy-dev\n    runs-on: ubuntu-latest\n    environment:\n      name: staging\n      url: https://staging.example.com\n    steps:\n      - uses: actions/download-artifact@v4\n      - name: Deploy to Staging\n        run: |\n          # Deploy to internal track\n          echo \"Deploying to staging...\"\n\n  deploy-production:\n    needs: deploy-staging\n    runs-on: ubuntu-latest\n    environment:\n      name: production\n      url: https://example.com\n    # Require manual approval\n    steps:\n      - uses: actions/download-artifact@v4\n      - name: Deploy to Production\n        run: |\n          # Deploy to production track\n          echo \"Deploying to production...\""
+    },
+    {
+      "id": "cicd_034",
+      "question": "What strategies can you use to optimize build times in CI/CD pipelines?",
+      "answer": "**1. Caching:**\n```yaml\n- uses: subosito/flutter-action@v2\n  with:\n    cache: true\n\n- uses: actions/cache@v4\n  with:\n    path: |\n      ~/.pub-cache\n      .dart_tool\n      ~/.gradle\n      ios/Pods\n    key: ${{ runner.os }}-flutter-${{ hashFiles('**/pubspec.lock') }}\n```",
+      "difficulty": "advanced",
+      "tags": [
+        "cicd",
+        "performance",
+        "optimization"
+      ],
+      "code_example": "- uses: subosito/flutter-action@v2\n  with:\n    cache: true\n\n- uses: actions/cache@v4\n  with:\n    path: |\n      ~/.pub-cache\n      .dart_tool\n      ~/.gradle\n      ios/Pods\n    key: ${{ runner.os }}-flutter-${{ hashFiles('**/pubspec.lock') }}"
+    },
+    {
+      "id": "cicd_035",
+      "question": "How do you implement automated screenshot testing in CI/CD?",
+      "answer": "```yaml\nname: Golden Tests\n\non: [push, pull_request]\n\njobs:\n  golden-tests:\n    runs-on: macos-latest  # Consistent rendering\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n\n      - run: flutter pub get\n\n      # Run golden tests\n      - name: Run golden tests\n        run: flutter test --tags=golden\n\n      # Update goldens (on main branch only)\n      - name: Update goldens\n        if: github.ref == 'refs/heads/main' && failure()\n        run: flutter test --update-goldens --tags=golden\n\n      # Upload failures as artifact\n      - name: Upload failures\n        if: failure()\n        uses: actions/upload-artifact@v4\n        with:\n          name: golden-failures\n          path: |\n            **/failures/*.png\n            **/goldens/*.png\n\n      # Commit updated goldens\n      - name: Commit updated goldens\n        if: github.ref == 'refs/heads/main'\n        run: |\n          git config user.name github-actions\n          git config user.email github-actions@github.com\n          git add test/**/goldens/\n          git diff --staged --quiet || git commit -m \"Update golden files\"\n          git push\n```\n\n**Golden test example:**\n```dart\ntestWidgets('HomeScreen golden test', (tester) async {\n  await tester.pumpWidget(MyApp());\n  await expectLater(\n    find.byType(HomeScreen),\n    matchesGoldenFile('goldens/home_screen.png'),\n  );\n}, tags: 'golden');\n```\n\n---",
+      "difficulty": "advanced",
+      "tags": [
+        "cicd",
+        "golden-tests",
+        "screenshots"
+      ],
+      "code_example": "name: Golden Tests\n\non: [push, pull_request]\n\njobs:\n  golden-tests:\n    runs-on: macos-latest  # Consistent rendering\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n\n      - run: flutter pub get\n\n      # Run golden tests\n      - name: Run golden tests\n        run: flutter test --tags=golden\n\n      # Update goldens (on main branch only)\n      - name: Update goldens\n        if: github.ref == 'refs/heads/main' && failure()\n        run: flutter test --update-goldens --tags=golden\n\n      # Upload failures as artifact\n      - name: Upload failures\n        if: failure()\n        uses: actions/upload-artifact@v4\n        with:\n          name: golden-failures\n          path: |\n            **/failures/*.png\n            **/goldens/*.png\n\n      # Commit updated goldens\n      - name: Commit updated goldens\n        if: github.ref == 'refs/heads/main'\n        run: |\n          git config user.name github-actions\n          git config user.email github-actions@github.com\n          git add test/**/goldens/\n          git diff --staged --quiet || git commit -m \"Update golden files\"\n          git push"
+    },
+    {
+      "id": "cicd_036",
+      "question": "What is a deployment gate and how would you implement one in Flutter CI/CD?",
+      "answer": "**Deployment gates** are checks that must pass before deployment proceeds.\n\n```yaml\nname: Deploy with Gates\n\njobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n      - run: flutter build apk\n\n  # Gate 1: Test coverage\n  coverage-gate:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n      - run: flutter test --coverage\n      - name: Check coverage threshold\n        run: |\n          COVERAGE=$(lcov --summary coverage/lcov.info | grep 'lines' | awk '{print $2}' | tr -d '%')\n          if (( $(echo \"$COVERAGE < 80\" | bc -l) )); then\n            echo \"Coverage $COVERAGE% is below 80%\"\n            exit 1\n          fi\n\n  # Gate 2: Security scan\n  security-gate:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - name: Run security scan\n        run: |\n          # Check for known vulnerabilities\n          flutter pub outdated --json | jq '.packages[] | select(.latest.isDiscontinued == true)'\n\n  # Gate 3: Performance check\n  performance-gate:\n    runs-on: ubuntu-latest\n    steps:\n      - name: Check app size\n        run: |\n          SIZE=$(stat -f%z build/app/outputs/flutter-apk/app-release.apk)\n          MAX_SIZE=50000000  # 50MB\n          if [ $SIZE -gt $MAX_SIZE ]; then\n            echo \"APK size exceeds limit\"\n            exit 1\n          fi\n\n  # Gate 4: Manual approval (using environment)\n  deploy:\n    needs: [build, coverage-gate, security-gate, performance-gate]\n    runs-on: ubuntu-latest\n    environment:\n      name: production  # Requires approval\n    steps:\n      - name: Deploy\n        run: echo \"Deploying...\"\n```\n\n---",
+      "difficulty": "advanced",
+      "tags": [
+        "cicd",
+        "gates",
+        "quality"
+      ],
+      "code_example": "name: Deploy with Gates\n\njobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n      - run: flutter build apk\n\n  # Gate 1: Test coverage\n  coverage-gate:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n      - run: flutter test --coverage\n      - name: Check coverage threshold\n        run: |\n          COVERAGE=$(lcov --summary coverage/lcov.info | grep 'lines' | awk '{print $2}' | tr -d '%')\n          if (( $(echo \"$COVERAGE < 80\" | bc -l) )); then\n            echo \"Coverage $COVERAGE% is below 80%\"\n            exit 1\n          fi\n\n  # Gate 2: Security scan\n  security-gate:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - name: Run security scan\n        run: |\n          # Check for known vulnerabilities\n          flutter pub outdated --json | jq '.packages[] | select(.latest.isDiscontinued == true)'\n\n  # Gate 3: Performance check\n  performance-gate:\n    runs-on: ubuntu-latest\n    steps:\n      - name: Check app size\n        run: |\n          SIZE=$(stat -f%z build/app/outputs/flutter-apk/app-release.apk)\n          MAX_SIZE=50000000  # 50MB\n          if [ $SIZE -gt $MAX_SIZE ]; then\n            echo \"APK size exceeds limit\"\n            exit 1\n          fi\n\n  # Gate 4: Manual approval (using environment)\n  deploy:\n    needs: [build, coverage-gate, security-gate, performance-gate]\n    runs-on: ubuntu-latest\n    environment:\n      name: production  # Requires approval\n    steps:\n      - name: Deploy\n        run: echo \"Deploying...\""
+    },
+    {
+      "id": "cicd_037",
+      "question": "How do you handle rollback strategies in automated Flutter deployments?",
+      "answer": "```yaml\nname: Deploy with Rollback\n\njobs:\n  deploy:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n\n      # Save current version for potential rollback\n      - name: Record current version\n        id: current\n        run: |\n          CURRENT=$(gcloud app versions list --sort-by=~version.createTime --limit=1 --format='value(version.id)')\n          echo \"version=$CURRENT\" >> $GITHUB_OUTPUT\n\n      - name: Deploy new version\n        id: deploy\n        run: |\n          flutter build apk\n          # Deploy to Play Store\n          fastlane deploy\n        continue-on-error: true\n\n      # Health check\n      - name: Health check\n        id: health\n        if: steps.deploy.outcome == 'success'\n        run: |\n          # Wait for rollout\n          sleep 60\n          # Check crash rate\n          CRASH_RATE=$(firebase crashlytics:get-crash-rate)\n          if (( $(echo \"$CRASH_RATE > 1\" | bc -l) )); then\n            echo \"High crash rate detected\"\n            exit 1\n          fi\n        continue-on-error: true\n\n      # Rollback if health check fails\n      - name: Rollback\n        if: steps.health.outcome == 'failure'\n        run: |\n          echo \"Rolling back to ${{ steps.current.outputs.version }}\"\n          # Rollback Play Store\n          fastlane rollback version:${{ steps.current.outputs.version }}\n\n      - name: Notify on rollback\n        if: steps.health.outcome == 'failure'\n        uses: slackapi/slack-github-action@v1\n        with:\n          payload: |\n            {\"text\": \"⚠️ Deployment rolled back due to health check failure\"}\n```\n\n---",
+      "difficulty": "advanced",
+      "tags": [
+        "cicd",
+        "rollback",
+        "deployment"
+      ],
+      "code_example": "name: Deploy with Rollback\n\njobs:\n  deploy:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n\n      # Save current version for potential rollback\n      - name: Record current version\n        id: current\n        run: |\n          CURRENT=$(gcloud app versions list --sort-by=~version.createTime --limit=1 --format='value(version.id)')\n          echo \"version=$CURRENT\" >> $GITHUB_OUTPUT\n\n      - name: Deploy new version\n        id: deploy\n        run: |\n          flutter build apk\n          # Deploy to Play Store\n          fastlane deploy\n        continue-on-error: true\n\n      # Health check\n      - name: Health check\n        id: health\n        if: steps.deploy.outcome == 'success'\n        run: |\n          # Wait for rollout\n          sleep 60\n          # Check crash rate\n          CRASH_RATE=$(firebase crashlytics:get-crash-rate)\n          if (( $(echo \"$CRASH_RATE > 1\" | bc -l) )); then\n            echo \"High crash rate detected\"\n            exit 1\n          fi\n        continue-on-error: true\n\n      # Rollback if health check fails\n      - name: Rollback\n        if: steps.health.outcome == 'failure'\n        run: |\n          echo \"Rolling back to ${{ steps.current.outputs.version }}\"\n          # Rollback Play Store\n          fastlane rollback version:${{ steps.current.outputs.version }}\n\n      - name: Notify on rollback\n        if: steps.health.outcome == 'failure'\n        uses: slackapi/slack-github-action@v1\n        with:\n          payload: |\n            {\"text\": \"⚠️ Deployment rolled back due to health check failure\"}"
+    },
+    {
+      "id": "cicd_038",
+      "question": "What are the best practices for implementing notifications and reporting in CI/CD?",
+      "answer": "```yaml\nname: CI with Notifications\n\njobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n\n      - run: flutter test --machine > test-results.json\n        continue-on-error: true\n\n      # Publish test results\n      - name: Publish Test Results\n        uses: EnricoMi/publish-unit-test-result-action@v2\n        with:\n          files: test-results.json\n\n      - run: flutter build apk\n\n  notify:\n    needs: build\n    if: always()\n    runs-on: ubuntu-latest\n    steps:\n      # Slack notification\n      - name: Slack Notification\n        uses: slackapi/slack-github-action@v1\n        with:\n          payload: |\n            {\n              \"blocks\": [\n                {\n                  \"type\": \"section\",\n                  \"text\": {\n                    \"type\": \"mrkdwn\",\n                    \"text\": \"${{ needs.build.result == 'success' && '✅' || '❌' }} Build *${{ github.ref_name }}*\\n${{ github.event.head_commit.message }}\"\n                  }\n                }\n              ]\n            }\n        env:\n          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}\n\n      # Discord notification\n      - name: Discord Notification\n        uses: sarisia/actions-status-discord@v1\n        with:\n          webhook: ${{ secrets.DISCORD_WEBHOOK }}\n          status: ${{ needs.build.result }}\n\n      # Email on failure\n      - name: Send failure email\n        if: needs.build.result == 'failure'\n        uses: dawidd6/action-send-mail@v3\n        with:\n          server_address: smtp.gmail.com\n          server_port: 465\n          username: ${{ secrets.EMAIL_USERNAME }}\n          password: ${{ secrets.EMAIL_PASSWORD }}\n          subject: Build Failed - ${{ github.repository }}\n          to: team@example.com\n          body: |\n            Build failed for ${{ github.ref_name }}\n            Commit: ${{ github.sha }}\n            See: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}\n```\n\n---",
+      "difficulty": "advanced",
+      "tags": [
+        "cicd",
+        "notifications",
+        "reporting"
+      ],
+      "code_example": "name: CI with Notifications\n\njobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n\n      - run: flutter test --machine > test-results.json\n        continue-on-error: true\n\n      # Publish test results\n      - name: Publish Test Results\n        uses: EnricoMi/publish-unit-test-result-action@v2\n        with:\n          files: test-results.json\n\n      - run: flutter build apk\n\n  notify:\n    needs: build\n    if: always()\n    runs-on: ubuntu-latest\n    steps:\n      # Slack notification\n      - name: Slack Notification\n        uses: slackapi/slack-github-action@v1\n        with:\n          payload: |\n            {\n              \"blocks\": [\n                {\n                  \"type\": \"section\",\n                  \"text\": {\n                    \"type\": \"mrkdwn\",\n                    \"text\": \"${{ needs.build.result == 'success' && '✅' || '❌' }} Build *${{ github.ref_name }}*\\n${{ github.event.head_commit.message }}\"\n                  }\n                }\n              ]\n            }\n        env:\n          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK }}\n\n      # Discord notification\n      - name: Discord Notification\n        uses: sarisia/actions-status-discord@v1\n        with:\n          webhook: ${{ secrets.DISCORD_WEBHOOK }}\n          status: ${{ needs.build.result }}\n\n      # Email on failure\n      - name: Send failure email\n        if: needs.build.result == 'failure'\n        uses: dawidd6/action-send-mail@v3\n        with:\n          server_address: smtp.gmail.com\n          server_port: 465\n          username: ${{ secrets.EMAIL_USERNAME }}\n          password: ${{ secrets.EMAIL_PASSWORD }}\n          subject: Build Failed - ${{ github.repository }}\n          to: team@example.com\n          body: |\n            Build failed for ${{ github.ref_name }}\n            Commit: ${{ github.sha }}\n            See: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+    },
+    {
+      "id": "cicd_039",
+      "question": "How do you configure parallel builds for iOS and Android in the same pipeline?",
+      "answer": "```yaml\nname: Parallel Platform Builds\n\non:\n  push:\n    branches: [main]\n\njobs:\n  # Shared setup job\n  setup:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n        with:\n          cache: true\n\n      - run: flutter pub get\n\n      # Cache dependencies for other jobs\n      - uses: actions/cache/save@v4\n        with:\n          path: |\n            ~/.pub-cache\n            .dart_tool\n          key: deps-${{ github.sha }}\n\n  test:\n    needs: setup\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n      - uses: actions/cache/restore@v4\n        with:\n          path: |\n            ~/.pub-cache\n            .dart_tool\n          key: deps-${{ github.sha }}\n      - run: flutter test\n\n  # Parallel builds\n  build-android:\n    needs: test\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n      - uses: actions/cache/restore@v4\n        with:\n          path: ~/.pub-cache\n          key: deps-${{ github.sha }}\n\n      - run: flutter build apk --release\n      - uses: actions/upload-artifact@v4\n        with:\n          name: android-build\n          path: build/app/outputs/flutter-apk/\n\n  build-ios:\n    needs: test\n    runs-on: macos-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n\n      - run: flutter build ios --release --no-codesign\n      - uses: actions/upload-artifact@v4\n        with:\n          name: ios-build\n          path: build/ios/iphoneos/\n\n  build-web:\n    needs: test\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n\n      - run: flutter build web --release\n      - uses: actions/upload-artifact@v4\n        with:\n          name: web-build\n          path: build/web/\n\n  # Deploy after all builds complete\n  deploy:\n    needs: [build-android, build-ios, build-web]\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/download-artifact@v4\n      - name: Deploy all platforms\n        run: echo \"Deploying...\"\n```\n\n---",
+      "difficulty": "advanced",
+      "tags": [
+        "cicd",
+        "parallel",
+        "multi-platform"
+      ],
+      "code_example": "name: Parallel Platform Builds\n\non:\n  push:\n    branches: [main]\n\njobs:\n  # Shared setup job\n  setup:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n        with:\n          cache: true\n\n      - run: flutter pub get\n\n      # Cache dependencies for other jobs\n      - uses: actions/cache/save@v4\n        with:\n          path: |\n            ~/.pub-cache\n            .dart_tool\n          key: deps-${{ github.sha }}\n\n  test:\n    needs: setup\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n      - uses: actions/cache/restore@v4\n        with:\n          path: |\n            ~/.pub-cache\n            .dart_tool\n          key: deps-${{ github.sha }}\n      - run: flutter test\n\n  # Parallel builds\n  build-android:\n    needs: test\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n      - uses: actions/cache/restore@v4\n        with:\n          path: ~/.pub-cache\n          key: deps-${{ github.sha }}\n\n      - run: flutter build apk --release\n      - uses: actions/upload-artifact@v4\n        with:\n          name: android-build\n          path: build/app/outputs/flutter-apk/\n\n  build-ios:\n    needs: test\n    runs-on: macos-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n\n      - run: flutter build ios --release --no-codesign\n      - uses: actions/upload-artifact@v4\n        with:\n          name: ios-build\n          path: build/ios/iphoneos/\n\n  build-web:\n    needs: test\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n\n      - run: flutter build web --release\n      - uses: actions/upload-artifact@v4\n        with:\n          name: web-build\n          path: build/web/\n\n  # Deploy after all builds complete\n  deploy:\n    needs: [build-android, build-ios, build-web]\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/download-artifact@v4\n      - name: Deploy all platforms\n        run: echo \"Deploying...\""
+    },
+    {
+      "id": "cicd_040",
+      "question": "What is CircleCI and how do you configure it for Flutter projects?",
+      "answer": "**CircleCI** is a popular CI/CD platform with Docker support.\n\n**.circleci/config.yml:**\n```yaml\nversion: 2.1\n\norbs:\n  flutter: circleci/flutter@2.0.0\n\nexecutors:\n  flutter-executor:\n    docker:\n      - image: circleci/android:api-30\n    resource_class: large\n\njobs:\n  test:\n    executor: flutter-executor\n    steps:\n      - checkout\n      - flutter/install_sdk_and_pub:\n          version: 3.16.0\n      - run:\n          name: Run tests\n          command: flutter test --coverage\n      - store_test_results:\n          path: test-results\n      - store_artifacts:\n          path: coverage\n\n  build-android:\n    executor: flutter-executor\n    steps:\n      - checkout\n      - flutter/install_sdk_and_pub:\n          version: 3.16.0\n      - run:\n          name: Build APK\n          command: flutter build apk --release\n      - store_artifacts:\n          path: build/app/outputs/flutter-apk\n\n  build-ios:\n    macos:\n      xcode: 15.0.0\n    steps:\n      - checkout\n      - flutter/install_sdk_and_pub:\n          version: 3.16.0\n      - run:\n          name: Build iOS\n          command: flutter build ios --release --no-codesign\n      - store_artifacts:\n          path: build/ios/iphoneos\n\nworkflows:\n  build-and-test:\n    jobs:\n      - test\n      - build-android:\n          requires:\n            - test\n      - build-ios:\n          requires:\n            - test\n      - deploy:\n          requires:\n            - build-android\n            - build-ios\n          filters:\n            branches:\n              only: main\n```\n\n---",
+      "difficulty": "advanced",
+      "tags": [
+        "cicd",
+        "circleci",
+        "platforms"
+      ],
+      "code_example": "version: 2.1\n\norbs:\n  flutter: circleci/flutter@2.0.0\n\nexecutors:\n  flutter-executor:\n    docker:\n      - image: circleci/android:api-30\n    resource_class: large\n\njobs:\n  test:\n    executor: flutter-executor\n    steps:\n      - checkout\n      - flutter/install_sdk_and_pub:\n          version: 3.16.0\n      - run:\n          name: Run tests\n          command: flutter test --coverage\n      - store_test_results:\n          path: test-results\n      - store_artifacts:\n          path: coverage\n\n  build-android:\n    executor: flutter-executor\n    steps:\n      - checkout\n      - flutter/install_sdk_and_pub:\n          version: 3.16.0\n      - run:\n          name: Build APK\n          command: flutter build apk --release\n      - store_artifacts:\n          path: build/app/outputs/flutter-apk\n\n  build-ios:\n    macos:\n      xcode: 15.0.0\n    steps:\n      - checkout\n      - flutter/install_sdk_and_pub:\n          version: 3.16.0\n      - run:\n          name: Build iOS\n          command: flutter build ios --release --no-codesign\n      - store_artifacts:\n          path: build/ios/iphoneos\n\nworkflows:\n  build-and-test:\n    jobs:\n      - test\n      - build-android:\n          requires:\n            - test\n      - build-ios:\n          requires:\n            - test\n      - deploy:\n          requires:\n            - build-android\n            - build-ios\n          filters:\n            branches:\n              only: main"
+    },
+    {
+      "id": "cicd_041",
+      "question": "How do you implement automated release notes generation in CI/CD?",
+      "answer": "```yaml\nname: Release with Notes\n\non:\n  push:\n    tags:\n      - 'v*'\n\njobs:\n  release:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n        with:\n          fetch-depth: 0\n\n      # Generate changelog from commits\n      - name: Generate Changelog\n        id: changelog\n        run: |\n          PREVIOUS_TAG=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo \"\")\n          if [ -z \"$PREVIOUS_TAG\" ]; then\n            CHANGELOG=$(git log --oneline --pretty=format:\"- %s\")\n          else\n            CHANGELOG=$(git log --oneline --pretty=format:\"- %s\" $PREVIOUS_TAG..HEAD)\n          fi\n          echo \"changelog<<EOF\" >> $GITHUB_OUTPUT\n          echo \"$CHANGELOG\" >> $GITHUB_OUTPUT\n          echo \"EOF\" >> $GITHUB_OUTPUT\n\n      # Using conventional commits\n      - name: Generate Conventional Changelog\n        uses: TriPSs/conventional-changelog-action@v4\n        with:\n          github-token: ${{ secrets.GITHUB_TOKEN }}\n          output-file: CHANGELOG.md\n\n      - uses: subosito/flutter-action@v2\n      - run: flutter build apk --release\n\n      # Create GitHub Release\n      - name: Create Release\n        uses: softprops/action-gh-release@v1\n        with:\n          body: |\n            ## What's Changed\n            ${{ steps.changelog.outputs.changelog }}\n\n            ## Downloads\n            - APK: See assets below\n          files: |\n            build/app/outputs/flutter-apk/app-release.apk\n          draft: false\n          prerelease: ${{ contains(github.ref, 'beta') }}\n\n      # Update Play Store release notes\n      - name: Update Play Store Notes\n        run: |\n          mkdir -p fastlane/metadata/android/en-US/changelogs/\n          echo \"${{ steps.changelog.outputs.changelog }}\" > \\\n            fastlane/metadata/android/en-US/changelogs/${{ github.run_number }}.txt\n```\n\n---",
+      "difficulty": "advanced",
+      "tags": [
+        "cicd",
+        "release-notes",
+        "automation"
+      ],
+      "code_example": "name: Release with Notes\n\non:\n  push:\n    tags:\n      - 'v*'\n\njobs:\n  release:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n        with:\n          fetch-depth: 0\n\n      # Generate changelog from commits\n      - name: Generate Changelog\n        id: changelog\n        run: |\n          PREVIOUS_TAG=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo \"\")\n          if [ -z \"$PREVIOUS_TAG\" ]; then\n            CHANGELOG=$(git log --oneline --pretty=format:\"- %s\")\n          else\n            CHANGELOG=$(git log --oneline --pretty=format:\"- %s\" $PREVIOUS_TAG..HEAD)\n          fi\n          echo \"changelog<<EOF\" >> $GITHUB_OUTPUT\n          echo \"$CHANGELOG\" >> $GITHUB_OUTPUT\n          echo \"EOF\" >> $GITHUB_OUTPUT\n\n      # Using conventional commits\n      - name: Generate Conventional Changelog\n        uses: TriPSs/conventional-changelog-action@v4\n        with:\n          github-token: ${{ secrets.GITHUB_TOKEN }}\n          output-file: CHANGELOG.md\n\n      - uses: subosito/flutter-action@v2\n      - run: flutter build apk --release\n\n      # Create GitHub Release\n      - name: Create Release\n        uses: softprops/action-gh-release@v1\n        with:\n          body: |\n            ## What's Changed\n            ${{ steps.changelog.outputs.changelog }}\n\n            ## Downloads\n            - APK: See assets below\n          files: |\n            build/app/outputs/flutter-apk/app-release.apk\n          draft: false\n          prerelease: ${{ contains(github.ref, 'beta') }}\n\n      # Update Play Store release notes\n      - name: Update Play Store Notes\n        run: |\n          mkdir -p fastlane/metadata/android/en-US/changelogs/\n          echo \"${{ steps.changelog.outputs.changelog }}\" > \\\n            fastlane/metadata/android/en-US/changelogs/${{ github.run_number }}.txt"
+    },
+    {
+      "id": "cicd_042",
+      "question": "What are the security considerations when setting up CI/CD for Flutter apps?",
+      "answer": "**1. Secret Management:**\n```yaml\n# Use encrypted secrets\nenv:\n  API_KEY: ${{ secrets.API_KEY }}\n\n# Don't expose in logs\n- run: |\n    # Bad\n    echo ${{ secrets.API_KEY }}\n\n    # Good - mask in logs\n    echo \"::add-mask::${{ secrets.API_KEY }}\"\n```",
+      "difficulty": "advanced",
+      "tags": [
+        "cicd",
+        "security",
+        "best-practices"
+      ],
+      "code_example": "# Use encrypted secrets\nenv:\n  API_KEY: ${{ secrets.API_KEY }}\n\n# Don't expose in logs\n- run: |\n    # Bad\n    echo ${{ secrets.API_KEY }}\n\n    # Good - mask in logs\n    echo \"::add-mask::${{ secrets.API_KEY }}\""
+    },
+    {
+      "id": "cicd_043",
+      "question": "How do you handle native dependencies and plugins in CI/CD pipelines?",
+      "answer": "```yaml\njobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n\n      # Java for Android\n      - uses: actions/setup-java@v4\n        with:\n          distribution: 'temurin'\n          java-version: '17'\n\n      # Android SDK\n      - name: Setup Android SDK\n        uses: android-actions/setup-android@v3\n\n      # Accept licenses\n      - name: Accept Android licenses\n        run: yes | sdkmanager --licenses\n\n      # NDK for native code\n      - name: Install NDK\n        run: sdkmanager \"ndk;25.1.8937393\"\n\n      - uses: subosito/flutter-action@v2\n      - run: flutter pub get\n\n      # For plugins with native dependencies\n      - name: Install native dependencies\n        run: |\n          # For audio plugins\n          sudo apt-get install -y libasound2-dev\n\n          # For image processing\n          sudo apt-get install -y libpng-dev libjpeg-dev\n\n      - run: flutter build apk\n\n  build-ios:\n    runs-on: macos-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n\n      # CocoaPods for iOS\n      - name: Install CocoaPods\n        run: |\n          cd ios\n          pod install --repo-update\n\n      # Xcode selection\n      - uses: maxim-lobanov/setup-xcode@v1\n        with:\n          xcode-version: '15.0'\n\n      - run: flutter build ios --no-codesign\n```\n\n---",
+      "difficulty": "advanced",
+      "tags": [
+        "cicd",
+        "native",
+        "dependencies"
+      ],
+      "code_example": "jobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n\n      # Java for Android\n      - uses: actions/setup-java@v4\n        with:\n          distribution: 'temurin'\n          java-version: '17'\n\n      # Android SDK\n      - name: Setup Android SDK\n        uses: android-actions/setup-android@v3\n\n      # Accept licenses\n      - name: Accept Android licenses\n        run: yes | sdkmanager --licenses\n\n      # NDK for native code\n      - name: Install NDK\n        run: sdkmanager \"ndk;25.1.8937393\"\n\n      - uses: subosito/flutter-action@v2\n      - run: flutter pub get\n\n      # For plugins with native dependencies\n      - name: Install native dependencies\n        run: |\n          # For audio plugins\n          sudo apt-get install -y libasound2-dev\n\n          # For image processing\n          sudo apt-get install -y libpng-dev libjpeg-dev\n\n      - run: flutter build apk\n\n  build-ios:\n    runs-on: macos-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n\n      # CocoaPods for iOS\n      - name: Install CocoaPods\n        run: |\n          cd ios\n          pod install --repo-update\n\n      # Xcode selection\n      - uses: maxim-lobanov/setup-xcode@v1\n        with:\n          xcode-version: '15.0'\n\n      - run: flutter build ios --no-codesign"
+    },
+    {
+      "id": "cicd_044",
+      "question": "What monitoring and analytics should be integrated into CI/CD pipelines?",
+      "answer": "```yaml\nname: CI with Monitoring\n\njobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n\n      # Build timing\n      - name: Build with timing\n        run: |\n          START=$(date +%s)\n          flutter build apk\n          END=$(date +%s)\n          echo \"Build time: $((END-START)) seconds\"\n\n      # Test metrics\n      - name: Run tests with coverage\n        run: flutter test --coverage --machine > test-results.json\n\n      # Upload coverage\n      - uses: codecov/codecov-action@v3\n        with:\n          files: coverage/lcov.info\n\n      # App size analysis\n      - name: Analyze APK size\n        run: |\n          APK_SIZE=$(stat -f%z build/app/outputs/flutter-apk/app-release.apk)\n          echo \"APK Size: $((APK_SIZE/1024/1024))MB\"\n\n          # Track over time\n          curl -X POST \"${{ secrets.METRICS_ENDPOINT }}\" \\\n            -d \"{\\\"metric\\\":\\\"apk_size\\\",\\\"value\\\":$APK_SIZE}\"\n\n      # Dart analyzer metrics\n      - name: Code metrics\n        run: |\n          dart pub global activate dart_code_metrics\n          dart pub global run dart_code_metrics:metrics analyze lib \\\n            --reporter=json > metrics.json\n\n      # Upload to dashboard\n      - name: Upload metrics\n        run: |\n          curl -X POST \"${{ secrets.DASHBOARD_URL }}\" \\\n            -H \"Content-Type: application/json\" \\\n            -d @metrics.json\n\n  # Performance testing\n  performance:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n\n      - name: Run performance tests\n        run: |\n          flutter drive --driver=test_driver/perf_driver.dart \\\n            --target=integration_test/perf_test.dart\n\n      - name: Upload performance results\n        uses: actions/upload-artifact@v4\n        with:\n          name: performance-results\n          path: build/perf_*.json\n```\n\n---",
+      "difficulty": "advanced",
+      "tags": [
+        "cicd",
+        "monitoring",
+        "analytics"
+      ],
+      "code_example": "name: CI with Monitoring\n\njobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n\n      # Build timing\n      - name: Build with timing\n        run: |\n          START=$(date +%s)\n          flutter build apk\n          END=$(date +%s)\n          echo \"Build time: $((END-START)) seconds\"\n\n      # Test metrics\n      - name: Run tests with coverage\n        run: flutter test --coverage --machine > test-results.json\n\n      # Upload coverage\n      - uses: codecov/codecov-action@v3\n        with:\n          files: coverage/lcov.info\n\n      # App size analysis\n      - name: Analyze APK size\n        run: |\n          APK_SIZE=$(stat -f%z build/app/outputs/flutter-apk/app-release.apk)\n          echo \"APK Size: $((APK_SIZE/1024/1024))MB\"\n\n          # Track over time\n          curl -X POST \"${{ secrets.METRICS_ENDPOINT }}\" \\\n            -d \"{\\\"metric\\\":\\\"apk_size\\\",\\\"value\\\":$APK_SIZE}\"\n\n      # Dart analyzer metrics\n      - name: Code metrics\n        run: |\n          dart pub global activate dart_code_metrics\n          dart pub global run dart_code_metrics:metrics analyze lib \\\n            --reporter=json > metrics.json\n\n      # Upload to dashboard\n      - name: Upload metrics\n        run: |\n          curl -X POST \"${{ secrets.DASHBOARD_URL }}\" \\\n            -H \"Content-Type: application/json\" \\\n            -d @metrics.json\n\n  # Performance testing\n  performance:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: subosito/flutter-action@v2\n\n      - name: Run performance tests\n        run: |\n          flutter drive --driver=test_driver/perf_driver.dart \\\n            --target=integration_test/perf_test.dart\n\n      - name: Upload performance results\n        uses: actions/upload-artifact@v4\n        with:\n          name: performance-results\n          path: build/perf_*.json"
+    },
+    {
+      "id": "cicd_045",
+      "question": "How do you implement A/B testing deployment strategies using CI/CD?",
+      "answer": "(answer pending — see answers.md)",
+      "difficulty": "advanced",
+      "tags": [
+        "cicd",
+        "ab-testing",
+        "deployment"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,584 @@
+{
+  "topic": "Basics",
+  "description": "Fundamental concepts and features in Flutter development",
+  "version": "2.0.0",
+  "last_updated": "2026-05-13",
+  "flutter_version_target": "3.27",
+  "questions": [
+    {
+      "id": "basics_001",
+      "question": "What is Flutter?",
+      "answer": "Flutter is an open-source UI software development kit created by Google. It allows developers to build natively compiled applications for mobile, web, and desktop from a single codebase.",
+      "difficulty": "beginner",
+      "tags": [
+        "flutter",
+        "introduction",
+        "overview"
+      ]
+    },
+    {
+      "id": "basics_002",
+      "question": "Explain the difference between Flutter and other mobile app development frameworks.",
+      "answer": "Flutter differs from other frameworks in several ways:\n   - It uses a single codebase for multiple platforms (iOS, Android, web, desktop).\n   - It has a rich set of customizable widgets for building UIs.\n   - It uses Dart as its programming language, which is optimized for UI development.\n   - It offers hot reload for faster development cycles.\n   - It provides native performance through direct compilation to native ARM code.",
+      "difficulty": "beginner",
+      "tags": [
+        "flutter",
+        "comparison",
+        "frameworks"
+      ]
+    },
+    {
+      "id": "basics_003",
+      "question": "How do you create a basic Flutter application?",
+      "answer": "To create a basic Flutter application:\n   1. Install Flutter SDK and set up your development environment.\n   2. Run `flutter create my_app` in your terminal.\n   3. Navigate to the project directory: `cd my_app`.\n   4. Open the `lib/main.dart` file and modify it as needed.\n   5. Run the app using `flutter run`",
+      "difficulty": "beginner",
+      "tags": [
+        "flutter",
+        "setup",
+        "basic-app"
+      ]
+    },
+    {
+      "id": "basics_004",
+      "question": "What is the purpose of the MaterialApp widget?",
+      "answer": "The MaterialApp widget is the starting point for your app, and it builds upon the WidgetsApp widget by adding material-specific functionality. It sets up the top-level Navigator, which manages a stack of widgets identified by strings, also known as \"routes\". It also sets up the theme, title, home route, and more.",
+      "difficulty": "beginner",
+      "tags": [
+        "flutter",
+        "materialapp",
+        "widgets"
+      ]
+    },
+    {
+      "id": "basics_005",
+      "question": "How do you run a Flutter application in different environments (development, staging, production)?",
+      "answer": "You can use flavor configurations to run your app in different environments:\n   1. Define different `main` functions for each environment.\n   2. Use command-line arguments or build configurations to specify the environment.\n   3. Use conditional compilation with const booleans.\n   4. Utilize package configs for environment-specific settings.",
+      "difficulty": "intermediate",
+      "tags": [
+        "flutter",
+        "environments",
+        "flavors"
+      ]
+    },
+    {
+      "id": "basics_006",
+      "question": "What is the Scaffold widget, and why is it commonly used?",
+      "answer": "The Scaffold widget implements the basic material design visual layout structure. It provides a default app bar, title, and a body property that holds the main content of the application. It's commonly used because it provides a consistent visual structure that follows material design guidelines.",
+      "difficulty": "beginner",
+      "tags": [
+        "flutter",
+        "widgets",
+        "scaffold"
+      ]
+    },
+    {
+      "id": "basics_007",
+      "question": "How do you create a custom theme in Flutter?",
+      "answer": "To create a custom theme:\n   1. Create a ThemeData object with your desired colors, fonts, etc.\n   2. Pass this ThemeData to the `theme` property of your MaterialApp widget.\n   3. Use `Theme.of(context)` to access the theme in your widgets.",
+      "difficulty": "intermediate",
+      "tags": [
+        "flutter",
+        "themes",
+        "customization"
+      ]
+    },
+    {
+      "id": "basics_008",
+      "question": "Explain the lifecycle of a Flutter widget.",
+      "answer": "The lifecycle of a StatefulWidget includes:\n   1. createState()\n   2. initState()\n   3. didChangeDependencies()\n   4. build()\n   5. didUpdateWidget()\n   6. setState()\n   7. deactivate()\n   8. dispose()",
+      "difficulty": "intermediate",
+      "tags": [
+        "flutter",
+        "widgets",
+        "lifecycle"
+      ]
+    },
+    {
+      "id": "basics_009",
+      "question": "What is a StatefulWidget? How does it differ from a StatelessWidget?",
+      "answer": "A StatefulWidget can maintain state that might change during the lifetime of the widget. It creates a State object that holds this mutable state. A StatelessWidget, on the other hand, is immutable and its properties can't change once the widget is built.",
+      "difficulty": "beginner",
+      "tags": [
+        "flutter",
+        "widgets",
+        "state"
+      ]
+    },
+    {
+      "id": "basics_010",
+      "question": "How do you manage state in a StatefulWidget?",
+      "answer": "State is managed in a StatefulWidget by calling setState() method. This tells the framework that the state has changed and it should rebuild the widget.",
+      "difficulty": "beginner",
+      "tags": [
+        "flutter",
+        "state-management",
+        "statefulwidget"
+      ]
+    },
+    {
+      "id": "basics_011",
+      "question": "What is hot reload, and how does it work in Flutter?",
+      "answer": "Hot reload allows you to inject updated source code files into the running Dart VM. It updates the UI almost instantly without losing the current state of the app. It works by rerunning the build() method of all widgets.",
+      "difficulty": "beginner",
+      "tags": [
+        "flutter",
+        "development",
+        "hot-reload"
+      ]
+    },
+    {
+      "id": "basics_012",
+      "question": "How do you handle navigation between screens in Flutter?",
+      "answer": "Navigation in Flutter is typically handled using the Navigator widget. You can use methods like `Navigator.push()` to navigate to a new screen and `Navigator.pop()` to return to the previous screen.",
+      "difficulty": "beginner",
+      "tags": [
+        "flutter",
+        "navigation",
+        "screens"
+      ]
+    },
+    {
+      "id": "basics_013",
+      "question": "What is the BuildContext, and how is it used?",
+      "answer": "BuildContext is a handle to the location of a widget in the widget tree. It's used for obtaining theme, media query, Navigator, and other information from the widget tree.",
+      "difficulty": "intermediate",
+      "tags": [
+        "flutter",
+        "context",
+        "widgets"
+      ]
+    },
+    {
+      "id": "basics_014",
+      "question": "How do you handle user input in Flutter?",
+      "answer": "User input can be handled using various widgets like TextField, TextFormField, GestureDetector, and InkWell. You can also use callbacks like onPressed, onChanged, etc., to respond to user actions.",
+      "difficulty": "beginner",
+      "tags": [
+        "flutter",
+        "input",
+        "text"
+      ]
+    },
+    {
+      "id": "basics_015",
+      "question": "What are Flutter widgets, and how do they work?",
+      "answer": "Widgets are the basic building blocks of Flutter UI. Everything in Flutter is a widget. Widgets describe what their view should look like given their current configuration and state.",
+      "difficulty": "beginner",
+      "tags": [
+        "flutter",
+        "widgets",
+        "ui"
+      ]
+    },
+    {
+      "id": "basics_016",
+      "question": "What is the purpose of the setState method?",
+      "answer": "The setState method is used to notify the framework that the internal state of an object has changed. This prompts the framework to schedule a build for this State object.",
+      "difficulty": "intermediate",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics_017",
+      "question": "How do you implement gesture detection in Flutter?",
+      "answer": "Gesture detection can be implemented using the GestureDetector widget. It can recognize taps, drags, and other gestures.",
+      "difficulty": "intermediate",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics_018",
+      "question": "What is the difference between Container and SizedBox?",
+      "answer": "Container is a convenience widget that combines common painting, positioning, and sizing widgets. SizedBox is simpler and is used to give a specific width and height to its child or to create empty space.",
+      "difficulty": "intermediate",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics_019",
+      "question": "How do you manage assets in Flutter?",
+      "answer": "Assets are managed by declaring them in the pubspec.yaml file under the assets section. They can then be accessed in the code using the AssetBundle.",
+      "difficulty": "intermediate",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics_020",
+      "question": "Explain how you can use the flutter doctor command.",
+      "answer": "The `flutter doctor` command checks your environment and displays a report of the status of your Flutter installation. It tells you if there are any dependencies you need to install or further steps you need to take to complete the setup.",
+      "difficulty": "intermediate",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics_021",
+      "question": "What is a FutureBuilder, and how is it used?",
+      "answer": "FutureBuilder is a widget that builds itself based on the latest snapshot of interaction with a Future. It's used to handle asynchronous operations and update the UI based on the state of the Future.",
+      "difficulty": "intermediate",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics_022",
+      "question": "How do you display a list of items in Flutter?",
+      "answer": "Lists can be displayed using widgets like ListView, GridView, or CustomScrollView. These widgets can build their children on demand, which is useful for displaying large or infinite lists.",
+      "difficulty": "intermediate",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics_023",
+      "question": "What is a StreamBuilder, and when would you use it?",
+      "answer": "StreamBuilder is similar to FutureBuilder, but it works with Streams instead of Futures. It's used when you need to build a widget based on the latest value from a stream of data.",
+      "difficulty": "intermediate",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics_024",
+      "question": "How do you create a custom widget in Flutter?",
+      "answer": "To create a custom widget, you can extend either StatelessWidget or StatefulWidget and override the build method to define the widget's UI.",
+      "difficulty": "intermediate",
+      "tags": [
+        "flutter",
+        "custom-widget",
+        "widgets"
+      ]
+    },
+    {
+      "id": "basics_025",
+      "question": "What are the different ways to style text in Flutter?",
+      "answer": "Text can be styled using the style property of the Text widget. You can use TextStyle to set font, size, color, weight, etc. You can also use RichText for more complex text styling.",
+      "difficulty": "intermediate",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics_026",
+      "question": "How do you create a grid layout in Flutter?",
+      "answer": "Grid layouts can be created using the GridView widget. You can use GridView.builder() for dynamic grids or GridView.count() for fixed-count grids.",
+      "difficulty": "intermediate",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics_027",
+      "question": "What is a GlobalKey, and how is it used?",
+      "answer": "GlobalKey is a key that is unique across the entire app. It's used to identify widgets, elements, or state objects across the widget tree, regardless of their position in the tree.",
+      "difficulty": "intermediate",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics_028",
+      "question": "Explain the concept of \"widgets as first-class citizens\" in Flutter.",
+      "answer": "In Flutter, everything is a widget. This means that core UI elements, layout models, and even application logic are all expressed as widgets. This approach provides consistency and flexibility in building UIs.",
+      "difficulty": "intermediate",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics_029",
+      "question": "How do you add padding and margin to a widget?",
+      "answer": "Padding can be added using the Padding widget. Margin can be added by wrapping a widget with a Container and using its margin property.",
+      "difficulty": "intermediate",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics_030",
+      "question": "What is the SafeArea widget, and when would you use it?",
+      "answer": "SafeArea is a widget that insets its child by sufficient padding to avoid intrusions by the operating system. It's used to prevent UI elements from being obscured by notches, status bars, etc.",
+      "difficulty": "intermediate",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics_031",
+      "question": "How do you implement a responsive layout in Flutter?",
+      "answer": "Responsive layouts can be implemented using widgets like LayoutBuilder, MediaQuery, and Flex widgets (Row, Column). You can also use packages like flutter_screenutil for more advanced responsiveness.",
+      "difficulty": "intermediate",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics_032",
+      "question": "What is the InheritedWidget, and how is it used?",
+      "answer": "InheritedWidget is a base class for widgets that efficiently propagate information down the tree. It's used for passing data down the widget tree without having to pass it explicitly through constructors.",
+      "difficulty": "intermediate",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics_033",
+      "question": "How do you create animations in Flutter?",
+      "answer": "Animations in Flutter can be created using the animation framework. This includes using AnimationController, Tween, and animated widgets like AnimatedBuilder or AnimatedWidget.",
+      "difficulty": "intermediate",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics_034",
+      "question": "Explain how the Navigator works in Flutter.",
+      "answer": "The Navigator manages a stack of Route objects. It provides methods to add (push) and remove (pop) routes from the stack, which corresponds to navigating between screens in the app.",
+      "difficulty": "intermediate",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics_035",
+      "question": "What is the Hero widget, and how do you use it?",
+      "answer": "The Hero widget is used to create animations between routes. It creates a visual connection between two widgets on different screens, making it appear as if one widget \"flies\" between screens.",
+      "difficulty": "intermediate",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics_036",
+      "question": "How do you use the AnimatedBuilder widget?",
+      "answer": "AnimatedBuilder is a widget that builds itself based on an animation. It's used to rebuild a specific part of the widget tree when an animation changes, improving performance by not rebuilding the entire tree.",
+      "difficulty": "intermediate",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics_037",
+      "question": "What is the difference between mainAxisAlignment and crossAxisAlignment?",
+      "answer": "mainAxisAlignment determines how children are aligned along the main axis of a Row or Column. crossAxisAlignment determines how children are aligned along the cross axis. The main axis of a Row is horizontal, while for a Column it's vertical.",
+      "difficulty": "intermediate",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics_038",
+      "question": "How do you create a drawer in Flutter?",
+      "answer": "A drawer can be created by using the drawer property of the Scaffold widget. The drawer is typically a Material widget that slides in horizontally from the edge of a Scaffold to show navigation links in an application.",
+      "difficulty": "intermediate",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics_039",
+      "question": "What are the best practices for organizing a Flutter project?",
+      "answer": "Best practices include:\n    - Separating business logic from UI\n    - Using feature-based folder structure\n    - Following consistent naming conventions\n    - Using packages for reusable code\n    - Keeping widgets small and focused",
+      "difficulty": "intermediate",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics_040",
+      "question": "How do you handle errors in Flutter?",
+      "answer": "Errors can be handled using try-catch blocks for synchronous code and .catchError() for asynchronous code. You can also use ErrorWidget.builder to customize error display in the UI.",
+      "difficulty": "intermediate",
+      "tags": [
+        "flutter",
+        "error-handling",
+        "exceptions"
+      ]
+    },
+    {
+      "id": "basics_041",
+      "question": "Explain the concept of \"everything is a widget\" in Flutter.",
+      "answer": "In Flutter, all UI elements are widgets. This includes not just visible elements, but also layout models (like padding), gestures, animations, and themes. This consistent approach simplifies UI development and makes the framework more intuitive.",
+      "difficulty": "intermediate",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics_042",
+      "question": "How do you use the MediaQuery class?",
+      "answer": "MediaQuery.of(context) is used to get information about the current app's screen, such as size, orientation, and text scale factor. It's useful for creating responsive layouts.",
+      "difficulty": "intermediate",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics_043",
+      "question": "What is the purpose of the Expanded widget?",
+      "answer": "The Expanded widget is used to expand a child of a Row, Column, or Flex so that it fills the available space along the main axis. It's useful for creating flexible layouts.",
+      "difficulty": "intermediate",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics_044",
+      "question": "How do you create a form in Flutter?",
+      "answer": "Forms in Flutter are typically created using the Form widget along with FormField widgets like TextFormField. The Form widget provides form validation and saving functionality.",
+      "difficulty": "intermediate",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics_045",
+      "question": "What is the Flutter Inspector, and how do you use it?",
+      "answer": "The Flutter Inspector is a tool that helps visualize and explore Flutter widget trees. It's useful for understanding layouts, diagnosing UI issues, and inspecting property values. It's available in IDEs that support Flutter development.",
+      "difficulty": "intermediate",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics_046",
+      "question": "How do you optimize the performance of a Flutter application?",
+      "answer": "Performance can be optimized by:\n    - Using const constructors where possible\n    - Implementing efficient list views (e.g., ListView.builder)\n    - Minimizing rebuilds with setState\n    - Using production builds for performance testing\n    - Profiling the app to identify bottlenecks",
+      "difficulty": "intermediate",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics_047",
+      "question": "Explain the use of keys in Flutter.",
+      "answer": "Keys in Flutter are used to preserve state when widgets move around in the widget tree. They help Flutter identify which widgets to reuse when updating the UI.",
+      "difficulty": "intermediate",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics_048",
+      "question": "What is the LayoutBuilder widget?",
+      "answer": "LayoutBuilder is a widget that builds a widget tree based on the parent widget's constraints. It's useful for creating responsive layouts that adapt to different screen sizes.",
+      "difficulty": "intermediate",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics_049",
+      "question": "How do you create a splash screen in Flutter?",
+      "answer": "A splash screen can be created by:\n    1. Defining a splash screen widget\n    2. Using Flutter's native splash screen feature (for native splash screens)\n    3. Navigating to the main screen after a delay or when initialization is complete",
+      "difficulty": "intermediate",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics_050",
+      "question": "What is the FittedBox widget, and when would you use it?",
+      "answer": "The FittedBox widget sizes and positions its child within itself according to fit. It's useful when you want to scale and align a widget (or widgets) to fit the parent. You might use it when you have content that's too large for its container and you want to scale it down, or when you have content that's too small and you want to scale it up to fill the available space.\n\n## Flutter 3.27 fundamentals (2026)",
+      "difficulty": "intermediate",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics_051",
+      "question": "What's new in Flutter 3.27 that an interviewer in 2026 expects you to know about?",
+      "answer": "The headline items at a 2026 interview:\n    - **Impeller is the default on Android** (with Vulkan) and remains default on iOS.\n    - **Material 3** is the default since 3.16.\n    - **`WidgetState`** (replaces `MaterialState`) since 3.19.\n    - **Wasm web build** is stable (`flutter build web --wasm`).\n    - **Class modifiers** and **records/patterns** (Dart 3.x) are the default Dart toolset.\n    - **`PopScope`** has replaced `WillPopScope` for back navigation.\n    - **`TextScaler`** has replaced `textScaleFactor`.\n    Bring up two or three of these to show currency.",
+      "difficulty": "intermediate",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics_052",
+      "question": "How has hot reload evolved, and what is the new \"Detach\" workflow in Flutter 3.20+?",
+      "answer": "Hot reload still reloads modified Dart on a running VM in <1 second, preserving state. The new addition: `flutter attach --detach` lets you detach the IDE/CLI from a running app and reattach later without rebuilding. Combined with `--ddserver` you can inspect a release-mode profile build remotely. Hot **restart** (full app restart with new code, losing state) is still the fallback when reloading is unsafe (e.g. constructor changes, top-level state).",
+      "difficulty": "intermediate",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics_053",
+      "question": "What is the Flutter SDK's `--flavor` flag, and how does it differ from build modes?",
+      "answer": "A **flavor** selects an Android product flavor / iOS scheme — typically `dev`, `staging`, `prod` — each with different bundle IDs, Firebase configs, icons, base URLs. A **build mode** (`debug`, `profile`, `release`) selects compilation options. The two are orthogonal: you can build `flutter run --flavor staging --profile` to performance-test against staging APIs.",
+      "difficulty": "intermediate",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics_054",
+      "question": "What is `flutter_lints` 4.x, and which rules does it enforce that the default doesn't?",
+      "answer": "`flutter_lints` is the official lint package added to every new Flutter project. v4 (Flutter 3.16+) tightened several rules: `prefer_const_constructors`, `avoid_print`, `no_logic_in_create_state`, `use_key_in_widget_constructors`. Add stricter linting via `very_good_analysis` for production codebases.",
+      "difficulty": "intermediate",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics_055",
+      "question": "How do you integrate AI features (Gemini, Claude) into a Flutter app safely?",
+      "answer": "Three patterns:\n    1. **Direct client-side API calls** — fastest to prototype, but **leaks your API key** in the shipped binary. Avoid for production.\n    2. **Proxy via your backend** — your server holds the API key, the client calls your server, your server calls the model. Add per-user rate limits and a billing cap.\n    3. **Vertex AI / Firebase AI Logic** — Google's managed proxy with built-in App Check; no backend required, no key in client. Use `google_generative_ai` package for streaming response handling.\n\n    ```dart\n    final model = GenerativeModel(model: 'gemini-1.5-flash', apiKey: backendIssuedToken);\n    final response = await model.generateContent([Content.text(prompt)]);\n    ```\n\n    Always: enable Firebase App Check, never embed user PII in prompts without consent, and treat model output as untrusted text (sanitize before rendering as HTML/markdown).",
+      "difficulty": "intermediate",
+      "tags": [
+        "basics"
+      ],
+      "code_example": "final model = GenerativeModel(model: 'gemini-1.5-flash', apiKey: backendIssuedToken);\n    final response = await model.generateContent([Content.text(prompt)]);"
+    },
+    {
+      "id": "basics_056",
+      "question": "What is the official Flutter team's recommendation on Material 2 vs Material 3 in 2026?",
+      "answer": "Use Material 3. M2 is in maintenance — no new features. Existing apps can opt out (`useMaterial3: false`) during migration but should plan to flip the flag. New apps should ship M3 from day one.",
+      "difficulty": "intermediate",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics_057",
+      "question": "How does the new `flutter create --platforms` flag give you control over generated platforms?",
+      "answer": "`flutter create --platforms=ios,android my_app` generates only those platform folders, keeping the project lean. Add a platform later with `flutter create --platforms=web .` from inside the project. Helps reduce build complexity for teams that don't target all platforms.",
+      "difficulty": "intermediate",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics_058",
+      "question": "What is the `--release` vs `--profile` vs `--debug` build mode trade-off?",
+      "answer": "- **Debug** — assertions on, hot reload available, no AOT compilation. Slowest at runtime; never measure performance in this mode.\n    - **Profile** — AOT compiled, profiling extension API enabled, assertions off. Use for performance work and shipping to internal testers.\n    - **Release** — AOT compiled, fully optimized, no profiling extension. Ship to stores in this mode.\n\n    Web has only debug and release; profile maps to release with profiling.",
+      "difficulty": "intermediate",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics_059",
+      "question": "How do you ship a single Flutter codebase to phone, foldable, tablet, web, and desktop?",
+      "answer": "Three layers:\n    1. **Layout** — `LayoutBuilder` + `MediaQuery` + `flutter_adaptive_scaffold` for screen-size-aware UIs (rail vs nav-bar, master-detail vs stack).\n    2. **Interaction** — `mouse_region`, hover effects, keyboard shortcuts via `Shortcuts` + `Actions`, right-click menus.\n    3. **Platform** — `Platform.isAndroid` / `defaultTargetPlatform` checks only where the platform contract differs (file pickers, deep links, system back).",
+      "difficulty": "intermediate",
+      "tags": [
+        "basics"
+      ]
+    },
+    {
+      "id": "basics_060",
+      "question": "What is the Flutter team's guidance on Riverpod vs BLoC vs Provider in 2026?",
+      "answer": "The team itself remains *neutral on state management*. Reality on the ground:\n    - **Provider** — still the simplest entry, good for small apps or teams new to Flutter.\n    - **Riverpod 2.x** — fastest-growing, code-generation friendly, strong type safety, dominant for new greenfield projects.\n    - **BLoC 9.x** — strong choice for teams that already know the pattern from Angular/React-Redux backgrounds; great for complex event-driven flows.\n    Pick by team familiarity and app complexity, not by hype. The interview answer is \"I'd ask about the team's existing stack first, then recommend based on app complexity.\"",
+      "difficulty": "intermediate",
+      "tags": [
+        "basics"
+      ]
+    }
+  ]
+}

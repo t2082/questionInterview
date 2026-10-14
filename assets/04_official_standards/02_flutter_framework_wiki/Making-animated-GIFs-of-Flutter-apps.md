@@ -1,0 +1,1 @@
+This page has migrated to https://github.com/flutter/flutter/blob/master/docs/contributing/issue_hygiene/Making-animated-GIFs-of-Flutter-apps.md

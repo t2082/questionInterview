@@ -1,0 +1,606 @@
+{
+  "topic": "Animations",
+  "description": "Flutter animation concepts, controllers, and transition widgets",
+  "version": "2.0.0",
+  "last_updated": "2026-05-13",
+  "flutter_version_target": "3.27",
+  "questions": [
+    {
+      "id": "animations_001",
+      "question": "What is the Animation class in Flutter, and how is it used?",
+      "answer": "The Animation class is a core class in Flutter's animation system. It represents a value that changes over time, typically used to drive visual changes in the UI. It's often used with AnimationController and Tween.",
+      "difficulty": "intermediate",
+      "tags": [
+        "animation-basics",
+        "controllers"
+      ]
+    },
+    {
+      "id": "animations_002",
+      "question": "How do you create a simple fade-in animation in Flutter?",
+      "answer": "Create a fade-in animation using FadeTransition:\n\n1. Define an AnimationController\n2. Create a Tween<double> from 0.0 to 1.0\n3. Use FadeTransition widget, passing the animation\n4. Start the animation with controller.forward()",
+      "difficulty": "beginner",
+      "tags": [
+        "fade",
+        "transitions"
+      ]
+    },
+    {
+      "id": "animations_003",
+      "question": "What is the AnimationController, and how does it control animations?",
+      "answer": "AnimationController manages the state of an animation:\n\n- Controls duration, direction, and playback of animations\n- Provides methods like forward(), reverse(), and stop()\n- Generates values between 0.0 and 1.0 over time\n- Can be used to drive multiple animations",
+      "difficulty": "intermediate",
+      "tags": [
+        "controllers",
+        "animation-basics"
+      ]
+    },
+    {
+      "id": "animations_004",
+      "question": "How do you use Tween to create animations in Flutter?",
+      "answer": "Tween defines a range of values for animation:\n\n1. Create a Tween (e.g., Tween<double>(begin: 0, end: 1))\n2. Use animate() method with an AnimationController\n3. Use the resulting Animation object to drive widget properties",
+      "difficulty": "intermediate",
+      "tags": [
+        "tween",
+        "animation-basics"
+      ]
+    },
+    {
+      "id": "animations_005",
+      "question": "What is CurvedAnimation, and how does it differ from Tween?",
+      "answer": "CurvedAnimation applies a non-linear curve to an animation:\n\n- Modifies the rate of change of an animation over time\n- Uses predefined or custom Curve objects\n- Tween defines start and end values, while CurvedAnimation affects how those values change",
+      "difficulty": "intermediate",
+      "tags": [
+        "curves",
+        "animation-basics"
+      ]
+    },
+    {
+      "id": "animations_006",
+      "question": "How do you create a slide transition animation?",
+      "answer": "Create a slide transition using SlideTransition:\n\n1. Define an AnimationController\n2. Create a Tween<Offset> for the slide direction\n3. Use SlideTransition widget, passing the animation\n4. Control the animation with the controller",
+      "difficulty": "intermediate",
+      "tags": [
+        "slide",
+        "transitions"
+      ]
+    },
+    {
+      "id": "animations_007",
+      "question": "What is AnimatedContainer, and how does it simplify animations?",
+      "answer": "AnimatedContainer automatically animates changes to its properties:\n\n- Animates size, color, padding, margin, etc.\n- Simplifies basic animations without needing explicit controllers\n- Uses a specified duration and curve for transitions",
+      "difficulty": "beginner",
+      "tags": [
+        "implicit-animations",
+        "container"
+      ]
+    },
+    {
+      "id": "animations_008",
+      "question": "How do you use FadeTransition in Flutter?",
+      "answer": "Use FadeTransition for fade animations:\n\n1. Create an AnimationController\n2. Pass a Tween<double>.animate(controller) to FadeTransition\n3. Wrap the target widget with FadeTransition\n4. Control opacity animation with the controller",
+      "difficulty": "intermediate",
+      "tags": [
+        "fade",
+        "transitions"
+      ]
+    },
+    {
+      "id": "animations_009",
+      "question": "What is ScaleTransition, and how is it used in animations?",
+      "answer": "ScaleTransition animates the scale of a widget:\n\n1. Create an AnimationController\n2. Use a Tween<double> for scale values\n3. Wrap the target widget with ScaleTransition\n4. Pass the animation to ScaleTransition's scale property",
+      "difficulty": "intermediate",
+      "tags": [
+        "scale",
+        "transitions"
+      ]
+    },
+    {
+      "id": "animations_010",
+      "question": "How do you implement a rotation animation with RotationTransition?",
+      "answer": "Implement rotation animation using RotationTransition:\n\n1. Create an AnimationController\n2. Define a Tween<double> for rotation angles (in radians)\n3. Wrap the target widget with RotationTransition\n4. Pass the animation to RotationTransition's turns property",
+      "difficulty": "intermediate",
+      "tags": [
+        "rotation",
+        "transitions"
+      ]
+    },
+    {
+      "id": "animations_011",
+      "question": "What is AnimationStatus, and how do you use it in animations?",
+      "answer": "AnimationStatus represents the current state of an animation:\n\n- Has values: dismissed, forward, reverse, completed\n- Use addStatusListener on Animation objects to respond to status changes\n- Useful for chaining animations or triggering actions at specific points",
+      "difficulty": "intermediate",
+      "tags": [
+        "status",
+        "controllers"
+      ]
+    },
+    {
+      "id": "animations_012",
+      "question": "How do you create a bouncing animation in Flutter?",
+      "answer": "Create a bouncing animation using:\n\n1. AnimationController with vsync\n2. CurvedAnimation with Curves.bounceOut\n3. Tween for the bounce range\n4. Animate a property (e.g., translation) based on the resulting animation",
+      "difficulty": "intermediate",
+      "tags": [
+        "curves",
+        "effects"
+      ]
+    },
+    {
+      "id": "animations_013",
+      "question": "What is the AnimatedBuilder, and how does it help with animations?",
+      "answer": "AnimatedBuilder simplifies animation implementation:\n\n- Rebuilds a specific part of the widget tree when animation value changes\n- Improves performance by limiting rebuilds to necessary widgets\n- Allows separation of animation logic from widget building",
+      "difficulty": "intermediate",
+      "tags": [
+        "builders",
+        "performance"
+      ]
+    },
+    {
+      "id": "animations_014",
+      "question": "How do you create an animated list in Flutter?",
+      "answer": "Create an animated list using AnimatedList:\n\n1. Use AnimatedList widget\n2. Provide an AnimatedListState key\n3. Implement itemBuilder for list items\n4. Use insertItem() and removeItem() methods with animations",
+      "difficulty": "intermediate",
+      "tags": [
+        "lists",
+        "animated-widgets"
+      ]
+    },
+    {
+      "id": "animations_015",
+      "question": "What is Hero animation, and how is it implemented in Flutter?",
+      "answer": "Hero animation creates a visual connection between screens:\n\n1. Wrap widgets on both screens with Hero widget\n2. Use the same tag for corresponding Heroes\n3. Navigate between screens using Navigator\n4. Flutter automatically animates the Hero between screens",
+      "difficulty": "intermediate",
+      "tags": [
+        "hero",
+        "navigation"
+      ]
+    },
+    {
+      "id": "animations_016",
+      "question": "How do you use AnimationStatusListener to track animation status?",
+      "answer": "Use AnimationStatusListener to respond to animation status changes:\n\n1. Create a function that takes AnimationStatus as parameter\n2. Add the listener using animation.addStatusListener(yourFunction)\n3. Implement logic based on different status values\n4. Remove listener when no longer needed with removeStatusListener",
+      "difficulty": "intermediate",
+      "tags": [
+        "listeners",
+        "status"
+      ]
+    },
+    {
+      "id": "animations_017",
+      "question": "What is the StaggeredAnimation, and how is it used in Flutter?",
+      "answer": "StaggeredAnimation sequences multiple animations:\n\n1. Create multiple AnimationControllers or Intervals\n2. Define different start and end times for each animation\n3. Combine animations using a parent AnimationController\n4. Apply animations to different properties or widgets",
+      "difficulty": "advanced",
+      "tags": [
+        "staggered",
+        "complex-animations"
+      ]
+    },
+    {
+      "id": "animations_018",
+      "question": "How do you create a custom Tween in Flutter?",
+      "answer": "Create a custom Tween by extending the Tween class:\n\n1. Override lerp method to define interpolation\n2. Implement transform method if needed\n3. Use the custom Tween with animate() method\n4. Apply the resulting Animation to widget properties",
+      "difficulty": "advanced",
+      "tags": [
+        "tween",
+        "custom"
+      ]
+    },
+    {
+      "id": "animations_019",
+      "question": "What is SlideTransition, and how does it enhance animations?",
+      "answer": "SlideTransition animates the position of a widget:\n\n- Slides a widget in a specified direction\n- Uses an Animation<Offset> to control the slide\n- Can be combined with other transitions for complex effects",
+      "difficulty": "intermediate",
+      "tags": [
+        "slide",
+        "transitions"
+      ]
+    },
+    {
+      "id": "animations_020",
+      "question": "How do you animate the position of a widget with PositionedTransition?",
+      "answer": "Animate position with PositionedTransition:\n\n1. Create an AnimationController\n2. Define a RelativeRectTween for start and end positions\n3. Use PositionedTransition inside a Stack\n4. Pass the animation to PositionedTransition's rect property",
+      "difficulty": "advanced",
+      "tags": [
+        "position",
+        "transitions"
+      ]
+    },
+    {
+      "id": "animations_021",
+      "question": "What is AnimatedSwitcher, and how does it switch between widgets?",
+      "answer": "AnimatedSwitcher animates between different child widgets:\n\n- Automatically animates when child widget changes\n- Supports custom transitions and durations\n- Useful for smooth UI updates and state changes",
+      "difficulty": "intermediate",
+      "tags": [
+        "switcher",
+        "implicit-animations"
+      ]
+    },
+    {
+      "id": "animations_022",
+      "question": "How do you use AnimatedOpacity to create fade effects?",
+      "answer": "Use AnimatedOpacity for simple fade animations:\n\n1. Wrap target widget with AnimatedOpacity\n2. Set initial opacity value\n3. Change opacity value to trigger animation\n4. Specify duration and curve for the transition",
+      "difficulty": "beginner",
+      "tags": [
+        "opacity",
+        "implicit-animations"
+      ]
+    },
+    {
+      "id": "animations_023",
+      "question": "What is the AnimatedIcon, and how is it different from Icon?",
+      "answer": "AnimatedIcon provides pre-built animated icons:\n\n- Smoothly transitions between two states of an icon\n- Controlled by an Animation<double>\n- Limited to predefined animated icons in Flutter",
+      "difficulty": "intermediate",
+      "tags": [
+        "icons",
+        "animated-widgets"
+      ]
+    },
+    {
+      "id": "animations_024",
+      "question": "How do you implement a parallax animation in Flutter?",
+      "answer": "Implement parallax animation:\n\n1. Use a ScrollController with a ListView or CustomScrollView\n2. Create multiple layers with different scroll speeds\n3. Use Transform widget to apply translations based on scroll position\n4. Adjust translation factors for desired parallax effect",
+      "difficulty": "advanced",
+      "tags": [
+        "parallax",
+        "scroll"
+      ]
+    },
+    {
+      "id": "animations_025",
+      "question": "What is the flutter_lottie package, and how is it used for animations?",
+      "answer": "flutter_lottie enables using Lottie animations in Flutter:\n\n1. Add lottie package to pubspec.yaml\n2. Load Lottie file (JSON) from assets or network\n3. Use Lottie widget to display animation\n4. Control playback with LottieController",
+      "difficulty": "intermediate",
+      "tags": [
+        "lottie",
+        "packages"
+      ]
+    },
+    {
+      "id": "animations_026",
+      "question": "How do you create a sequenced animation in Flutter?",
+      "answer": "Create sequenced animations:\n\n1. Use multiple AnimationControllers or a single controller with Intervals\n2. Define animations with different durations and delays\n3. Use AnimatedBuilder or custom AnimationControllers to apply animations\n4. Trigger animations in sequence or with overlaps",
+      "difficulty": "advanced",
+      "tags": [
+        "sequence",
+        "complex-animations"
+      ]
+    },
+    {
+      "id": "animations_027",
+      "question": "What is ReorderableListView, and how does it relate to animations?",
+      "answer": "ReorderableListView provides an animated reorderable list:\n\n- Allows users to reorder list items with drag and drop\n- Automatically animates item movements\n- Provides callbacks for reorder events",
+      "difficulty": "intermediate",
+      "tags": [
+        "lists",
+        "drag-drop"
+      ]
+    },
+    {
+      "id": "animations_028",
+      "question": "How do you use AnimatedCrossFade for cross-fading between two widgets?",
+      "answer": "Use AnimatedCrossFade to smoothly transition between two widgets:\n\n1. Provide two child widgets to AnimatedCrossFade\n2. Set crossFadeState to show first or second child\n3. Specify duration and curve for the transition\n4. Change crossFadeState to trigger animation",
+      "difficulty": "intermediate",
+      "tags": [
+        "crossfade",
+        "implicit-animations"
+      ]
+    },
+    {
+      "id": "animations_029",
+      "question": "What is CircularProgressIndicator, and how do you animate it?",
+      "answer": "CircularProgressIndicator is an animated loading indicator:\n\n- Use value property for determinate progress (0.0 to 1.0)\n- Leave value null for indeterminate animation\n- Customize colors, stroke width, and animation speed",
+      "difficulty": "beginner",
+      "tags": [
+        "progress",
+        "loading"
+      ]
+    },
+    {
+      "id": "animations_030",
+      "question": "How do you create a heartbeat animation in Flutter?",
+      "answer": "Create a heartbeat animation:\n\n1. Use AnimationController with repeat() and reverse\n2. Create a Tween<double> for scale values\n3. Use ScaleTransition or AnimatedBuilder\n4. Apply easing curve (e.g., Curves.easeInOut) for realistic effect",
+      "difficulty": "intermediate",
+      "tags": [
+        "effects",
+        "scale"
+      ]
+    },
+    {
+      "id": "animations_031",
+      "question": "What is AnimatedSize, and how does it adjust widget sizes smoothly?",
+      "answer": "AnimatedSize automatically animates size changes:\n\n- Wrap a widget to animate its size changes\n- Specify duration and curve for the transition\n- Automatically animates when child widget size changes",
+      "difficulty": "intermediate",
+      "tags": [
+        "size",
+        "implicit-animations"
+      ]
+    },
+    {
+      "id": "animations_032",
+      "question": "How do you implement a radial hero animation in Flutter?",
+      "answer": "Implement radial hero animation:\n\n1. Use Hero widgets on both screens\n2. Create a custom PageRoute with a RadialExpansion transition\n3. Implement build method in RadialExpansion for clipping and scaling\n4. Use the custom PageRoute for navigation",
+      "difficulty": "advanced",
+      "tags": [
+        "hero",
+        "custom"
+      ]
+    },
+    {
+      "id": "animations_033",
+      "question": "What is ValueNotifier, and how does it work with animations?",
+      "answer": "ValueNotifier is a simple way to create listenable values:\n\n- Extends ChangeNotifier for a single value\n- Can be used with AnimatedBuilder for simple animations\n- Notifies listeners when value changes, triggering rebuilds",
+      "difficulty": "intermediate",
+      "tags": [
+        "notifiers",
+        "state"
+      ]
+    },
+    {
+      "id": "animations_034",
+      "question": "How do you create a liquid animation in Flutter?",
+      "answer": "Create a liquid animation:\n\n1. Use CustomPainter for drawing liquid shape\n2. Animate control points of a Bezier curve\n3. Use AnimationController to drive the animation\n4. Redraw the shape in each animation frame",
+      "difficulty": "advanced",
+      "tags": [
+        "custom-painter",
+        "effects"
+      ]
+    },
+    {
+      "id": "animations_035",
+      "question": "What is ClipRect, and how does it enhance animations?",
+      "answer": "ClipRect clips its child to a rectangular area:\n\n- Useful for revealing animations\n- Can be combined with SlideTransition or custom animations\n- Helps create clean, bounded animations within a specific area",
+      "difficulty": "intermediate",
+      "tags": [
+        "clipping",
+        "effects"
+      ]
+    },
+    {
+      "id": "animations_036",
+      "question": "How do you implement 3D flip animations in Flutter?",
+      "answer": "Implement 3D flip animations:\n\n1. Use Transform widget with Matrix4 transformations\n2. Animate the rotation around Y-axis for horizontal flip\n3. Use AnimationController and Tween for smooth animation\n4. Consider using two faces and switching at 90-degree point",
+      "difficulty": "advanced",
+      "tags": [
+        "3d",
+        "transform"
+      ]
+    },
+    {
+      "id": "animations_037",
+      "question": "What is Flow, and how is it used in animations?",
+      "answer": "Flow is a widget for creating custom multi-child layouts:\n\n- Allows fine-grained control over child positioning\n- Can be used for complex animated layouts\n- Requires implementing a FlowDelegate",
+      "difficulty": "advanced",
+      "tags": [
+        "flow",
+        "layout"
+      ]
+    },
+    {
+      "id": "animations_038",
+      "question": "How do you use RepaintBoundary to optimize animations?",
+      "answer": "Use RepaintBoundary to optimize animations:\n\n- Wrap static parts of the UI with RepaintBoundary\n- Prevents unnecessary repainting of unchanging elements\n- Improves performance for complex or frequent animations",
+      "difficulty": "advanced",
+      "tags": [
+        "performance",
+        "optimization"
+      ]
+    },
+    {
+      "id": "animations_039",
+      "question": "What is the ParticleField widget, and how is it used for particle animations?",
+      "answer": "ParticleField is a custom widget for particle animations:\n\n- Create a custom ParticleField widget\n- Define particle behavior and appearance\n- Use CustomPainter to draw particles\n- Animate particles using AnimationController",
+      "difficulty": "advanced",
+      "tags": [
+        "particles",
+        "custom-painter"
+      ]
+    },
+    {
+      "id": "animations_040",
+      "question": "How do you create a custom Curve in Flutter?",
+      "answer": "Create a custom Curve:\n\n1. Extend the Curve class\n2. Override the transform method\n3. Implement custom easing function\n4. Use the custom Curve with CurvedAnimation or Tween",
+      "difficulty": "advanced",
+      "tags": [
+        "curves",
+        "custom"
+      ]
+    },
+    {
+      "id": "animations_041",
+      "question": "What is Transform, and how does it relate to animations?",
+      "answer": "Transform applies geometric transformations to widgets:\n\n- Can be used for rotation, scaling, and translation\n- Often combined with animations for dynamic effects\n- Supports 2D and 3D transformations using Matrix4",
+      "difficulty": "intermediate",
+      "tags": [
+        "transform",
+        "geometry"
+      ]
+    },
+    {
+      "id": "animations_042",
+      "question": "How do you implement a staggered grid animation in Flutter?",
+      "answer": "Implement staggered grid animation:\n\n1. Use a StaggeredGridView widget\n2. Create individual animations for each grid item\n3. Stagger the start times of animations\n4. Apply FadeTransition or ScaleTransition to each item",
+      "difficulty": "advanced",
+      "tags": [
+        "staggered",
+        "grids"
+      ]
+    },
+    {
+      "id": "animations_043",
+      "question": "What is ClipPath, and how is it used in animations?",
+      "answer": "ClipPath clips its child using a custom path:\n\n- Useful for creating non-rectangular clipping regions\n- Can be animated by changing the clipping path over time\n- Often used with CustomClipper for complex shapes",
+      "difficulty": "advanced",
+      "tags": [
+        "clipping",
+        "custom-painter"
+      ]
+    },
+    {
+      "id": "animations_044",
+      "question": "How do you create an expanding search bar animation in Flutter?",
+      "answer": "Create an expanding search bar:\n\n1. Use AnimatedContainer for smooth size changes\n2. Toggle between collapsed and expanded states\n3. Animate width, height, and opacity of search elements\n4. Use GestureDetector or IconButton to trigger the animation",
+      "difficulty": "intermediate",
+      "tags": [
+        "ui",
+        "effects"
+      ]
+    },
+    {
+      "id": "animations_045",
+      "question": "What is RenderTransform, and how does it differ from Transform?",
+      "answer": "RenderTransform is a lower-level rendering object:\n\n- Part of the render tree, not the widget tree\n- More efficient for continuous animations\n- Requires working with RenderObjects directly",
+      "difficulty": "advanced",
+      "tags": [
+        "render",
+        "performance"
+      ]
+    },
+    {
+      "id": "animations_046",
+      "question": "How do you animate a widget along a custom path in Flutter?",
+      "answer": "Animate along a custom path:\n\n1. Define a custom Path\n2. Use a PathMetric to get points along the path\n3. Animate a value from 0 to 1 to move along the path\n4. Use Transform to position the widget at each point",
+      "difficulty": "advanced",
+      "tags": [
+        "path",
+        "custom"
+      ]
+    },
+    {
+      "id": "animations_047",
+      "question": "What is SizeTransition, and how does it differ from AnimatedSize?",
+      "answer": "SizeTransition animates the size of its child:\n\n- Uses an Animation<double> to control the size\n- More flexible than AnimatedSize for complex animations\n- Can animate in one axis (vertical or horizontal)",
+      "difficulty": "intermediate",
+      "tags": [
+        "size",
+        "transitions"
+      ]
+    },
+    {
+      "id": "animations_048",
+      "question": "How do you implement drag-and-drop animations in Flutter?",
+      "answer": "Implement drag-and-drop animations:\n\n1. Use LongPressDraggable for draggable items\n2. Create DragTarget widgets for drop zones\n3. Use AnimatedBuilder to animate item position during drag\n4. Implement onDragCompleted and onAccept callbacks for drop logic",
+      "difficulty": "advanced",
+      "tags": [
+        "drag-drop",
+        "gestures"
+      ]
+    },
+    {
+      "id": "animations_049",
+      "question": "What is Opacity, and how does it relate to AnimatedOpacity?",
+      "answer": "Opacity adjusts the transparency of its child:\n\n- AnimatedOpacity automatically animates opacity changes\n- Opacity requires manual animation using AnimationController\n- Use Opacity for more control over the animation process",
+      "difficulty": "beginner",
+      "tags": [
+        "opacity",
+        "basics"
+      ]
+    },
+    {
+      "id": "animations_050",
+      "question": "How do you test animations in a Flutter app?",
+      "answer": "Test animations in Flutter:\n\n1. Use WidgetTester for widget tests\n2. Pump frames manually using tester.pump()\n3. Verify widget properties at different animation stages\n4. Use Golden tests for visual regression testing of animations\n5. Test AnimationController and Tween logic separately in unit tests\n\n## Modern animation patterns (2026)",
+      "difficulty": "advanced",
+      "tags": [
+        "testing",
+        "quality"
+      ]
+    },
+    {
+      "id": "animations_051",
+      "question": "What is the `flutter_animate` package, and how does it simplify chained animations?",
+      "answer": "`flutter_animate` provides a fluent API for chaining animations on any widget without managing `AnimationController` lifecycle manually. You compose effects (fade, slide, scale, blur, shimmer, ...) declaratively.\n\n```dart\nText('Hello')\n  .animate()\n  .fadeIn(duration: 300.ms)\n  .then(delay: 200.ms)\n  .slideY(begin: 0.2, end: 0);\n```\n\nInternally it builds a tick-driven `Animatable<T>` chain; for long-running or replayable animations you still want a dedicated controller, but for one-shot entrance/exit effects this is the fastest path.",
+      "difficulty": "intermediate",
+      "tags": [
+        "animations"
+      ],
+      "code_example": "Text('Hello')\n  .animate()\n  .fadeIn(duration: 300.ms)\n  .then(delay: 200.ms)\n  .slideY(begin: 0.2, end: 0);"
+    },
+    {
+      "id": "animations_052",
+      "question": "How do `AnimatedSwitcher` and `AnimatedSize` compose for smooth size + content transitions?",
+      "answer": "`AnimatedSwitcher` cross-fades between two children when the child's `Key` (or runtime type) changes. `AnimatedSize` animates the size of its parent box when the child's intrinsic size changes. Combining them:\n\n```dart\nAnimatedSize(\n  duration: const Duration(milliseconds: 200),\n  child: AnimatedSwitcher(\n    duration: const Duration(milliseconds: 200),\n    child: _expanded ? const LongText(key: ValueKey('long'))\n                     : const ShortText(key: ValueKey('short')),\n  ),\n);\n```\n\nYou get a coordinated effect: the new content cross-fades in while the container resizes around it. Always give children distinct keys, otherwise `AnimatedSwitcher` does nothing.",
+      "difficulty": "intermediate",
+      "tags": [
+        "animations"
+      ],
+      "code_example": "AnimatedSize(\n  duration: const Duration(milliseconds: 200),\n  child: AnimatedSwitcher(\n    duration: const Duration(milliseconds: 200),\n    child: _expanded ? const LongText(key: ValueKey('long'))\n                     : const ShortText(key: ValueKey('short')),\n  ),\n);"
+    },
+    {
+      "id": "animations_053",
+      "question": "How do you animate a list of items being added or removed with `AnimatedList` and `SliverAnimatedList`?",
+      "answer": "`AnimatedList` requires a `GlobalKey<AnimatedListState>` and a list-of-truth held by you; you call `key.currentState!.insertItem(index)` / `removeItem(index, builder)` whenever the underlying list changes, and the widget animates the visible row.\n\n```dart\nfinal _key = GlobalKey<AnimatedListState>();\nfinal _items = <Item>[];\n\nvoid add(Item i) {\n  _items.insert(0, i);\n  _key.currentState!.insertItem(0, duration: 250.ms);\n}\n\nvoid remove(int index) {\n  final removed = _items.removeAt(index);\n  _key.currentState!.removeItem(\n    index,\n    (context, anim) => SizeTransition(sizeFactor: anim, child: ItemTile(removed)),\n    duration: 250.ms,\n  );\n}\n\nAnimatedList(\n  key: _key,\n  initialItemCount: _items.length,\n  itemBuilder: (c, i, anim) =>\n    SizeTransition(sizeFactor: anim, child: ItemTile(_items[i])),\n);\n```\n\nFor Sliver layouts use `SliverAnimatedList` with the same pattern.",
+      "difficulty": "intermediate",
+      "tags": [
+        "animations"
+      ],
+      "code_example": "final _key = GlobalKey<AnimatedListState>();\nfinal _items = <Item>[];\n\nvoid add(Item i) {\n  _items.insert(0, i);\n  _key.currentState!.insertItem(0, duration: 250.ms);\n}\n\nvoid remove(int index) {\n  final removed = _items.removeAt(index);\n  _key.currentState!.removeItem(\n    index,\n    (context, anim) => SizeTransition(sizeFactor: anim, child: ItemTile(removed)),\n    duration: 250.ms,\n  );\n}\n\nAnimatedList(\n  key: _key,\n  initialItemCount: _items.length,\n  itemBuilder: (c, i, anim) =>\n    SizeTransition(sizeFactor: anim, child: ItemTile(_items[i])),\n);"
+    },
+    {
+      "id": "animations_054",
+      "question": "What is a physics-based simulation (`SpringSimulation`, `FrictionSimulation`) vs a `Tween`, and when do you use each?",
+      "answer": "A `Tween` interpolates between two values over a fixed duration with a fixed `Curve`. A `Simulation` describes a physical system (position over time governed by spring stiffness, damping, friction) — the duration is *derived* from when the system comes to rest. Use simulations when the interaction is gestural: e.g. flinging a draggable card so it settles naturally.\n\n```dart\nfinal sim = SpringSimulation(\n  const SpringDescription(mass: 1, stiffness: 500, damping: 25),\n  startPosition, endPosition, initialVelocity,\n);\ncontroller.animateWith(sim);\n```",
+      "difficulty": "intermediate",
+      "tags": [
+        "animations"
+      ],
+      "code_example": "final sim = SpringSimulation(\n  const SpringDescription(mass: 1, stiffness: 500, damping: 25),\n  startPosition, endPosition, initialVelocity,\n);\ncontroller.animateWith(sim);"
+    },
+    {
+      "id": "animations_055",
+      "question": "How do you build a custom `PageRoute` transition that respects iOS swipe-to-pop?",
+      "answer": "Subclass `PageRoute<T>` (or `CupertinoPageRoute` for native iOS feel) and override `buildTransitions`. To preserve iOS swipe-to-pop, your route must set `transitionDuration` and respond to `Navigator`'s pop animation; alternatively, use `PageRouteBuilder` and consult the `secondaryAnimation` parameter for \"next route covering me\" feedback.\n\n```dart\nPageRouteBuilder(\n  pageBuilder: (c, anim, secAnim) => const DetailPage(),\n  transitionsBuilder: (c, anim, _, child) => SlideTransition(\n    position: Tween(begin: const Offset(1, 0), end: Offset.zero).animate(anim),\n    child: child,\n  ),\n);\n```\n\n`go_router` users typically configure this via `pageBuilder` on the `GoRoute`.",
+      "difficulty": "intermediate",
+      "tags": [
+        "animations"
+      ],
+      "code_example": "PageRouteBuilder(\n  pageBuilder: (c, anim, secAnim) => const DetailPage(),\n  transitionsBuilder: (c, anim, _, child) => SlideTransition(\n    position: Tween(begin: const Offset(1, 0), end: Offset.zero).animate(anim),\n    child: child,\n  ),\n);"
+    },
+    {
+      "id": "animations_056",
+      "question": "What is the `Animations` package's `OpenContainer`, and how does it implement Material container transforms?",
+      "answer": "`OpenContainer` (from `package:animations`) implements the Material 3 \"container transform\" — a tap on a card grows into the destination screen. The shared visual root prevents the jarring \"jump\" of `Navigator.push` and keeps user focus on the tapped element.\n\n```dart\nOpenContainer(\n  closedBuilder: (c, action) => ProductCard(onTap: action),\n  openBuilder: (c, _) => const ProductDetailPage(),\n  transitionDuration: 350.ms,\n);\n```",
+      "difficulty": "intermediate",
+      "tags": [
+        "animations"
+      ],
+      "code_example": "OpenContainer(\n  closedBuilder: (c, action) => ProductCard(onTap: action),\n  openBuilder: (c, _) => const ProductDetailPage(),\n  transitionDuration: 350.ms,\n);"
+    },
+    {
+      "id": "animations_057",
+      "question": "How do you orchestrate a complex multi-stage hero animation with `AnimatedBuilder`?",
+      "answer": "For animations that involve more than position/size (e.g. hero with rotating icon, color shift, drop shadow), use a single `AnimationController` plus multiple `Tween`/`CurvedAnimation` derived from it, and assemble them inside an `AnimatedBuilder`.\n\n```dart\nclass _HeroIcon extends StatefulWidget { /* ... */ }\nclass _HeroIconState extends State<_HeroIcon> with TickerProviderStateMixin {\n  late final controller = AnimationController(duration: 800.ms, vsync: this);\n  late final scale = CurvedAnimation(parent: controller, curve: Curves.easeOutBack);\n  late final rotate = Tween(begin: 0.0, end: 0.5).animate(controller);\n  late final color = ColorTween(begin: Colors.blue, end: Colors.purple).animate(controller);\n\n  @override\n  Widget build(context) => AnimatedBuilder(\n    animation: controller,\n    builder: (_, child) => Transform.rotate(\n      angle: rotate.value,\n      child: Transform.scale(\n        scale: scale.value,\n        child: Icon(Icons.favorite, color: color.value, size: 64),\n      ),\n    ),\n  );\n}\n```",
+      "difficulty": "intermediate",
+      "tags": [
+        "animations"
+      ],
+      "code_example": "class _HeroIcon extends StatefulWidget { /* ... */ }\nclass _HeroIconState extends State<_HeroIcon> with TickerProviderStateMixin {\n  late final controller = AnimationController(duration: 800.ms, vsync: this);\n  late final scale = CurvedAnimation(parent: controller, curve: Curves.easeOutBack);\n  late final rotate = Tween(begin: 0.0, end: 0.5).animate(controller);\n  late final color = ColorTween(begin: Colors.blue, end: Colors.purple).animate(controller);\n\n  @override\n  Widget build(context) => AnimatedBuilder(\n    animation: controller,\n    builder: (_, child) => Transform.rotate(\n      angle: rotate.value,\n      child: Transform.scale(\n        scale: scale.value,\n        child: Icon(Icons.favorite, color: color.value, size: 64),\n      ),\n    ),\n  );\n}"
+    },
+    {
+      "id": "animations_058",
+      "question": "What is the role of `Curves` (e.g. `Curves.easeOutCubic` vs `Curves.linear`), and how do you pick one?",
+      "answer": "A curve maps the `0..1` animation progress to an eased value, controlling the *feel* of motion. Rules of thumb:\n- **`Curves.linear`** — for continuous motion (e.g. progress bars, marquees). Rarely right for UI.\n- **`Curves.easeOut`** / `easeOutCubic` — for entrances (objects arriving feel natural decelerating).\n- **`Curves.easeIn`** / `easeInCubic` — for exits (objects leaving feel natural accelerating away).\n- **`Curves.easeInOut`** / `easeInOutCubic` — for transitions where both endpoints matter.\n- **`Curves.easeOutBack`** — for playful entrances with a slight overshoot.\n- **`Curves.elasticOut`** — for \"boing\" effects; use sparingly.",
+      "difficulty": "intermediate",
+      "tags": [
+        "animations"
+      ]
+    },
+    {
+      "id": "animations_059",
+      "question": "How does `Lottie` integration work in Flutter, and what is the performance trade-off?",
+      "answer": "The `lottie` package parses a Lottie JSON (Adobe After Effects export) and renders the vector animation with Flutter's painter. Compared with `Hero` + custom `Tween`s: Lottie is great for complex hand-drawn motion that designers produce in AE. Trade-off: each frame re-walks the JSON's keyframes — fine for hero animations and onboarding, but expensive if you scatter many Lotties across a list. Pre-warm the `LottieComposition` once at app start to avoid first-paint stutter.",
+      "difficulty": "intermediate",
+      "tags": [
+        "animations"
+      ]
+    },
+    {
+      "id": "animations_060",
+      "question": "How do you optimize an animation that drops frames on low-end Android devices?",
+      "answer": "1. Profile in **profile mode** on a real low-end device (not the emulator).\n2. Wrap the animating subtree in a `RepaintBoundary` to isolate paint cost.\n3. Avoid changes to layout-affecting properties during the animation (animate `Transform`/`Opacity`, not `Container.width`).\n4. If you're animating opacity inside a `setState`, switch to `FadeTransition` so the child doesn't rebuild on each tick.\n5. If the animation has a fixed pattern, consider pre-baking it via `LayerLink` or pre-rasterized images.\n6. Drop frame rate gracefully: target 60 fps but accept 30 fps on extremely low-end devices; Flutter auto-adjusts when behind.",
+      "difficulty": "intermediate",
+      "tags": [
+        "animations"
+      ]
+    }
+  ]
+}

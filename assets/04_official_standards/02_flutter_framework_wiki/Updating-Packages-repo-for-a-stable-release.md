@@ -1,0 +1,1 @@
+This page has been migrated to https://github.com/flutter/flutter/blob/master/docs/ecosystem/release/Updating-Packages-repo-for-a-stable-release.md

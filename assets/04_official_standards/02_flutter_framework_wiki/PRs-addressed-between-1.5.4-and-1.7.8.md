@@ -1,0 +1,1 @@
+This page has been migrated to https://github.com/flutter/flutter/blob/master/docs/releases/archive/PRs-addressed-between-1.5.4-and-1.7.8.md

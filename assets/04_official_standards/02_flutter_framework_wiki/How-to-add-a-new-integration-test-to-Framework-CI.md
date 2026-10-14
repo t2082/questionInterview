@@ -1,0 +1,1 @@
+This page has migrated to https://github.com/flutter/flutter/blob/master/docs/infra/How-to-add-a-new-integration-test-to-Framework-CI.md

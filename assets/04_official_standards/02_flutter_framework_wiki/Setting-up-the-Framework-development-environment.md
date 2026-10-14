@@ -1,0 +1,1 @@
+This page has migrated to https://github.com/flutter/flutter/blob/master/docs/contributing/Setting-up-the-Framework-development-environment.md

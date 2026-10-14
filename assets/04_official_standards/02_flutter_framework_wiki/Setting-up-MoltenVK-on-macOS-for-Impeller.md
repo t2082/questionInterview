@@ -1,0 +1,1 @@
+This page has migrated to https://github.com/flutter/engine/blob/main/docs/impeller/Setting-up-MoltenVK-on-macOS-for-Impeller.md

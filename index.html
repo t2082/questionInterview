@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="vi" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <meta name="theme-color" content="#0b0f19">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>Flutter Interview Pro • Nền Tảng Ôn Tập Phỏng Vấn Flutter Toàn Diện</title>
+  <meta name="description" content="Nền tảng ôn tập 730+ câu hỏi phỏng vấn Flutter Developer chuẩn hóa từ các kho tài liệu GitHub, chuyên trang công nghệ quốc tế và nguồn HR Việt Nam.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="site-header">
+    <div class="header-container">
+      <div class="brand-logo" onclick="location.reload()">
+        <div class="logo-icon">
+          <!-- Flutter Inspired Icon -->
+          <svg viewBox="0 0 24 24">
+            <path d="M14.314 0L2.3 12 6.1 15.8 21.914 0h-7.6zM14.314 12.8L8.6 18.5 12.4 22.3 21.914 12.8h-7.6z"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">Flutter Interview Pro</span>
+          <span class="brand-subtitle">730+ Questions • Master Prep Suite</span>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs -->
+      <nav class="main-nav">
+        <button class="nav-tab active" data-mode="flashcards" id="tab-flashcards">
+          <span>🗂️</span> Thẻ Ghi Nhớ
+        </button>
+        <button class="nav-tab" data-mode="explorer" id="tab-explorer">
+          <span>🔍</span> Ngân Hàng Câu Hỏi
+        </button>
+        <button class="nav-tab" data-mode="quiz" id="tab-quiz">
+          <span>⏱️</span> Luyện Thi (Quiz)
+        </button>
+        <button class="nav-tab" data-mode="hr" id="tab-hr">
+          <span>📋</span> Góc Tuyển Dụng HR
+        </button>
+        <button class="nav-tab" data-mode="wiki" id="tab-wiki">
+          <span>📚</span> Tài Liệu & Wiki
+        </button>
+      </nav>
+
+      <!-- Action Controls -->
+      <div class="header-actions">
+        <div class="stats-badge" title="Tỷ lệ câu hỏi bạn đã đánh dấu là 'Đã thuộc'">
+          <div class="stats-dot"></div>
+          <span id="stat-mastery-text">0 / 736 (0%)</span>
+        </div>
+
+        <button class="action-btn" id="btn-open-db-modal" title="Quản lý Local Database (IndexedDB)">
+          💾
+        </button>
+
+        <button class="action-btn" id="btn-toggle-audio" title="Bật/Tắt âm thanh hiệu ứng">
+          🔊
+        </button>
+
+        <button class="action-btn" id="btn-toggle-theme" title="Chuyển chế độ Sáng / Tối">
+          <span id="theme-toggle-icon">🌙</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT WRAPPER ==================== -->
+  <main class="main-wrapper">
+
+    <!-- 1. FLASHCARDS SECTION -->
+    <section class="view-section active" id="section-flashcards">
+      <div class="flashcard-container">
+
+        <!-- Deck Switcher Tabs (Tất cả / Chưa thuộc / Đã thuộc / Yêu thích) -->
+        <div class="deck-filter-tabs" id="deck-filter-tabs">
+          <button class="deck-tab active" data-deck="all" id="deck-tab-all">
+            <span>📚 Tất Cả</span>
+            <span class="deck-count" id="count-deck-all">736</span>
+          </button>
+          <button class="deck-tab" data-deck="hard" id="deck-tab-hard">
+            <span>❌ Chưa Thuộc</span>
+            <span class="deck-count deck-count-hard" id="count-deck-hard">0</span>
+          </button>
+          <button class="deck-tab" data-deck="mastered" id="deck-tab-mastered">
+            <span>✅ Đã Thuộc</span>
+            <span class="deck-count deck-count-mastered" id="count-deck-mastered">0</span>
+          </button>
+          <button class="deck-tab" data-deck="bookmarked" id="deck-tab-bookmarked">
+            <span>★ Yêu Thích</span>
+            <span class="deck-count deck-count-bookmarked" id="count-deck-bookmarked">0</span>
+          </button>
+        </div>
+
+        <!-- Progress Tracker -->
+        <div class="flashcard-progress-bar">
+          <div class="progress-header">
+            <span id="card-progress-text">Thẻ 1 / 736</span>
+            <span style="font-size: 0.8rem; color: var(--text-subtle);">Mẹo: Dùng phím [Space] để lật thẻ</span>
+          </div>
+          <div class="progress-track">
+            <div class="progress-fill" id="card-progress-fill"></div>
+          </div>
+        </div>
+
+        <!-- 3D Flip Card -->
+        <div class="flip-card-wrapper" id="flip-card-wrapper">
+          <div class="flip-card-inner" id="flip-card-inner">
+
+            <!-- Card Front (Question) -->
+            <div class="flip-card-front">
+              <div class="card-top-meta">
+                <div class="meta-badges">
+                  <span class="badge badge-status" id="card-status-badge">⏳ Chưa ôn</span>
+                  <span class="badge badge-level-junior" id="card-level-badge">Junior</span>
+                  <span class="badge badge-category" id="card-category-badge">Dart Fundamentals</span>
+                  <span class="badge badge-lang" id="card-lang-badge">English</span>
+                </div>
+                <div class="card-action-btns">
+                  <button class="card-icon-btn btn-copy-prompt" id="btn-card-copy-front" title="Copy prompt: 'Giải thích và giúp tôi hiểu được đáp án của câu này: <câu hỏi>'">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                      <path d="M16 1H4C2.9 1 2 1.9 2 3v14h2V3h12V1zm3 4H8C6.9 5 6 5.9 6 7v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                    </svg>
+                    <span class="btn-copy-label">Copy Prompt AI</span>
+                  </button>
+                  <button class="card-bookmark-btn" id="btn-card-bookmark" title="Lưu câu hỏi yêu thích">☆</button>
+                </div>
+              </div>
+
+              <div class="card-question-box">
+                <div class="question-index-tag" id="card-index-tag">Câu #1 • flutter-q-0001</div>
+                <h2 class="card-question-title" id="card-q-title">Đang tải câu hỏi phỏng vấn...</h2>
+              </div>
+
+              <div class="card-hint">
+                <span>🔄 Chạm hoặc nhấn <kbd class="key-badge">Space</kbd> để lật • 👈 Vuốt ngang đổi câu 👉</span>
+              </div>
+            </div>
+
+            <!-- Card Back (Answer) -->
+            <div class="flip-card-back">
+              <div class="card-top-meta">
+                <div class="meta-badges">
+                  <span class="badge" style="background: rgba(56, 189, 248, 0.2); color: #38bdf8;">💡 LỜI GIẢI KỸ THUẬT</span>
+                </div>
+                <div class="card-action-btns">
+                  <button class="card-icon-btn btn-copy-prompt" id="btn-card-copy-back" title="Copy prompt: 'Giải thích và giúp tôi hiểu được đáp án của câu này: <câu hỏi>'">
+                    <svg viewBox="0 0 24 24" width="14" height="14" fill="currentColor">
+                      <path d="M16 1H4C2.9 1 2 1.9 2 3v14h2V3h12V1zm3 4H8C6.9 5 6 5.9 6 7v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                    </svg>
+                    <span class="btn-copy-label">Copy Prompt AI</span>
+                  </button>
+                  <button class="btn-text" id="btn-flip-back" style="color: var(--text-muted);">🔄 Lật lại</button>
+                </div>
+              </div>
+
+              <div class="card-answer-box">
+                <div class="markdown-body" id="card-ans-body">
+                  <!-- Rendered answer text & code blocks -->
+                </div>
+              </div>
+
+              <div class="card-source-footer">
+                <span id="card-source-text">Nguồn: debasmitasarkar/flutter_interview_guide_2026</span>
+                <span style="color: var(--text-subtle);">Bấm thẻ để lật lại câu hỏi</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Flashcard Controls -->
+        <div class="flashcard-controls">
+          <div class="eval-buttons">
+            <button class="btn-eval btn-eval-hard" id="btn-card-hard" title="Phím tắt: [1]">
+              <span>❌</span> Chưa thuộc [1]
+            </button>
+            <button class="btn-eval btn-eval-flip" id="btn-flip-card" title="Phím tắt: [Space]">
+              <span>🔄</span> Lật thẻ [Space]
+            </button>
+            <button class="btn-eval btn-eval-easy" id="btn-card-easy" title="Phím tắt: [2]">
+              <span>✅</span> Đã thuộc [2]
+            </button>
+          </div>
+
+          <div class="nav-buttons">
+            <button class="btn-circle" id="btn-shuffle-cards" title="Trộn ngẫu nhiên câu hỏi">🔀</button>
+            <button class="btn-circle" id="btn-prev-card" title="Câu trước [←]">⬅</button>
+            <button class="btn-circle" id="btn-next-card" title="Câu kế tiếp [→]">➡</button>
+
+            <div class="jump-box">
+              <span>Đến:</span>
+              <input type="number" id="card-jump-input" class="jump-input" min="1" max="736" value="1">
+            </div>
+          </div>
+        </div>
+
+        <!-- Keyboard Shortcuts Bar -->
+        <div class="keyboard-shortcuts-bar">
+          <span><kbd class="key-badge">Space</kbd> Lật thẻ</span>
+          <span><kbd class="key-badge">←</kbd> Trước</span>
+          <span><kbd class="key-badge">→</kbd> Tiếp theo</span>
+          <span><kbd class="key-badge">1</kbd> Chưa thuộc</span>
+          <span><kbd class="key-badge">2</kbd> Đã thuộc</span>
+          <span><kbd class="key-badge">B</kbd> Yêu thích</span>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 2. QUESTION EXPLORER SECTION -->
+    <section class="view-section" id="section-explorer">
+      <div class="explorer-header">
+        <h1 class="explorer-title">Ngân Hàng Câu Hỏi Phỏng Vấn Flutter</h1>
+        <p class="explorer-subtitle">Tra cứu toàn diện hơn 730+ câu hỏi với bộ lọc cấp bậc, chủ đề, mã nguồn và ngôn ngữ.</p>
+      </div>
+
+      <!-- Filter Controls Panel -->
+      <div class="filter-panel">
+        <div class="search-bar-row">
+          <div class="search-input-wrapper">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="explorer-search-input" class="main-search-input" placeholder="Tìm kiếm theo từ khóa (Stateful, Event loop, Clean Arch, Isolate, BuildContext...)...">
+          </div>
+
+          <div class="select-wrapper">
+            <select id="filter-level" class="custom-select">
+              <option value="all">Tất cả cấp bậc</option>
+              <option value="fresher">Fresher / Intern</option>
+              <option value="junior">Junior</option>
+              <option value="middle">Middle</option>
+              <option value="senior">Senior / Lead</option>
+            </select>
+
+            <select id="filter-lang" class="custom-select">
+              <option value="all">Tất cả ngôn ngữ</option>
+              <option value="vi">Tiếng Việt (TopCV, Viblo)</option>
+              <option value="en">English (GitHub, DevInterview)</option>
+            </select>
+
+            <select id="filter-status" class="custom-select">
+              <option value="all">Tất cả trạng thái</option>
+              <option value="mastered">✅ Đã thuộc</option>
+              <option value="hard">❌ Cần ôn lại</option>
+              <option value="bookmarked">★ Đã đánh dấu yêu thích</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Category Filter Pills -->
+        <div class="category-pills-row" id="category-pills-container">
+          <!-- Dynamically populated pills -->
+        </div>
+      </div>
+
+      <!-- Results Summary Bar -->
+      <div class="results-summary-bar">
+        <span id="explorer-results-count" style="font-weight: 700;">Đang tải...</span>
+        <div>
+          <button class="btn-text" id="btn-expand-all">Mở tất cả</button>
+          <button class="btn-text" id="btn-collapse-all">Thu gọn tất cả</button>
+        </div>
+      </div>
+
+      <!-- Question List Container -->
+      <div class="question-list-container" id="explorer-questions-list">
+        <!-- Rendered accordion cards -->
+      </div>
+    </section>
+
+    <!-- 3. QUIZ & PRACTICE SECTION -->
+    <section class="view-section" id="section-quiz">
+      <div class="quiz-wrapper">
+
+        <!-- Setup Screen -->
+        <div class="quiz-setup-card" id="quiz-setup-card">
+          <h2 class="quiz-setup-title">Luyện Thi & Tự Đánh Giá Năng Lực</h2>
+          <p style="color: var(--text-muted);">
+            Luyện tập phỏng vấn theo các bộ câu hỏi ngẫu nhiên được lựa chọn theo cấp bậc và chủ đề mong muốn.
+          </p>
+
+          <div class="setup-grid">
+            <div class="setup-field">
+              <label class="setup-label">Số lượng câu hỏi:</label>
+              <select id="quiz-select-count" class="custom-select">
+                <option value="10">10 câu (Khởi động nhanh)</option>
+                <option value="20" selected>20 câu (Tiêu chuẩn phỏng vấn)</option>
+                <option value="30">30 câu (Chuyên sâu)</option>
+                <option value="50">50 câu (Thử thách toàn diện)</option>
+              </select>
+            </div>
+
+            <div class="setup-field">
+              <label class="setup-label">Cấp bậc mục tiêu:</label>
+              <select id="quiz-select-level" class="custom-select">
+                <option value="all" selected>Tất cả cấp bậc</option>
+                <option value="fresher">Fresher / Intern</option>
+                <option value="junior">Junior Developer</option>
+                <option value="middle">Middle Developer</option>
+                <option value="senior">Senior / Tech Lead</option>
+              </select>
+            </div>
+
+            <div class="setup-field">
+              <label class="setup-label">Chuyên đề:</label>
+              <select id="quiz-select-category" class="custom-select">
+                <option value="all" selected>Hỗn hợp tất cả chủ đề</option>
+                <option value="Dart Fundamentals">Dart Fundamentals</option>
+                <option value="Widgets & UI Core">Widgets & UI Core</option>
+                <option value="State Management">State Management (BLoC/Riverpod)</option>
+                <option value="Kiến Trúc & Clean Code">Kiến Trúc & Clean Code</option>
+                <option value="Tối Ưu Hiệu Năng">Tối Ưu Hiệu Năng (DevTools/Memory)</option>
+                <option value="Bất Đồng Bộ & Isolates">Bất Đồng Bộ & Isolates</option>
+                <option value="Mạng & Lưu Trữ">Mạng & Lưu Trữ (Dio/Hive/SQLite)</option>
+              </select>
+            </div>
+          </div>
+
+          <button class="btn-start-quiz" id="btn-start-quiz">
+            <span>🚀 Bắt Đầu Bài Thi</span>
+          </button>
+        </div>
+
+        <!-- Active Quiz Screen -->
+        <div class="quiz-active-card" id="quiz-active-card">
+          <div class="quiz-timer-bar">
+            <div class="meta-badges">
+              <span class="badge" id="quiz-level-badge">Junior</span>
+              <span class="badge badge-category" id="quiz-category-badge">Dart</span>
+            </div>
+            <div class="progress-header" style="gap: 12px;">
+              <span id="quiz-q-counter" style="font-weight: 700;">Câu 1 / 20</span>
+            </div>
+          </div>
+
+          <div class="progress-track">
+            <div class="progress-fill" id="quiz-progress-fill" style="width: 5%;"></div>
+          </div>
+
+          <div class="quiz-q-box">
+            <h3 class="quiz-q-title" id="quiz-q-title">Nội dung câu hỏi thi...</h3>
+          </div>
+
+          <button class="btn-eval btn-eval-flip" id="btn-quiz-show-answer" style="align-self: flex-start;">
+            👁️ Hiện đáp án tham khảo
+          </button>
+
+          <div class="quiz-answer-toggle-box" id="quiz-answer-box">
+            <div class="markdown-body" id="quiz-ans-body">
+              <!-- Rendered answer -->
+            </div>
+          </div>
+
+          <!-- Self Evaluation Row -->
+          <div class="quiz-rating-row" id="quiz-rating-row" style="display: none;">
+            <button class="btn-rate btn-rate-0" id="btn-rate-0">
+              <span style="font-size: 1.1rem;">❌</span>
+              <span>Chưa trả lời được (0%)</span>
+            </button>
+            <button class="btn-rate btn-rate-50" id="btn-rate-50">
+              <span style="font-size: 1.1rem;">⚠️</span>
+              <span>Đúng một phần (50%)</span>
+            </button>
+            <button class="btn-rate btn-rate-100" id="btn-rate-100">
+              <span style="font-size: 1.1rem;">✅</span>
+              <span>Thuộc hoàn toàn (100%)</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Quiz Summary / Results Screen -->
+        <div class="quiz-setup-card" id="quiz-summary-card" style="display: none; text-align: center; align-items: center;">
+          <h2 style="font-size: 2rem;">🏆 Kết Quả Bài Thi</h2>
+          <div style="font-size: 4rem; font-weight: 800; background: linear-gradient(90deg, #38bdf8, #818cf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent;" id="quiz-final-score">
+            85%
+          </div>
+          <p id="quiz-final-msg" style="font-size: 1.1rem; color: var(--text-muted); max-width: 500px;">
+            Xuất sắc! Bạn đã hoàn thành rất tốt bài ôn tập phỏng vấn!
+          </p>
+          <button class="btn-start-quiz" id="btn-quiz-restart" style="margin-top: 10px;">
+            <span>🔄 Làm Bài Khác</span>
+          </button>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 4. HR & RECRUITER SCREENING SECTION -->
+    <section class="view-section" id="section-hr">
+      <div class="hr-wrapper">
+        <h1 class="explorer-title">Góc Tuyển Dụng & Sàng Lọc Ứng Viên (Dành Cho HR)</h1>
+        <p class="explorer-subtitle">
+          Bộ câu hỏi phỏng vấn nhanh 10-15 phút (Screening Call) và công cụ tính điểm năng lực ứng viên Flutter theo chuẩn thị trường Việt Nam.
+        </p>
+
+        <!-- HR Candidate Scoring Calculator -->
+        <div class="filter-panel" style="margin-top: 24px;">
+          <h2 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 8px;">📊 Bảng Điểm Đánh Giá Ứng Viên Nhanh (Candidate Scoring Rubric)</h2>
+          <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 16px;">
+            Chấm điểm từng tiêu chí từ 1 (Yếu) đến 5 (Xuất sắc) để hệ thống tự động đưa ra kết luận đề xuất tuyển dụng:
+          </p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px;">
+            <div>
+              <label style="font-size: 0.82rem; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 6px;">1. Dart Core & OOP (1-5đ):</label>
+              <select id="hr-val-dart" class="custom-select hr-calc-slider" style="width: 100%;">
+                <option value="1">1đ - Chưa vững Dart căn bản</option>
+                <option value="2">2đ - Biết cú pháp cơ bản</option>
+                <option value="3" selected>3đ - Thành thạo async/null safety</option>
+                <option value="4">4đ - Hiểu sâu Event loop, Mixins</option>
+                <option value="5">5đ - Xuất sắc (Isolates, GC)</option>
+              </select>
+            </div>
+
+            <div>
+              <label style="font-size: 0.82rem; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 6px;">2. Widget & Lifecycle (1-5đ):</label>
+              <select id="hr-val-widget" class="custom-select hr-calc-slider" style="width: 100%;">
+                <option value="1">1đ - Mơ hồ về StatefulWidget</option>
+                <option value="2">2đ - Biết initState, build cơ bản</option>
+                <option value="3" selected>3đ - Hiểu BuildContext, Keys</option>
+                <option value="4">4đ - Vận dụng tốt CustomPaint, Layout</option>
+                <option value="5">5đ - Nắm sâu RenderObject Tree</option>
+              </select>
+            </div>
+
+            <div>
+              <label style="font-size: 0.82rem; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 6px;">3. State Management (1-5đ):</label>
+              <select id="hr-val-state" class="custom-select hr-calc-slider" style="width: 100%;">
+                <option value="1">1đ - Chỉ biết setState()</option>
+                <option value="2">2đ - Biết cơ bản GetX/Provider</option>
+                <option value="3" selected>3đ - Làm tốt BLoC hoặc Riverpod</option>
+                <option value="4">4đ - Phân tích chuẩn ưu/nhược điểm</option>
+                <option value="5">5đ - Clean Arch với State Manager</option>
+              </select>
+            </div>
+
+            <div>
+              <label style="font-size: 0.82rem; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 6px;">4. Tối Ưu & Debug (1-5đ):</label>
+              <select id="hr-val-perf" class="custom-select hr-calc-slider" style="width: 100%;">
+                <option value="1">1đ - Code dễ bị drop frame</option>
+                <option value="2">2đ - Biết dùng const constructor</option>
+                <option value="3" selected>3đ - Biết dispose controller, stream</option>
+                <option value="4">4đ - Dùng DevTools profile memory</option>
+                <option value="5">5đ - Chuyên gia tối ưu Impeller/FPS</option>
+              </select>
+            </div>
+
+            <div>
+              <label style="font-size: 0.82rem; font-weight: 700; color: var(--text-muted); display: block; margin-bottom: 6px;">5. Thái Độ & Soft Skills (1-5đ):</label>
+              <select id="hr-val-soft" class="custom-select hr-calc-slider" style="width: 100%;">
+                <option value="1">1đ - Thiếu chủ động, trả lời ấp úng</option>
+                <option value="2">2đ - Trả lời trung bình</option>
+                <option value="3" selected>3đ - Rõ ràng, thái độ tích cực</option>
+                <option value="4">4đ - Tư duy logic, tiếng Anh tốt</option>
+                <option value="5">5đ - Năng lượng cao, tố chất Lead</option>
+              </select>
+            </div>
+          </div>
+
+          <div style="margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; flex-wrap: gap;">
+            <div>
+              <span style="font-size: 0.9rem; color: var(--text-muted);">Tổng điểm đánh giá:</span>
+              <strong id="hr-total-score-display" style="font-size: 1.3rem; margin-left: 8px; color: var(--color-primary-light);">15 / 25 (60%)</strong>
+            </div>
+            <div>
+              <span style="font-size: 0.9rem; color: var(--text-muted); margin-right: 8px;">Kết luận đề xuất:</span>
+              <strong id="hr-rec-verdict" style="font-size: 1.05rem; font-weight: 800; color: #fbbf24;">⚠️ CÂN NHẮC - PHỎNG VẤN VÒNG 2</strong>
+            </div>
+          </div>
+        </div>
+
+        <!-- Screening Criteria Cards -->
+        <div class="hr-card-grid">
+          <div class="hr-box">
+            <div class="hr-box-title">
+              <span class="badge badge-level-fresher">INTERN / FRESHER</span>
+              <span>Kiểm Tra Nền Tảng</span>
+            </div>
+            <ul class="hr-checklist">
+              <li class="hr-check-item">
+                <input type="checkbox" class="hr-check-box">
+                <span><strong>final vs const:</strong> final biết giá trị lúc chạy, const biết lúc build.</span>
+              </li>
+              <li class="hr-check-item">
+                <input type="checkbox" class="hr-check-box">
+                <span><strong>Stateless vs Stateful:</strong> Biết khi nào dùng StatelessWidget (tĩnh) và StatefulWidget (có state).</span>
+              </li>
+              <li class="hr-check-item">
+                <input type="checkbox" class="hr-check-box">
+                <span><strong>Hot Reload vs Hot Restart:</strong> Hot reload giữ state, hot restart xóa state về ban đầu.</span>
+              </li>
+              <li class="hr-check-item">
+                <input type="checkbox" class="hr-check-box">
+                <span><strong>Vòng đời State:</strong> Nêu đúng thứ tự <code>initState()</code>, <code>build()</code>, <code>dispose()</code>.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="hr-box">
+            <div class="hr-box-title">
+              <span class="badge badge-level-middle">MIDDLE DEVELOPER</span>
+              <span>Kiểm Tra Thực Chiến</span>
+            </div>
+            <ul class="hr-checklist">
+              <li class="hr-check-item">
+                <input type="checkbox" class="hr-check-box">
+                <span><strong>State Management:</strong> Hiểu sâu Provider, Riverpod, BLoC (biết ưu/nhược điểm từng loại).</span>
+              </li>
+              <li class="hr-check-item">
+                <input type="checkbox" class="hr-check-box">
+                <span><strong>Asynchronous:</strong> Phân biệt <code>Future</code> (đơn lẻ) và <code>Stream</code> (luồng liên tục).</span>
+              </li>
+              <li class="hr-check-item">
+                <input type="checkbox" class="hr-check-box">
+                <span><strong>Memory Leaks:</strong> Luôn gọi <code>dispose()</code> cho Controllers, Streams, Animation.</span>
+              </li>
+              <li class="hr-check-item">
+                <input type="checkbox" class="hr-check-box">
+                <span><strong>Mạng & Cache:</strong> Thành thạo Dio (Interceptors), SQLite hoặc Hive database.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="hr-box">
+            <div class="hr-box-title">
+              <span class="badge badge-level-senior">SENIOR / TECH LEAD</span>
+              <span>Kiến Trúc & Tối Ưu</span>
+            </div>
+            <ul class="hr-checklist">
+              <li class="hr-check-item">
+                <input type="checkbox" class="hr-check-box">
+                <span><strong>Kiến trúc Clean:</strong> Tách 3 tầng Presentation, Domain, Data; Dependency Inversion.</span>
+              </li>
+              <li class="hr-check-item">
+                <input type="checkbox" class="hr-check-box">
+                <span><strong>Tối ưu Frame (FPS):</strong> Dùng Flutter DevTools phân tích render jank và memory leaks.</span>
+              </li>
+              <li class="hr-check-item">
+                <input type="checkbox" class="hr-check-box">
+                <span><strong>Đa luồng Isolate:</strong> Chạy tác vụ nặng qua <code>compute()</code> hoặc <code>Isolate.spawn()</code>.</span>
+              </li>
+              <li class="hr-check-item">
+                <input type="checkbox" class="hr-check-box">
+                <span><strong>Native Channel:</strong> Viết MethodChannel giao tiếp Swift (iOS) và Kotlin (Android).</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 5. WIKI & SOURCES SECTION -->
+    <section class="view-section" id="section-wiki">
+      <div class="wiki-wrapper">
+        <h1 class="explorer-title">Kho Tài Liệu Nguồn & Tiêu Chuẩn Chính Thức Google</h1>
+        <p class="explorer-subtitle">
+          Danh mục 14 kho lưu trữ GitHub mã nguồn mở, Google Dart FAQ, và hơn 170 tài liệu Wiki kiến trúc Flutter Framework.
+        </p>
+
+        <div style="display: flex; gap: 12px; margin: 24px 0 16px; flex-wrap: wrap;">
+          <a href="assets/04_official_standards/01_dart_faq.md" target="_blank" class="btn-eval btn-eval-flip" style="text-decoration: none;">
+            📄 Xem Dart FAQ Trực Tiếp
+          </a>
+          <a href="assets/05_hr_screening_cheatsheet.md" target="_blank" class="btn-eval btn-eval-flip" style="text-decoration: none;">
+            📄 Xem HR Screening Cheat-sheet
+          </a>
+          <a href="assets/README.md" target="_blank" class="btn-eval btn-eval-flip" style="text-decoration: none;">
+            📂 Xem Master README Assets
+          </a>
+        </div>
+
+        <h2 style="font-size: 1.35rem; font-weight: 800; margin: 24px 0 12px;">🌟 14 GitHub Repositories Hàng Đầu</h2>
+        <div class="repo-cards-grid">
+          <div class="repo-card">
+            <div>
+              <div class="repo-name">power19942 / flutter-interview-questions</div>
+              <p class="repo-desc">⭐ 660+ Stars. Kho câu hỏi phỏng vấn Flutter lớn nhất trên GitHub kèm đáp án chi tiết từ cơ bản đến nâng cao.</p>
+            </div>
+            <a href="assets/01_github_repositories/01_power19942_flutter-interview-questions/README.md" target="_blank" class="card-source-link">Mở tài liệu repo ↗</a>
+          </div>
+
+          <div class="repo-card">
+            <div>
+              <div class="repo-name">whatsupcoders / Flutter-Interview-Questions</div>
+              <p class="repo-desc">⭐ 360+ Stars. Bộ câu hỏi chuẩn hóa được thiết kế chuyên biệt để HR và Tech Lead phỏng vấn ứng viên.</p>
+            </div>
+            <a href="assets/01_github_repositories/02_whatsupcoders_Flutter-Interview-Questions/README.md" target="_blank" class="card-source-link">Mở tài liệu repo ↗</a>
+          </div>
+
+          <div class="repo-card">
+            <div>
+              <div class="repo-name">debasmitasarkar / flutter_interview_guide_2026</div>
+              <p class="repo-desc">⭐ 340+ Stars. Cẩm nang ôn luyện toàn diện cập nhật năm 2026 chia 4 cấp độ (Junior, Mid, Senior, Expert).</p>
+            </div>
+            <a href="assets/01_github_repositories/03_debasmitasarkar_flutter_interview_guide_2026/README.md" target="_blank" class="card-source-link">Mở tài liệu repo ↗</a>
+          </div>
+
+          <div class="repo-card">
+            <div>
+              <div class="repo-name">justsandip / flutter-interview-questions</div>
+              <p class="repo-desc">⭐ 250+ Stars. Hơn 100 câu hỏi phỏng vấn phổ biến kèm đáp án ngắn gọn, tập trung trọng tâm.</p>
+            </div>
+            <a href="assets/01_github_repositories/04_justsandip_flutter-interview-questions/README.md" target="_blank" class="card-source-link">Mở tài liệu repo ↗</a>
+          </div>
+
+          <div class="repo-card">
+            <div>
+              <div class="repo-name">mahmoodhamdi / Flutter-Developer-Interview-Questions</div>
+              <p class="repo-desc">⭐ 90+ Stars. Bộ câu hỏi toàn diện về OOP, Flutter Core, State Management, Clean Architecture và Testing.</p>
+            </div>
+            <a href="assets/01_github_repositories/05_mahmoodhamdi_Flutter-Developer-Interview-Questions/README.md" target="_blank" class="card-source-link">Mở tài liệu repo ↗</a>
+          </div>
+
+          <div class="repo-card">
+            <div>
+              <div class="repo-name">avoloft / flutter-dart-interview-advanced</div>
+              <p class="repo-desc">Câu hỏi phỏng vấn chuyên sâu cho Senior: Mixins, Event Loops, Isolates, Memory Leaks, Code Prediction.</p>
+            </div>
+            <a href="assets/01_github_repositories/14_avoloft_flutter-dart-interview-advanced/README.md" target="_blank" class="card-source-link">Mở tài liệu repo ↗</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="site-footer">
+    <p><strong>Flutter Interview Pro Suite</strong> • Dữ liệu được trích xuất và chuẩn hóa từ [flutter_dev_source.txt] • Bản quyền tài liệu thuộc về cộng đồng tác giả mở.</p>
+  </footer>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-notification" id="toast-notification"></div>
+
+  <!-- ==================== LOCAL DATABASE MODAL ==================== -->
+  <div class="modal-backdrop" id="modal-db-manager">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div class="modal-title">
+          <span style="font-size: 1.5rem;">💾</span>
+          <div>
+            <h3>Quản Lý Local Database (IndexedDB)</h3>
+            <p class="modal-subtitle">Trạng thái ôn tập, danh sách Đã thuộc / Chưa thuộc được lưu an toàn trong trình duyệt của bạn</p>
+          </div>
+        </div>
+        <button class="modal-close-btn" id="btn-close-db-modal">&times;</button>
+      </div>
+
+      <div class="modal-body">
+        <div class="db-stats-grid">
+          <div class="db-stat-card">
+            <span class="db-stat-num" id="db-stat-mastered">0</span>
+            <span class="db-stat-label">✅ Đã thuộc</span>
+          </div>
+          <div class="db-stat-card">
+            <span class="db-stat-num" id="db-stat-hard">0</span>
+            <span class="db-stat-label">❌ Chưa thuộc</span>
+          </div>
+          <div class="db-stat-card">
+            <span class="db-stat-num" id="db-stat-bookmarks">0</span>
+            <span class="db-stat-label">★ Yêu thích</span>
+          </div>
+          <div class="db-stat-card">
+            <span class="db-stat-num" id="db-stat-engine" style="color: #34d399;">IndexedDB</span>
+            <span class="db-stat-label">Cơ sở dữ liệu</span>
+          </div>
+        </div>
+
+        <div class="db-info-box">
+          <div class="db-info-row">
+            <span>Tên CSDL:</span>
+            <strong>FlutterInterviewDB (v1.0)</strong>
+          </div>
+          <div class="db-info-row">
+            <span>Cơ chế bảo vệ:</span>
+            <span class="text-emerald">🟢 Dual-Sync (IndexedDB + LocalStorage)</span>
+          </div>
+          <div class="db-info-row">
+            <span>Trạng thái kết nối:</span>
+            <span id="db-stat-conn-status" style="color: #38bdf8; font-weight: 600;">Sẵn sàng hoạt động</span>
+          </div>
+        </div>
+
+        <div class="db-actions-section">
+          <h4>Sao lưu & Khôi phục dữ liệu</h4>
+          <p class="text-muted" style="font-size: 0.82rem; margin-bottom: 12px;">Xuất file JSON để chuyển sang điện thoại hoặc lưu trữ an toàn khi xóa cache trình duyệt.</p>
+          
+          <div class="db-btn-row">
+            <button class="btn-db-action btn-db-export" id="btn-db-export">
+              <span>📥</span> Xuất File Sao Lưu (JSON)
+            </button>
+            <label class="btn-db-action btn-db-import" for="input-db-import-file">
+              <span>📤</span> Nhập File Sao Lưu
+              <input type="file" id="input-db-import-file" accept=".json" style="display: none;">
+            </label>
+          </div>
+
+          <div style="margin-top: 16px; border-top: 1px solid var(--border-light); padding-top: 12px; display: flex; justify-content: flex-end;">
+            <button class="btn-db-reset" id="btn-db-reset">
+              🗑️ Đặt lại toàn bộ dữ liệu CSDL
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="data/questions.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

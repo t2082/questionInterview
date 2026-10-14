@@ -1,0 +1,560 @@
+{
+  "topic": "Flutter Architecture",
+  "description": "Questions about architectural patterns, design patterns, and best practices for structuring Flutter applications.",
+  "version": "2.0.0",
+  "last_updated": "2026-05-13",
+  "flutter_version_target": "3.27",
+  "questions": [
+    {
+      "id": "architecture_001",
+      "question": "What is the Model-View-Controller (MVC) architecture?",
+      "answer": "MVC is a design pattern that separates an application into three interconnected components:\n\n- **Model:** Manages data and business logic\n- **View:** Handles the UI and presentation\n- **Controller:** Mediates between Model and View",
+      "difficulty": "beginner",
+      "tags": [
+        "architecture",
+        "mvc",
+        "design-patterns"
+      ]
+    },
+    {
+      "id": "architecture_002",
+      "question": "How does Flutter implement the Model-View-ViewModel (MVVM) architecture?",
+      "answer": "Flutter doesn't have built-in MVVM, but you can implement it using packages like Provider or Riverpod:\n\n- **Model:** Data and business logic\n- **View:** Flutter widgets\n- **ViewModel:** Manages UI state and business logic, often using ChangeNotifier or StateNotifier",
+      "difficulty": "intermediate",
+      "tags": [
+        "architecture",
+        "mvvm",
+        "provider",
+        "riverpod"
+      ]
+    },
+    {
+      "id": "architecture_003",
+      "question": "What is the purpose of the BLoC pattern in Flutter?",
+      "answer": "The BLoC (Business Logic Component) pattern:\n\n- Separates business logic from UI\n- Manages state and events using Streams\n- Improves testability and reusability",
+      "difficulty": "intermediate",
+      "tags": [
+        "architecture",
+        "bloc",
+        "state-management"
+      ]
+    },
+    {
+      "id": "architecture_004",
+      "question": "How do you implement a clean architecture in Flutter?",
+      "answer": "Implement clean architecture by separating the app into layers:\n\n1. Presentation Layer (UI)\n2. Domain Layer (Business Logic)\n3. Data Layer (Data Sources)\n4. Core/Common (Shared Utilities)\n\nEnsure dependencies point inwards, with the domain layer at the center.",
+      "difficulty": "advanced",
+      "tags": [
+        "architecture",
+        "clean-architecture",
+        "layers"
+      ]
+    },
+    {
+      "id": "architecture_005",
+      "question": "What are the benefits of using the Redux pattern in Flutter?",
+      "answer": "Redux benefits include:\n\n- Predictable state management\n- Single source of truth for app state\n- Time-travel debugging\n- Easier to understand data flow",
+      "difficulty": "intermediate",
+      "tags": [
+        "architecture",
+        "redux",
+        "state-management"
+      ]
+    },
+    {
+      "id": "architecture_006",
+      "question": "How do you structure a Flutter project for maintainability?",
+      "answer": "Structure a Flutter project with:\n\n- Feature-based organization\n- Separate directories for models, views, controllers/blocs, services\n- Clear layer separation (presentation, domain, data)\n- Consistent naming conventions\n- Modularization for larger projects",
+      "difficulty": "intermediate",
+      "tags": [
+        "architecture",
+        "project-structure",
+        "best-practices"
+      ]
+    },
+    {
+      "id": "architecture_007",
+      "question": "What is Dependency Injection, and how is it implemented in Flutter?",
+      "answer": "Dependency Injection is a technique for achieving Inversion of Control. In Flutter:\n\n- Use packages like `get_it` or `injectable`\n- Register dependencies in a service locator\n- Inject dependencies into classes or widgets as needed",
+      "difficulty": "intermediate",
+      "tags": [
+        "architecture",
+        "dependency-injection",
+        "get-it"
+      ]
+    },
+    {
+      "id": "architecture_008",
+      "question": "How does the Provider package support state management?",
+      "answer": "Provider supports state management by:\n\n- Allowing widgets to listen to shared state objects\n- Efficiently rebuilding only affected widgets\n- Providing a way to access data without passing it explicitly through the widget tree",
+      "difficulty": "intermediate",
+      "tags": [
+        "architecture",
+        "provider",
+        "state-management"
+      ]
+    },
+    {
+      "id": "architecture_009",
+      "question": "What is the role of repositories in a clean architecture?",
+      "answer": "Repositories in clean architecture:\n\n- Abstract data sources (API, database, etc.)\n- Provide a clean API for the domain layer\n- Handle data caching and fetching strategies\n- Decouple business logic from data access implementation",
+      "difficulty": "intermediate",
+      "tags": [
+        "architecture",
+        "clean-architecture",
+        "repository-pattern"
+      ]
+    },
+    {
+      "id": "architecture_010",
+      "question": "How do you implement unit testing in a Flutter project?",
+      "answer": "Implement unit testing in Flutter by:\n\n- Using the `test` package\n- Writing tests for individual units of code (functions, classes)\n- Mocking dependencies using `mockito` or `mocktail`\n- Running tests with `flutter test` command",
+      "difficulty": "intermediate",
+      "tags": [
+        "architecture",
+        "testing",
+        "unit-tests"
+      ]
+    },
+    {
+      "id": "architecture_011",
+      "question": "What is the importance of separation of concerns in app architecture?",
+      "answer": "Separation of concerns:\n\n- Improves code maintainability\n- Enhances testability\n- Increases code reusability\n- Makes the codebase easier to understand and modify",
+      "difficulty": "beginner",
+      "tags": [
+        "architecture",
+        "best-practices",
+        "separation-of-concerns"
+      ]
+    },
+    {
+      "id": "architecture_012",
+      "question": "How do you use the Riverpod package for state management?",
+      "answer": "Use Riverpod for state management by:\n\n- Defining providers for different states\n- Using ConsumerWidget or Consumer to listen to providers\n- Updating state through StateNotifier or other provider types\n- Leveraging Riverpod's auto-dispose and family features",
+      "difficulty": "intermediate",
+      "tags": [
+        "architecture",
+        "riverpod",
+        "state-management"
+      ]
+    },
+    {
+      "id": "architecture_013",
+      "question": "What is the difference between Stateful and Stateless widgets in architecture?",
+      "answer": "- **Stateful Widgets:** Maintain mutable state, can be rebuilt multiple times\n- **Stateless Widgets:** Immutable, rebuilt only when external parameters change\n- Affects how state is managed and updated in the app's architecture",
+      "difficulty": "beginner",
+      "tags": [
+        "architecture",
+        "widgets",
+        "state-management"
+      ]
+    },
+    {
+      "id": "architecture_014",
+      "question": "How do you structure the data layer in a Flutter app?",
+      "answer": "Structure the data layer with:\n\n- Repositories (abstract data access)\n- Data sources (API clients, database helpers)\n- Models (DTOs for API, domain models for business logic)\n- Mappers (to convert between different model types)",
+      "difficulty": "intermediate",
+      "tags": [
+        "architecture",
+        "data-layer",
+        "clean-architecture"
+      ]
+    },
+    {
+      "id": "architecture_015",
+      "question": "What is the role of interfaces in Flutter architecture?",
+      "answer": "Interfaces in Flutter architecture:\n\n- Define contracts for classes\n- Promote loose coupling between components\n- Facilitate easier testing through mocking\n- Enable dependency inversion principle",
+      "difficulty": "intermediate",
+      "tags": [
+        "architecture",
+        "interfaces",
+        "solid"
+      ]
+    },
+    {
+      "id": "architecture_016",
+      "question": "How do you handle stateful logic in functional programming style?",
+      "answer": "Handle stateful logic functionally by:\n\n- Using immutable state objects\n- Applying pure functions to transform state\n- Leveraging packages like `dartz` for functional programming concepts\n- Using state containers like Redux or BLoC with immutable states",
+      "difficulty": "advanced",
+      "tags": [
+        "architecture",
+        "functional-programming",
+        "immutability"
+      ]
+    },
+    {
+      "id": "architecture_017",
+      "question": "What is the purpose of the presentation layer in clean architecture?",
+      "answer": "The presentation layer in clean architecture:\n\n- Handles UI logic and state management\n- Interacts with the domain layer to fetch and manipulate data\n- Manages user input and output\n- Often implements patterns like MVVM or BLoC",
+      "difficulty": "intermediate",
+      "tags": [
+        "architecture",
+        "clean-architecture",
+        "presentation-layer"
+      ]
+    },
+    {
+      "id": "architecture_018",
+      "question": "How do you implement event-driven architecture in Flutter?",
+      "answer": "Implement event-driven architecture by:\n\n- Using Streams and StreamControllers\n- Implementing the BLoC pattern\n- Leveraging event bus libraries like `event_bus`\n- Using state management solutions that support events (e.g., Redux)",
+      "difficulty": "advanced",
+      "tags": [
+        "architecture",
+        "event-driven",
+        "streams"
+      ]
+    },
+    {
+      "id": "architecture_019",
+      "question": "What is the importance of immutability in state management?",
+      "answer": "Immutability in state management:\n\n- Prevents unexpected side effects\n- Simplifies debugging and testing\n- Improves performance through efficient change detection\n- Supports functional programming paradigms",
+      "difficulty": "intermediate",
+      "tags": [
+        "architecture",
+        "immutability",
+        "state-management"
+      ]
+    },
+    {
+      "id": "architecture_020",
+      "question": "How do you organize services in a Flutter app?",
+      "answer": "Organize services by:\n\n- Creating a separate `services` directory\n- Grouping related services (e.g., `api_services`, `local_storage_services`)\n- Using dependency injection to provide services\n- Implementing service interfaces for better testability",
+      "difficulty": "intermediate",
+      "tags": [
+        "architecture",
+        "services",
+        "organization"
+      ]
+    },
+    {
+      "id": "architecture_021",
+      "question": "What is the role of middleware in state management?",
+      "answer": "Middleware in state management:\n\n- Intercepts actions before they reach the reducer (in Redux-like patterns)\n- Handles side effects (e.g., API calls, logging)\n- Modifies, delays, or cancels actions\n- Enhances the capabilities of the state management system",
+      "difficulty": "advanced",
+      "tags": [
+        "architecture",
+        "middleware",
+        "redux"
+      ]
+    },
+    {
+      "id": "architecture_022",
+      "question": "How do you implement reactive programming with Flutter?",
+      "answer": "Implement reactive programming in Flutter by:\n\n- Using Streams and StreamBuilders\n- Leveraging RxDart for advanced reactive programming\n- Implementing BLoC pattern with reactive streams\n- Using reactive state management solutions like MobX",
+      "difficulty": "intermediate",
+      "tags": [
+        "architecture",
+        "reactive-programming",
+        "rxdart"
+      ]
+    },
+    {
+      "id": "architecture_023",
+      "question": "What is the purpose of the use case layer in clean architecture?",
+      "answer": "The use case layer in clean architecture:\n\n- Encapsulates business logic\n- Orchestrates the flow of data between the outer layers\n- Defines the core functionality of the application\n- Acts as a barrier between presentation and data layers",
+      "difficulty": "intermediate",
+      "tags": [
+        "architecture",
+        "clean-architecture",
+        "use-cases"
+      ]
+    },
+    {
+      "id": "architecture_024",
+      "question": "How do you manage dependencies with get_it?",
+      "answer": "Manage dependencies with get_it by:\n\n- Registering dependencies in a central location\n- Using `GetIt.instance` to access the service locator\n- Injecting dependencies into classes or widgets as needed\n- Leveraging factory, singleton, and lazy singleton registrations",
+      "difficulty": "intermediate",
+      "tags": [
+        "architecture",
+        "dependency-injection",
+        "get-it"
+      ]
+    },
+    {
+      "id": "architecture_025",
+      "question": "What is the bloc package, and how does it help with architecture?",
+      "answer": "The bloc package:\n\n- Implements the BLoC (Business Logic Component) pattern\n- Separates business logic from UI\n- Manages state and events using Streams\n- Provides tools for easier implementation of the BLoC pattern",
+      "difficulty": "intermediate",
+      "tags": [
+        "architecture",
+        "bloc",
+        "state-management"
+      ]
+    },
+    {
+      "id": "architecture_026",
+      "question": "How do you structure your app for scalability?",
+      "answer": "Structure for scalability by:\n\n- Using a modular architecture\n- Implementing clean architecture principles\n- Leveraging feature-based organization\n- Using dependency injection for loose coupling\n- Implementing clear boundaries between layers",
+      "difficulty": "advanced",
+      "tags": [
+        "architecture",
+        "scalability",
+        "modular"
+      ]
+    },
+    {
+      "id": "architecture_027",
+      "question": "What is the Observer pattern, and how is it implemented in Flutter?",
+      "answer": "The Observer pattern:\n\n- Defines a one-to-many dependency between objects\n- Is implemented in Flutter through Streams, ChangeNotifier, or ValueNotifier\n- Allows widgets to react to state changes efficiently\n- Is the basis for many state management solutions in Flutter",
+      "difficulty": "intermediate",
+      "tags": [
+        "architecture",
+        "design-patterns",
+        "observer"
+      ]
+    },
+    {
+      "id": "architecture_028",
+      "question": "How do you implement an API service layer in a Flutter app?",
+      "answer": "Implement an API service layer by:\n\n- Creating an abstract API client interface\n- Implementing concrete API clients (e.g., using http or dio packages)\n- Using repositories to abstract API calls\n- Handling serialization/deserialization of API responses\n- Implementing error handling and retry logic",
+      "difficulty": "intermediate",
+      "tags": [
+        "architecture",
+        "api",
+        "networking"
+      ]
+    },
+    {
+      "id": "architecture_029",
+      "question": "What are the principles of SOLID design in Flutter?",
+      "answer": "SOLID principles in Flutter:\n\n- **S**ingle Responsibility: Each class has one responsibility\n- **O**pen/Closed: Open for extension, closed for modification\n- **L**iskov Substitution: Subtypes must be substitutable for their base types\n- **I**nterface Segregation: Many specific interfaces are better than one general interface\n- **D**ependency Inversion: Depend on abstractions, not concretions",
+      "difficulty": "intermediate",
+      "tags": [
+        "architecture",
+        "solid",
+        "design-principles"
+      ]
+    },
+    {
+      "id": "architecture_030",
+      "question": "How do you use the http package in a layered architecture?",
+      "answer": "Use the http package in a layered architecture by:\n\n- Implementing it in the data layer\n- Creating an abstract HTTP client interface\n- Implementing the interface with the http package\n- Using dependency injection to provide the HTTP client to repositories\n- Keeping HTTP-specific code isolated from business logic",
+      "difficulty": "intermediate",
+      "tags": [
+        "architecture",
+        "http",
+        "networking"
+      ]
+    },
+    {
+      "id": "architecture_031",
+      "question": "What is the purpose of the data layer in a clean architecture?",
+      "answer": "The data layer in clean architecture:\n\n- Handles data operations (fetching, storing, caching)\n- Implements repositories and data sources\n- Manages data models and DTOs\n- Abstracts the data source from the domain layer\n- Handles data serialization and deserialization",
+      "difficulty": "intermediate",
+      "tags": [
+        "architecture",
+        "clean-architecture",
+        "data-layer"
+      ]
+    },
+    {
+      "id": "architecture_032",
+      "question": "How do you manage side effects in state management?",
+      "answer": "Manage side effects in state management by:\n\n- Using middleware (in Redux-like patterns)\n- Implementing use cases or interactors (in clean architecture)\n- Leveraging reactive programming techniques (e.g., RxDart)\n- Using packages like flutter_hooks for side effect management in widgets",
+      "difficulty": "advanced",
+      "tags": [
+        "architecture",
+        "side-effects",
+        "state-management"
+      ]
+    },
+    {
+      "id": "architecture_033",
+      "question": "What are the benefits of using dartz for functional programming in Flutter?",
+      "answer": "Benefits of using dartz include:\n\n- Provides functional programming constructs (e.g., Either, Option)\n- Improves error handling with Either type\n- Enhances code clarity and safety\n- Facilitates writing more predictable and testable code",
+      "difficulty": "advanced",
+      "tags": [
+        "architecture",
+        "dartz",
+        "functional-programming"
+      ]
+    },
+    {
+      "id": "architecture_034",
+      "question": "How do you implement caching in a Flutter app?",
+      "answer": "Implement caching in Flutter by:\n\n- Using local storage solutions (e.g., SharedPreferences, Hive)\n- Implementing in-memory caches for frequently accessed data\n- Creating a caching layer in repositories\n- Using packages like flutter_cache_manager for file caching\n- Implementing time-based or version-based cache invalidation",
+      "difficulty": "intermediate",
+      "tags": [
+        "architecture",
+        "caching",
+        "performance"
+      ]
+    },
+    {
+      "id": "architecture_035",
+      "question": "What is the role of the domain layer in a clean architecture?",
+      "answer": "The domain layer in clean architecture:\n\n- Contains the core business logic and rules\n- Defines entities and use cases\n- Is independent of other layers and frameworks\n- Specifies interfaces that outer layers must implement\n- Represents the heart of the application",
+      "difficulty": "intermediate",
+      "tags": [
+        "architecture",
+        "clean-architecture",
+        "domain-layer"
+      ]
+    },
+    {
+      "id": "architecture_036",
+      "question": "How do you handle asynchronous programming in Flutter?",
+      "answer": "Handle asynchronous programming in Flutter by:\n\n- Using async/await syntax\n- Leveraging Futures and Streams\n- Implementing the FutureBuilder and StreamBuilder widgets\n- Using packages like RxDart for advanced reactive programming\n- Handling errors and edge cases in asynchronous operations",
+      "difficulty": "beginner",
+      "tags": [
+        "architecture",
+        "async",
+        "futures"
+      ]
+    },
+    {
+      "id": "architecture_037",
+      "question": "What is the purpose of testing in app architecture?",
+      "answer": "Testing in app architecture:\n\n- Ensures code correctness and reliability\n- Facilitates refactoring and maintenance\n- Serves as documentation for expected behavior\n- Improves overall code quality\n- Catches bugs early in the development process",
+      "difficulty": "beginner",
+      "tags": [
+        "architecture",
+        "testing",
+        "best-practices"
+      ]
+    },
+    {
+      "id": "architecture_038",
+      "question": "How do you create and manage states in a Flutter app?",
+      "answer": "Create and manage states in Flutter by:\n\n- Using setState for simple local state\n- Implementing state management solutions (e.g., Provider, Riverpod, BLoC)\n- Separating UI state from business logic\n- Using immutable state objects\n- Implementing state restoration for app lifecycle management",
+      "difficulty": "intermediate",
+      "tags": [
+        "architecture",
+        "state-management",
+        "widgets"
+      ]
+    },
+    {
+      "id": "architecture_039",
+      "question": "What is the importance of modularization in Flutter apps?",
+      "answer": "Modularization in Flutter apps:\n\n- Improves code organization and maintainability\n- Enables faster build times through partial compilation\n- Facilitates code sharing between projects\n- Supports better separation of concerns\n- Allows for easier testing and deployment of individual features",
+      "difficulty": "intermediate",
+      "tags": [
+        "architecture",
+        "modularization",
+        "scalability"
+      ]
+    },
+    {
+      "id": "architecture_040",
+      "question": "How do you implement a service locator pattern?",
+      "answer": "Implement a service locator pattern by:\n\n- Using packages like get_it or injectable\n- Registering dependencies in a central location\n- Accessing dependencies through the service locator\n- Using dependency injection to provide services to classes\n- Separating service interfaces from implementations",
+      "difficulty": "intermediate",
+      "tags": [
+        "architecture",
+        "service-locator",
+        "dependency-injection"
+      ]
+    },
+    {
+      "id": "architecture_041",
+      "question": "What are the key concepts of functional reactive programming (FRP)?",
+      "answer": "Key concepts of FRP include:\n\n- Streams of data\n- Pure functions for data transformation\n- Immutability\n- Declarative programming style\n- Composition of operations",
+      "difficulty": "advanced",
+      "tags": [
+        "architecture",
+        "frp",
+        "reactive-programming"
+      ]
+    },
+    {
+      "id": "architecture_042",
+      "question": "How do you manage user authentication in a Flutter app?",
+      "answer": "Manage user authentication by:\n\n- Implementing secure token-based authentication\n- Using secure storage for credentials (e.g., flutter_secure_storage)\n- Creating an auth repository to handle authentication logic\n- Implementing login, logout, and token refresh flows\n- Using interceptors for authenticated API requests",
+      "difficulty": "intermediate",
+      "tags": [
+        "architecture",
+        "authentication",
+        "security"
+      ]
+    },
+    {
+      "id": "architecture_043",
+      "question": "What is the role of the UI layer in a Flutter app?",
+      "answer": "The UI layer in a Flutter app:\n\n- Handles the presentation of data to the user\n- Manages user interactions and input\n- Implements the visual design and layout\n- Communicates with the business logic layer\n- Often uses state management solutions to reflect app state",
+      "difficulty": "beginner",
+      "tags": [
+        "architecture",
+        "ui-layer",
+        "presentation"
+      ]
+    },
+    {
+      "id": "architecture_044",
+      "question": "How do you integrate third-party libraries in your architecture?",
+      "answer": "Integrate third-party libraries by:\n\n- Creating wrappers or adapters around the library\n- Using dependency injection to provide the library\n- Implementing interfaces to abstract the library's functionality\n- Keeping library-specific code isolated in the appropriate layer\n- Considering testability and mocking of the library",
+      "difficulty": "intermediate",
+      "tags": [
+        "architecture",
+        "third-party",
+        "abstraction"
+      ]
+    },
+    {
+      "id": "architecture_045",
+      "question": "What are the design patterns commonly used in Flutter development?",
+      "answer": "Common design patterns in Flutter:\n\n- Factory Pattern\n- Singleton Pattern\n- Observer Pattern\n- Builder Pattern\n- Dependency Injection\n- Repository Pattern\n- BLoC Pattern",
+      "difficulty": "intermediate",
+      "tags": [
+        "architecture",
+        "design-patterns",
+        "best-practices"
+      ]
+    },
+    {
+      "id": "architecture_046",
+      "question": "How do you handle API response mapping in your architecture?",
+      "answer": "Handle API response mapping by:\n\n- Creating data models (DTOs) for API responses\n- Implementing mapping functions or classes\n- Using packages like json_serializable for automatic mapping\n- Keeping mapping logic in the data layer\n- Transforming DTOs to domain models in repositories",
+      "difficulty": "intermediate",
+      "tags": [
+        "architecture",
+        "api",
+        "data-mapping"
+      ]
+    },
+    {
+      "id": "architecture_047",
+      "question": "What is the role of events in the BLoC pattern?",
+      "answer": "Events in the BLoC pattern:\n\n- Represent user actions or system events\n- Trigger state changes in the BLoC\n- Are processed by the BLoC to update the state\n- Help in separating UI interactions from business logic\n- Facilitate a unidirectional data flow",
+      "difficulty": "intermediate",
+      "tags": [
+        "architecture",
+        "bloc",
+        "events"
+      ]
+    },
+    {
+      "id": "architecture_048",
+      "question": "How do you test UI components in Flutter?",
+      "answer": "Test UI components in Flutter by:\n\n- Using widget tests to verify UI behavior\n- Leveraging the flutter_test package\n- Mocking dependencies and services\n- Using golden tests for visual regression testing\n- Implementing integration tests for complex UI flows",
+      "difficulty": "intermediate",
+      "tags": [
+        "architecture",
+        "testing",
+        "widget-tests"
+      ]
+    },
+    {
+      "id": "architecture_049",
+      "question": "What is the purpose of integration testing in Flutter apps?",
+      "answer": "Integration testing in Flutter apps:\n\n- Verifies interactions between different parts of the app\n- Tests the app's behavior in a more realistic environment\n- Catches issues that unit tests might miss\n- Ensures proper communication between layers\n- Validates end-to-end user flows",
+      "difficulty": "intermediate",
+      "tags": [
+        "architecture",
+        "testing",
+        "integration-tests"
+      ]
+    },
+    {
+      "id": "architecture_050",
+      "question": "How do you approach code review in Flutter projects?",
+      "answer": "Approach code review in Flutter projects by:\n\n- Checking for adherence to Flutter best practices\n- Reviewing architectural decisions and patterns\n- Ensuring proper state management implementation\n- Verifying code style and formatting\n- Looking for potential performance issues\n- Checking for adequate test coverage\n- Providing constructive feedback and suggestions",
+      "difficulty": "intermediate",
+      "tags": [
+        "architecture",
+        "code-review",
+        "best-practices"
+      ]
+    }
+  ]
+}

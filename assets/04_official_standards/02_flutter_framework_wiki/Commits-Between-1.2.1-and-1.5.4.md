@@ -1,0 +1,1 @@
+This page has been migrated to https://github.com/flutter/flutter/blob/master/docs/releases/archive/Commits-Between-1.2.1-and-1.5.4.md

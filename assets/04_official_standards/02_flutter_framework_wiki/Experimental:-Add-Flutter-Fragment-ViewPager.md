@@ -1,0 +1,1 @@
+This wiki has migrated to https://github.com/flutter/flutter/blob/master/docs/wiki_archive/Experimental-Add-Flutter-Fragment-ViewPager.md

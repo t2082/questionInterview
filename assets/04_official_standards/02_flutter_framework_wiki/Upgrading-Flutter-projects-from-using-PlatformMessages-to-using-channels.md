@@ -1,0 +1,1 @@
+This page has migrated to https://github.com/flutter/flutter/blob/master/docs/wiki_archive/Upgrading-Flutter-projects-from-using-PlatformMessages-to-using-channels.md
